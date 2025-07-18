@@ -18,7 +18,7 @@ nsimul <- 500
 # 1.2.1. Constituting the datasets #######
 data_clean <- read.csv("data_clean.csv")
 
-# make prolific ID a numeric
+# make prolific ID numeric
 pid_map <- data_clean %>%
   distinct(prolific_pid) %>%
   arrange(prolific_pid) %>%
@@ -50,7 +50,7 @@ data_scored <- data_scored %>%
 data_scored <- data_scored %>%
   mutate(score = if_else(answer == correct, 1, 0))
 
-# I need to make sure that my data is a binary numeric matrix - this will be crucial later to build the simulated matrices
+# We need to make sure that our data is a binary numeric matrix - this will be crucial later to build the simulated matrices
 data_nesting <- data_scored %>%
   select(id,question,score) %>%
   pivot_wider(names_from = question, values_from = score)
@@ -58,15 +58,14 @@ data_nesting <- data_scored %>%
 data_nesting <- data_nesting %>% select(!id) %>% as.matrix()
 data_nesting <- apply(data_nesting, 2, as.integer) # Ensure all values are integers (0 or 1)
 
-# 1.2.2. Measuring nestedness ####
+#  Measuring nestedness #### 
 
 # Define single observed NODF value and Temperature value for consistent display
 # These are calculated once directly from the data_nesting matrix.
 observed_nodf_value <- nestednodf(data_nesting)$statistic['NODF']
 observed_temperature_value <- nestedtemp(data_nesting)$statistic
 
-
-# 1.2.4. Bootstrapping analysis ####
+# Bootstrapping analysis ####
 
 #Are nestedness measures higher / lower than the simulated baselines?
 #Some reminders:
@@ -81,7 +80,6 @@ result_nodf_r1 <- oecosimu(data_nesting, nestednodf, "r1", nsimul = nsimul)
 result_nodf_curveball <- oecosimu(data_nesting, nestednodf, "curveball", nsimul = nsimul)
 result_temp_r1 <- oecosimu(data_nesting, nestedtemp, "r1", nsimul = nsimul)
 result_temp_curveball <- oecosimu(data_nesting, nestedtemp, "curveball", nsimul = nsimul)
-
 
 # Create plots
 png("nestedness_density_plots.png", width = 12, height = 8, units = "in", res = 300)
