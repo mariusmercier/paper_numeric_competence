@@ -2,7 +2,7 @@
 
 library(here)
 library(tidyverse)
-library(lmerTest)  
+library(lmerTest)
 
 S1_long_data <- read_csv(here::here("study_1", "data", "clean", "S1_long_data.csv"))
 S1_fit_results <-  read_csv(here::here("study_1", "results", "S1_fit_results.csv"))
@@ -267,14 +267,28 @@ S1_summarized_data$prob_null_2 <- mapply(
 
 # -------- PRE-REGISTERED ANALYSIS FOR HYPOTHESIS TESTS ----------
 
-model_h1 = lmer(observed_q_objective_difficulty ~ observed_q_perceived_difficulty + (1|participant_id) + (1|question_observed), S1_long_data)
+model_h1 = lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|question_observed), S1_long_data)
 model_h2 <- lm(scale(average_judged_conditional_prob) ~ scale(true_conditional_prob), data = S1_summarized_data)
-model_h1m = lmer(observed_q_objective_difficulty ~ observed_q_perceived_difficulty + (1|participant_id) + (1|question_observed), data_worst_30)
-model_h2m = lm(average_judged_conditional_prob ~ true_conditional_prob, worst_30_prob_df)
+model_h1m = lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|participant_id) + (1|question_observed), data_worst_30)
+model_h2m = lm(scale(average_judged_conditional_prob) ~ scale(true_conditional_prob), worst_30_prob_df)
 bayes_corr_h3 <- cor.test(S1_summarized_data$average_judged_conditional_prob, S1_summarized_data$prob_bayes)
 
+summary(model_h1)
 #for H4: S1_MAIN_BIC < S1_NULL_BIC 
 # for H5: S1_MAIN_BIC < S1_NULL_2_BIC
+
+# for h1 and h1m, lmer not converging. this is because the random effect for question_observed
+#is highly correlated with the fixed effect for perceived question difficulty 
+#(in fact the fixed effect is constant for any value of question_observed) 
+
+#create adjusted models which exclude random_effects for question_observed
+model_h1adjusted <- lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|participant_id),
+                data = S1_long_data)
+summary(model_h1adjusted)
+
+model_h1madjusted = lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|participant_id), data_worst_30)
+summary(model_h1madjusted)
+
 
 # ----- EXPLORATORY RESEARCH QUESTIONS ---------
 
@@ -282,7 +296,7 @@ model_bayes <- lm(scale(average_judged_conditional_prob) ~ scale(prob_bayes), da
 model_null1 <- lm(scale(average_judged_conditional_prob) ~ scale(prob_null), data = S1_summarized_data)
 model_null2 <- lm(scale(average_judged_conditional_prob) ~ scale(prob_null_2), data = S1_summarized_data)
 
-
+# research question 1 
 rq1 <- S1_summarized_data %>%
   group_by(success_observed) %>%
   summarise(
@@ -292,12 +306,89 @@ rq1 <- S1_summarized_data %>%
     .groups = "drop"
   )
 
-# rq2 and rq3 use individual level data (Marius)
+# rq2 and rq3 use individual level data (supercomputer)
 
 # other correlations outside hypotheses
 null_cor <- cor.test(S1_summarized_data$average_judged_conditional_prob, S1_summarized_data$prob_null)
 null2_cor <- cor.test(S1_summarized_data$average_judged_conditional_prob, S1_summarized_data$prob_null_2)
 prob_corr <- cor.test(S1_summarized_data$true_conditional_prob, S1_summarized_data$average_judged_conditional_prob)
 diff_corr <- cor.test(S1_long_data$observed_q_perceived_difficulty_unbounded, S1_long_data$observed_q_objective_difficulty_unbounded)
+
+
+# ------ Manipulation Checks --------
+
+# for MC1 see 'nestedness.R'
+
+# MC1' analysis below
+
+# Calculate average performance score
+S1_long_data$average_performance_score <- S1_long_data$total_score / 15
+
+# Select relevant columns and melt the qxmark columns to long format
+mc_data <- S1_long_data %>%
+  select(participant_id, average_performance_score, question_observed, observed_q_objective_difficulty, paste0("q", 1:15, "mark")) %>%
+  pivot_longer(
+    cols = starts_with("q") & ends_with("mark"),
+    names_to = "question_number_str",
+    values_to = "correctness"
+  )
+
+# Extract the numerical question ID from the 'question_number_str' (e.g., "q1mark" becomes 1)
+mc_data <- mc_data %>%
+  mutate(question_number = as.integer(gsub("q([0-9]+)mark", "\\1", question_number_str)))
+
+mc_data <- mc_data %>%
+  filter(question_number == question_observed, correctness == 1)
+
+# Group the filtered data by both 'question_observed' and 'observed_q_objective_difficulty'
+# Then, calculate the mean of 'average_performance_score' for each unique question/difficulty pair.
+mc_data <- mc_data %>%
+  group_by(question_observed, observed_q_objective_difficulty) %>%
+  summarise(average_performance_score = mean(average_performance_score, na.rm = TRUE), .groups = 'drop') %>% # Added .groups = 'drop' for cleaner output
+  arrange(observed_q_objective_difficulty) # Arrange by difficulty for better readability
+
+# Run  linear model
+model_mc <- lm(observed_q_objective_difficulty ~ average_performance_score, data = mc_data)
+print(summary(model_mc))
+
+plot_mc <- ggplot(mc_data, aes(x = average_performance_score, y = observed_q_objective_difficulty)) +
+  geom_point(color = "darkgreen", size = 3) + # Original scatter points
+  geom_smooth(method = "lm", se = FALSE, color = "blue", linetype = "dashed") + # Linear regression line
+  labs(
+    title = "Question Difficulty vs. Average Performance Score (for Correct Answers)",
+    x = "Average Performance Score (of those who got it right)",
+    y = "Objective Question Difficulty"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold"))
+
+plot_mc
+
+# count of participants who got each q correct
+q_marks_long <- S1_long_data %>%
+  select(participant_id, starts_with("q") & ends_with("mark")) %>%
+  select(participant_id, paste0("q", 1:15, "mark")) # Explicitly select q1mark to q15mark
+
+q_marks_long <- q_marks_long %>%
+  pivot_longer(
+    cols = -participant_id, # Pivot all columns except participant_id
+    names_to = "question_column",
+    values_to = "correctness"
+  )
+
+# Filter for correct answers (where correctness == 1)
+correct_answers <- q_marks_long %>%
+  filter(correctness == 1)
+
+# Count unique participants for each question
+# Group by the 'question_column' and then count the number of distinct 'participant_id's
+participants_per_question <- correct_answers %>%
+  group_by(question_column) %>%
+  summarise(unique_participants_correct = n_distinct(participant_id)) %>%
+  ungroup() %>%
+  arrange(question_column)
+
+print(participants_per_question)
+
 
 
