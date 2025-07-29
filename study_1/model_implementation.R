@@ -244,52 +244,52 @@ S1_NULL_2_LLMax <- S1_find_LLMax_alternative_2(S1_long_data, S1_bayes_data)
 
 # ---- INDIVIDUAL MODEL FITTING ----
 
-#library(parallel)
-#library(pbapply)
+library(parallel)
+library(pbapply)
 
-#S1_cl <- makeCluster(detectCores())
+S1_cl <- makeCluster(detectCores())
 
-#clusterEvalQ(S1_cl, {
-#  library(tidyverse)
-#})
+clusterEvalQ(S1_cl, {
+ library(tidyverse)
+})
 
-#clusterExport(S1_cl, c("S1_long_data", "S1_bayes_data", "S1_find_LLMax_optim", "S1_find_LLMax_alternative", "S1_find_LLMax_alternative_2", "update_and_predict_p_success", "updating", "COMP", "delta", "compute_p_success", "soft_max"))
+clusterExport(S1_cl, c("S1_long_data", "S1_bayes_data", "S1_find_LLMax_optim", "S1_find_LLMax_alternative", "S1_find_LLMax_alternative_2", "update_and_predict_p_success", "updating", "COMP", "delta", "compute_p_success", "soft_max"))
 
 
-#S1_participant_ids <- unique(S1_long_data$PROLIFIC_PID)
+S1_participant_ids <- unique(S1_long_data$participant_id)
 
-#S1_results_list <- pblapply(
-#  S1_participant_ids,
-#  cl = S1_cl,
-#  FUN = function(pid) {
-#    pdata <- S1_long_data[S1_long_data$PROLIFIC_PID == pid, ]
-    
-#    p_main_LLMax <- S1_find_LLMax_optim(pdata, S1_bayes_data)
-#    p_null_LLMax <- S1_find_LLMax_alternative(pdata, S1_bayes_data)
-#    p_null_2_LLMax <- S1_find_LLMax_alternative_2(pdata, S1_bayes_data)
-    
-#    data.frame(
-#      participant_id = pid,
-#      MAIN_LLMax = p_main_LLMax$LLMax,
-#      MAIN_mu = p_main_LLMax$best_params["mu"],
-#      MAIN_sigma = p_main_LLMax$best_params["sigma"],
-#      MAIN_noise = p_main_LLMax$best_params["noise"],
-#      MAIN_beta = p_main_LLMax$best_params["beta"],
-#      MAIN_BIC = -2 * p_main_LLMax$LLMax + 4 * log(nrow(pdata)),
-#      NULL_LLMax = p_null_LLMax$LLMax,
-#      NULL_beta = p_null_LLMax$best_params["beta"],
-#      NULL_BIC = -2 * p_null_LLMax$LLMax + 1 * log(nrow(pdata)),
-#      NULL_2_LLMax = p_null_2_LLMax$LLMax,
-#      NULL_2_beta = p_null_2_LLMax$best_params["beta"],
-#      NULL_2_diff = p_null_2_LLMax$best_params["diff"],
-#      NULL_2_BIC = -2 * p_null_2_LLMax$LLMax + 2 * log(nrow(pdata)),
-#      stringsAsFactors = FALSE
-#    )
-#  }
-#)
+S1_results_list <- pblapply(
+ S1_participant_ids,
+ cl = S1_cl,
+ FUN = function(pid) {
+   pdata <- S1_long_data[S1_long_data$participant_id == pid, ]
 
-#stopCluster(S1_cl)
-#S1_individual_fits <- do.call(rbind, S1_results_list)
+   p_main_LLMax <- S1_find_LLMax_optim(pdata, S1_bayes_data)
+   p_null_LLMax <- S1_find_LLMax_alternative(pdata, S1_bayes_data)
+   p_null_2_LLMax <- S1_find_LLMax_alternative_2(pdata, S1_bayes_data)
+
+   data.frame(
+     participant_id = pid,
+     MAIN_LLMax = p_main_LLMax$LLMax,
+     MAIN_mu = p_main_LLMax$best_params["mu"],
+     MAIN_sigma = p_main_LLMax$best_params["sigma"],
+     MAIN_noise = p_main_LLMax$best_params["noise"],
+     MAIN_beta = p_main_LLMax$best_params["beta"],
+     MAIN_BIC = -2 * p_main_LLMax$LLMax + 4 * log(nrow(pdata)),
+     NULL_LLMax = p_null_LLMax$LLMax,
+     NULL_beta = p_null_LLMax$best_params["beta"],
+     NULL_BIC = -2 * p_null_LLMax$LLMax + 1 * log(nrow(pdata)),
+     NULL_2_LLMax = p_null_2_LLMax$LLMax,
+     NULL_2_beta = p_null_2_LLMax$best_params["beta"],
+     NULL_2_diff = p_null_2_LLMax$best_params["diff"],
+     NULL_2_BIC = -2 * p_null_2_LLMax$LLMax + 2 * log(nrow(pdata)),
+     stringsAsFactors = FALSE
+   )
+ }
+)
+
+stopCluster(S1_cl)
+S1_individual_fits <- do.call(rbind, S1_results_list)
 
 # ---- EXPORT FIT RESULTS ----
 
@@ -304,7 +304,7 @@ S1_fit_results <- data.frame(
 )
 
 write.csv(S1_fit_results, here::here("study_1", "results", "S1_fit_results.csv"), row.names = FALSE)
-#write.csv(S1_individual_fits, here::here("study_1", "results", "S1_individual_fits.csv"))
+write.csv(S1_individual_fits, here::here("study_1", "results", "S1_individual_fits.csv"))
 
 
 
