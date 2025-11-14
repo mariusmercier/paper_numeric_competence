@@ -9,7 +9,7 @@ library(dplyr)
 library(tidyverse)
 library(vegan) #for the two nestedness measures
 
-S1_long_data <- read_csv(here("study_1", "data", "clean", "S1_long_data.csv"))
+S1_wide_answers <- read_csv(here("study_1", "data", "clean", "S1_wide_answers.csv"))
 
 # Define nsimul (number of simulated matrices)
 nsimul <- 500
@@ -17,7 +17,7 @@ nsimul <- 500
 #---- CREATE A SCORING MATRIX WITH PARTICIPANTS AS ROWS AND QUESTIONS AS Qs AS COLUMNS ----
 
 # keep only relevant data columns for nestedness, removee q16 which is the cheat test
-data_nesting <- S1_long_data %>% select(prolific_pid, q1mark:q15mark)
+data_nesting <- S1_wide_answers %>% select(prolific_pid, q1mark:q15mark)
 # there are 30 identical rows per participant, keep only 1
 data_nesting <- data_nesting %>%
   distinct(prolific_pid, .keep_all = TRUE)

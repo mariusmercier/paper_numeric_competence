@@ -267,9 +267,9 @@ S1_summarized_data$prob_null_2 <- mapply(
 
 # -------- PRE-REGISTERED ANALYSIS FOR HYPOTHESIS TESTS ----------
 
-model_h1 = lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|question_observed), S1_long_data)
+model_h1 = lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|prolific_pid), S1_long_data)
 model_h2 <- lm(scale(average_judged_conditional_prob) ~ scale(true_conditional_prob), data = S1_summarized_data)
-model_h1m = lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|prolific_pid) + (1|question_observed), data_worst_30)
+model_h1m = lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|prolific_pid), data_worst_30)
 model_h2m = lm(scale(average_judged_conditional_prob) ~ scale(true_conditional_prob), worst_30_prob_df)
 bayes_corr_h3 <- cor.test(S1_summarized_data$average_judged_conditional_prob, S1_summarized_data$prob_bayes)
 
@@ -277,17 +277,11 @@ summary(model_h1)
 #for H4: S1_MAIN_BIC < S1_NULL_BIC 
 # for H5: S1_MAIN_BIC < S1_NULL_2_BIC
 
-# for h1 and h1m, lmer not converging. this is because the random effect for question_observed
-#is highly correlated with the fixed effect for perceived question difficulty 
-#(in fact the fixed effect is constant for any value of question_observed) 
-
-#create adjusted models which exclude random_effects for question_observed
-model_h1adjusted <- lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|prolific_pid),
-                data = S1_long_data)
-summary(model_h1adjusted)
-
-model_h1madjusted = lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|prolific_pid), data_worst_30)
-summary(model_h1madjusted)
+# for h1 and h1m the random intercept for question_observed is redundant with
+# the fixed effect because each question only has a single objective difficulty.
+# Limiting the random structure to participant intercepts avoids the convergence
+# warnings and produces identifiable models.
+summary(model_h1m)
 
 
 # ----- EXPLORATORY RESEARCH QUESTIONS ---------

@@ -7,8 +7,6 @@ library(pbapply)
 library(tibble)
 
 S1_long_data <- read_csv(here::here("study_1", "data", "clean", "S1_long_data.csv"))
-S1_perceived_difficulty <- read_csv(here::here("study_1", "data", "clean", "S1_perceived_difficulty.csv"))
-
 # Import necessary functions from pre-reg
 source(here::here("pre-registered code", "pre-reg_model_implementation.R"))
 

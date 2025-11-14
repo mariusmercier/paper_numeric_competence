@@ -267,8 +267,9 @@ custom_theme_dark <- theme_minimal() +
 ```{r load data}
 # Cleaned data
 S1_long_data <- read_csv(here::here("study_1", "data", "clean", "S1_long_data.csv"))
-S1_perceived_difficulty <-  read_csv(here::here("study_1", "data", "clean", "S1_perceived_difficulty.csv"))
-S1_objective_difficulty <-  read_csv(here::here("study_1", "data", "clean", "S1_objective_difficulty.csv"))
+S1_difficulty <- read_csv(here::here("study_1", "data", "clean", "S1_difficulty.csv"))
+S1_prob_df <- read_csv(here("study_1", "data", "clean", "S1_prob_df.csv"))
+S1_wide_answers <- read_csv(here("study_1", "data", "clean", "S1_wide_answers.csv"))
 
 # pre-registered model implementation
 source(here::here("pre-registered code", "pre-reg_model_implementation.R"))
@@ -280,11 +281,12 @@ nestedness_stats <- read_csv(here::here("study_1", "results", "nestedness_stats.
 ```
 
 ```{r analyses}
-# ----- CREATE DFS FOR WORST PERFOMRERS AND FOR CONDITIONAL PROBABILITIES -----------
+# ---- merge S1_long_data with true probas ----
 
-# ------ Subset S1_data_long to worst 30% of participants -------
-n_participants <- S1_long_data %>% 
-  distinct(prolific_pid) %>% 
+S1_long_data = left_join(S1_long_data, S1_prob_df, by = c("question_observed", "success_observed", "question_evaluated"))
+
+n_participants <- S1_long_data %>%
+  distinct(prolific_pid) %>%
   nrow()
 n_worst <- floor(n_participants * 0.30)
 
@@ -294,192 +296,22 @@ worst_ids <- S1_long_data %>%
   slice_head(n = n_worst) %>%
   pull(prolific_pid)
 
-data_worst_30 <- S1_long_data %>%
+S1_long_data_worst <- S1_long_data %>%
   filter(prolific_pid %in% worst_ids)
-
-rm(worst_ids, n_participants)
-#------True and Judged Conditional Probabilities (FULL DATASET)-------
-
-questions <- paste0("q", 1:15, "mark")
-
-# compute true P(q_j=1 | q_i=1) - for success == 1
-true_prob_mat_correct <- sapply(questions, function(i) {
-  sapply(questions, function(j) {
-    mean(S1_long_data[[j]][ S1_long_data[[i]] == 1 ], na.rm=TRUE)
-  })
-})
-diag(true_prob_mat_correct) <- 1
-true_df_correct <- as.data.frame(true_prob_mat_correct)
-colnames(true_df_correct) <- paste0("given_q", 1:15, "correct")
-rownames(true_df_correct) <- paste0("P(q", 1:15, "_correct)")
-
-# compute true P(q_j=1 | q_i=0) - for success == 0
-true_prob_mat_incorrect <- sapply(questions, function(i) {
-  sapply(questions, function(j) {
-    mean(S1_long_data[[j]][ S1_long_data[[i]] == 0 ], na.rm=TRUE)
-  })
-})
-# set diag to NA
-diag(true_prob_mat_incorrect) <- NA
-true_df_incorrect <- as.data.frame(true_prob_mat_incorrect)
-colnames(true_df_incorrect) <- paste0("given_q", 1:15, "incorrect")
-rownames(true_df_incorrect) <- paste0("P(q", 1:15, "_correct)")
-
-# create true long by combining correct and incorrect
-true_long_correct <- true_df_correct %>%
-  as_tibble(rownames="question_evaluated") %>%
-  mutate(
-    question_evaluated = str_extract(question_evaluated, "\\d+") %>% as.integer(),
-    success_observed   = 1
-  ) %>%
-  pivot_longer(
-    cols      = starts_with("given_"),
-    names_to  = "given",
-    values_to = "true_conditional_prob"
-  )
-
-true_long_incorrect <- true_df_incorrect %>%
-  as_tibble(rownames="question_evaluated") %>%
-  mutate(
-    question_evaluated = str_extract(question_evaluated, "\\d+") %>% as.integer(),
-    success_observed   = 0
-  ) %>%
-  pivot_longer(
-    cols      = starts_with("given_"),
-    names_to  = "given",
-    values_to = "true_conditional_prob"
-  )
-
-true_long <- bind_rows(true_long_correct, true_long_incorrect)
-
-
-# create judged long df
-judged_long <- S1_long_data %>%
-  group_by(success_observed, question_observed, question_evaluated) %>%
-  summarise(
-    average_judged_conditional_prob = mean(human_evaluation == 1, na.rm = TRUE),
-    .groups = "drop"
-  ) %>%
-  mutate(
-    given = paste0("given_q", question_observed,
-                   if_else(success_observed == 1, "correct", "incorrect"))
-  ) %>%
-  select(question_evaluated, success_observed, given, average_judged_conditional_prob)
-
-# combine judged and true into a single df
-full_prob_df <- inner_join(true_long, judged_long,
-                           by = c("question_evaluated","given", "success_observed")) %>%
-  filter(question_evaluated != as.integer(str_extract(given, "(?<=given_q)\\d+"))) %>%
-  mutate(
-    # pull out question_observed
-    question_observed = as.integer(str_extract(given, "(?<=given_q)\\d+"))
-  ) %>%
-  # reorder columns
-  select(success_observed, question_observed, everything())
-
-
-#------True and Judged Conditional Probabilities (WORST 30% DATASET)-------
-# repeat process above to create a true and judged conditional probability table for the worst 30% of participants
-
-questions <- paste0("q", 1:15, "mark")
-
-true_mat_worst_correct <- sapply(questions, function(i) {
-  sapply(questions, function(j) {
-    mean(data_worst_30[[j]][ data_worst_30[[i]] == 1 ], na.rm = TRUE)
-  })
-})
-diag(true_mat_worst_correct) <- 1
-true_df_worst_correct <- as.data.frame(true_mat_worst_correct)
-colnames(true_df_worst_correct) <- paste0("given_q", 1:15, "correct")
-rownames(true_df_worst_correct) <- paste0("P(q", 1:15, "_correct)")
-
-true_mat_worst_incorrect <- sapply(questions, function(i) {
-  sapply(questions, function(j) {
-    mean(data_worst_30[[j]][ data_worst_30[[i]] == 0 ], na.rm = TRUE)
-  })
-})
-diag(true_mat_worst_incorrect) <- NA
-true_df_worst_incorrect <- as.data.frame(true_mat_worst_incorrect)
-colnames(true_df_worst_incorrect) <- paste0("given_q", 1:15, "incorrect")
-rownames(true_df_worst_incorrect) <- paste0("P(q", 1:15, "_correct)")
-
-true_long_worst <- bind_rows(
-  true_df_worst_correct %>%
-    as_tibble(rownames = "question_evaluated") %>%
-    mutate(
-      question_evaluated = str_extract(question_evaluated, "\\d+") %>% as.integer(),
-      success_observed   = 1
-    ) %>%
-    pivot_longer(
-      cols      = starts_with("given_q"),
-      names_to  = "given",
-      values_to = "true_conditional_prob"
-    ),
-  
-  true_df_worst_incorrect %>%
-    as_tibble(rownames = "question_evaluated") %>%
-    mutate(
-      question_evaluated = str_extract(question_evaluated, "\\d+") %>% as.integer(),
-      success_observed   = 0
-    ) %>%
-    pivot_longer(
-      cols      = starts_with("given_q"),
-      names_to  = "given",
-      values_to = "true_conditional_prob"
-    )
-)
-
-judged_long_worst <- data_worst_30 %>%
-  group_by(success_observed, question_observed, question_evaluated) %>%
-  summarise(
-    average_judged_conditional_prob = mean(human_evaluation == 1, na.rm = TRUE),
-    .groups = "drop"
-  ) %>%
-  mutate(
-    given = paste0("given_q", question_observed,
-                   if_else(success_observed == 1, "correct", "incorrect"))
-  ) %>%
-  select(question_evaluated, success_observed, given, average_judged_conditional_prob)
-
-worst_30_prob_df <- inner_join(
-  true_long_worst,
-  judged_long_worst,
-  by = c("question_evaluated", "success_observed", "given")
-) %>%
-  filter(question_evaluated != as.integer(str_extract(given, "(?<=given_q)\\d+"))) %>%
-  mutate(
-    # pull out question_observed
-    question_observed = as.integer(str_extract(given, "(?<=given_q)\\d+"))
-  )
-
-rm(judged_long, judged_long_worst, true_df_correct, true_df_incorrect, true_df_worst_correct, true_df_worst_incorrect, true_long, true_long_correct, true_long_incorrect, true_long_worst)
-rm(true_mat_worst_correct, true_mat_worst_incorrect, true_prob_mat_correct, true_prob_mat_incorrect)
-
 
 # ---- CREATE SUMMARIZED DF -----
 S1_summarized_data <- S1_long_data %>%
   group_by(success_observed, question_observed, question_evaluated) %>%
   summarise(
-    sd_judged_conditional_prob                = sd(human_evaluation, na.rm=TRUE),
+    judged_prob = mean(human_evaluation, na.rm=TRUE),
     observed_q_perceived_difficulty_unbounded = mean(observed_q_perceived_difficulty_unbounded),
     new_q_perceived_difficulty_unbounded      = mean(new_q_perceived_difficulty_unbounded),
+    true_prob = mean(true_conditional_prob),
     .groups = "drop"
   ) %>%
   filter(question_observed != question_evaluated)
 
-S1_summarized_data <- S1_summarized_data %>%
-  left_join(
-    full_prob_df %>%
-      select(success_observed, question_observed, question_evaluated,
-             average_judged_conditional_prob,
-             true_conditional_prob),
-    by = c("success_observed","question_observed","question_evaluated")
-  )
 
-# CREATE S1_DIFFICULTY DF COMBINING PERCEIVED AND OBJECTIVE ----
-
-S1_difficulty <- inner_join(S1_objective_difficulty, S1_perceived_difficulty, by = "question")
-rm(S1_objective_difficulty, S1_perceived_difficulty)
 # ------ EXTRACT RESULTS FROM COMPUTATIONAL MODEL  ----
 
 # ---- Compute BICs ----
@@ -498,18 +330,18 @@ beta <- S1_fit_results[S1_fit_results$model == "S1_MAIN", ]$beta
 S1_prior_COMP <- dnorm(COMP, mu, sigma)
 S1_prior_COMP <- S1_prior_COMP / sum(S1_prior_COMP * delta)
 
-
 S1_summarized_data$prob_bayes <- mapply(
   FUN = update_and_predict_p_success,
   observed_q_perceived_difficulty_unbounded = S1_summarized_data$observed_q_perceived_difficulty_unbounded,
   new_q_perceived_difficulty_unbounded = S1_summarized_data$new_q_perceived_difficulty_unbounded,
+  success = S1_summarized_data$success_observed,
   MoreArgs = list(
     prior = S1_prior_COMP, # Pass entire vector as constant
-    success = 1,
     noise = noise,
     beta = beta
   )
 )
+
 
 beta <- S1_fit_results[S1_fit_results$model == "S1_NULL", ]$beta
 S1_NULL_COMP <- rep(1, length(COMP))
@@ -519,9 +351,9 @@ S1_summarized_data$prob_null <- mapply(
   FUN = update_and_predict_p_success,
   observed_q_perceived_difficulty_unbounded = S1_summarized_data$observed_q_perceived_difficulty_unbounded,
   new_q_perceived_difficulty_unbounded = S1_summarized_data$new_q_perceived_difficulty_unbounded,
+  success = S1_summarized_data$success_observed,
   MoreArgs = list(
     prior = S1_NULL_COMP,
-    success = 1,
     noise = 0,
     beta = beta
   )
@@ -531,20 +363,39 @@ beta <- S1_fit_results[S1_fit_results$model == "S1_NULL_2", ]$beta
 difference <- beta <- S1_fit_results[S1_fit_results$model == "S1_NULL_2", ]$diff
 
 S1_summarized_data$prob_null_2 <- mapply(
-  FUN = function(obs, new) {
-    soft_max(ifelse(obs + difference >= new, 1, 0), beta = beta)
+  FUN = function(obs, new, success_observed) {
+    if (success_observed == 1){
+    soft_max(ifelse(obs + difference >= new, 1, 0), beta = beta)  
+    } else {
+    soft_max(ifelse(obs - difference >= new, 1, 0), beta = beta)  
+    }
   },
   obs = S1_summarized_data$observed_q_perceived_difficulty_unbounded,
-  new = S1_summarized_data$new_q_perceived_difficulty_unbounded
+  new = S1_summarized_data$new_q_perceived_difficulty_unbounded,
+  success_observed = S1_summarized_data$success_observed
 )
 
 # -------- PRE-REGISTERED ANALYSIS FOR HYPOTHESIS TESTS ----------
 
-model_h1 = lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|prolific_pid) + (1|question_observed), S1_long_data)
-model_h2 <- lm(scale(average_judged_conditional_prob) ~ scale(true_conditional_prob), data = S1_summarized_data)
-model_h1m = lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|prolific_pid) + (1|question_observed), data_worst_30)
-model_h2m = lm(scale(average_judged_conditional_prob) ~ scale(true_conditional_prob), worst_30_prob_df)
-bayes_corr_h3 <- cor.test(S1_summarized_data$average_judged_conditional_prob, S1_summarized_data$prob_bayes)
+data_h1 = S1_long_data %>% select(prolific_pid, question_observed, observed_q_objective_difficulty, observed_q_perceived_difficulty) %>% distinct()
+
+model_h1 = lmer(scale(observed_q_perceived_difficulty) ~ scale(observed_q_objective_difficulty) + (1|prolific_pid), data_h1)
+model_h2 <- lm(scale(judged_prob) ~ scale(true_prob), data = S1_summarized_data)
+
+
+data_h1_worst = S1_long_data_worst%>% select(prolific_pid, question_observed, observed_q_objective_difficulty, observed_q_perceived_difficulty) %>% distinct()
+model_h1m = lmer(scale(observed_q_perceived_difficulty) ~ scale(observed_q_objective_difficulty) + (1|prolific_pid), data_h1_worst)
+
+data_h2m = S1_long_data_worst %>% 
+  group_by(question_observed, question_evaluated, success_observed) %>% 
+  summarise(
+    true_prob = mean(true_conditional_prob), 
+    judged_prob = mean(human_evaluation)
+  )
+
+model_h2m = lm(scale(judged_prob) ~ scale(true_prob), data_h2m)
+
+bayes_corr_h3 <- cor.test(S1_summarized_data$judged_prob, S1_summarized_data$prob_bayes)
 
 #for H4: S1_MAIN_BIC < S1_NULL_BIC 
 # for H5: S1_MAIN_BIC < S1_NULL_2_BIC
@@ -552,28 +403,24 @@ bayes_corr_h3 <- cor.test(S1_summarized_data$average_judged_conditional_prob, S1
 # find difference between BIC of main model and next best heuristic model (Anchor model)
 S1_BIC_DIFF <- S1_NULL_2_BIC-S1_MAIN_BIC
 
-# for h1 and h1m, lmer not converging. this is because the random effect for question_observed
-#is highly correlated with the fixed effect for perceived question difficulty 
-#(in fact the fixed effect is constant for any value of question_observed) 
-
-#create adjusted models which exclude random_effects for question_observed
-model_h1adjusted <- lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|prolific_pid), data = S1_long_data)
-
-model_h1madjusted = lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|prolific_pid), data_worst_30)
+# for h1 and h1m, the random intercept for question_observed is redundant with
+# the fixed effect because each question has a single objective difficulty.
+# We therefore only include participant-level random effects in the models to
+# avoid convergence warnings and unidentifiable parameters.
 
 
 # ----- EXPLORATORY RESEARCH QUESTIONS ---------
 
-model_bayes <- lm(scale(average_judged_conditional_prob) ~ scale(prob_bayes), data = S1_summarized_data)
-model_null1 <- lm(scale(average_judged_conditional_prob) ~ scale(prob_null), data = S1_summarized_data)
-model_null2 <- lm(scale(average_judged_conditional_prob) ~ scale(prob_null_2), data = S1_summarized_data)
+model_bayes <- lm(scale(judged_prob) ~ scale(prob_bayes), data = S1_summarized_data)
+model_null1 <- lm(scale(judged_prob) ~ scale(prob_null), data = S1_summarized_data)
+model_null2 <- lm(scale(judged_prob) ~ scale(prob_null_2), data = S1_summarized_data)
 
 # rq1 
 rq1 <- S1_summarized_data %>%
   group_by(success_observed) %>%
   summarise(
-    cor = cor(average_judged_conditional_prob, true_conditional_prob, use = "complete.obs"),
-    p.value = cor.test(average_judged_conditional_prob, true_conditional_prob)$p.value,
+    cor = cor(judged_prob, true_prob, use = "complete.obs"),
+    p.value = cor.test(judged_prob, true_prob)$p.value,
     n.cells = n(),
     .groups = "drop"
   )
@@ -581,8 +428,8 @@ rq1 <- S1_summarized_data %>%
 S1_summarized_success <- S1_summarized_data %>% filter(success_observed == 1)
 S1_summarized_failure <- S1_summarized_data %>% filter(success_observed == 0)
 
-modelS_rq1 <- lm(scale(average_judged_conditional_prob) ~ scale(true_conditional_prob), data = S1_summarized_success)
-modelF_rq1 <- lm(scale(average_judged_conditional_prob) ~ scale(true_conditional_prob), data = S1_summarized_failure)
+modelS_rq1 <- lm(scale(judged_prob) ~ scale(true_prob), data = S1_summarized_success)
+modelF_rq1 <- lm(scale(judged_prob) ~ scale(true_prob), data = S1_summarized_failure)
 
 # rq2 and rq3 
 
@@ -591,9 +438,9 @@ S1_ttest_1 <- t.test(S1_individual_fits$MAIN_BIC, S1_individual_fits$NULL_BIC, p
 S1_ttest_2 <- t.test(S1_individual_fits$MAIN_BIC, S1_individual_fits$NULL_2_BIC, paired = TRUE)
 
 # other correlations outside hypotheses
-null1_corr <- cor.test(S1_summarized_data$average_judged_conditional_prob, S1_summarized_data$prob_null)
-null2_corr <- cor.test(S1_summarized_data$average_judged_conditional_prob, S1_summarized_data$prob_null_2)
-prob_corr <- cor.test(S1_summarized_data$true_conditional_prob, S1_summarized_data$average_judged_conditional_prob)
+null1_corr <- cor.test(S1_summarized_data$judged_prob, S1_summarized_data$prob_null)
+null2_corr <- cor.test(S1_summarized_data$judged_prob, S1_summarized_data$prob_null_2)
+prob_corr <- cor.test(S1_summarized_data$true_prob, S1_summarized_data$judged_prob)
 diff_corr <- cor.test(S1_long_data$observed_q_perceived_difficulty, S1_long_data$observed_q_objective_difficulty)
 
 # ------ Manipulation Checks --------
@@ -601,37 +448,25 @@ diff_corr <- cor.test(S1_long_data$observed_q_perceived_difficulty, S1_long_data
 # for MC1 see 'nestedness.R'
 
 # MC1' analysis below
-
-# Calculate average performance score
-S1_long_data$average_performance_score <- S1_long_data$total_score / 15
-
-# Select relevant columns and melt the qxmark columns to long format
-mc_data <- S1_long_data %>%
-  select(prolific_pid, average_performance_score, question_observed, observed_q_objective_difficulty, paste0("q", 1:15, "mark")) %>%
+mc_data = S1_wide_answers %>% 
   pivot_longer(
-    cols = starts_with("q") & ends_with("mark"),
-    names_to = "question_number_str",
-    values_to = "correctness"
-  )
+    cols = contains("mark"), 
+    names_to = "question",
+    values_to = "success"
+  ) %>% 
+  mutate(question = as.integer(gsub("q([0-9]+)mark", "\\1", question))) %>% 
+  filter(success == 1) %>% 
+  group_by(question) %>%
+  select(question, total_score) %>% 
+  summarise(average_score = mean(total_score))
 
-# Extract the numerical question ID from the 'question_number_str' (e.g., "q1mark" becomes 1)
-mc_data <- mc_data %>%
-  mutate(question_number = as.integer(gsub("q([0-9]+)mark", "\\1", question_number_str)))
 
-mc_data <- mc_data %>%
-  filter(question_number == question_observed, correctness == 1)
-
-# Group the filtered data by both 'question_observed' and 'observed_q_objective_difficulty'
-# Then, calculate the mean of 'average_performance_score' for each unique question/difficulty pair.
-mc_data <- mc_data %>%
-  group_by(question_observed, observed_q_objective_difficulty) %>%
-  summarise(average_performance_score = mean(average_performance_score, na.rm = TRUE), .groups = 'drop') %>% # Added .groups = 'drop' for cleaner output
-  arrange(observed_q_objective_difficulty) # Arrange by difficulty for better readability
+mc_data = left_join(mc_data, S1_difficulty, by = "question")
 
 # Run  linear model
-model_mc <- lm(observed_q_objective_difficulty ~ average_performance_score, data = mc_data)
+model_mc <- lm(objective_difficulty ~ average_score, data = mc_data)
 
-plot_mc <- ggplot(mc_data, aes(x = average_performance_score, y = observed_q_objective_difficulty)) +
+plot_mc <- ggplot(mc_data, aes(x = average_score, y = objective_difficulty)) +
   geom_point(color = "darkgreen", size = 3) + # Original scatter points
   geom_smooth(method = "lm", se = FALSE, color = "blue", linetype = "dashed") + # Linear regression line
   labs(
@@ -642,31 +477,31 @@ plot_mc <- ggplot(mc_data, aes(x = average_performance_score, y = observed_q_obj
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5, face = "bold"))
 
-# count of participants who got each q correct
-q_marks_long <- S1_long_data %>%
-  select(prolific_pid, starts_with("q") & ends_with("mark")) %>%
-  select(prolific_pid, paste0("q", 1:15, "mark")) # Explicitly select q1mark to q15mark
-
-q_marks_long <- q_marks_long %>%
-  pivot_longer(
-    cols = -prolific_pid, # Pivot all columns except prolific_pid
-    names_to = "question_column",
-    values_to = "correctness"
-  )
-
-# Filter for correct answers (where correctness == 1)
-correct_answers <- q_marks_long %>%
-  filter(correctness == 1)
-
-# Count unique participants for each question
-# Group by the 'question_column' and then count the number of distinct 'prolific_pid's
-participants_per_question <- correct_answers %>%
-  group_by(question_column) %>%
-  summarise(unique_participants_correct = n_distinct(prolific_pid)) %>%
-  ungroup() %>%
-  arrange(question_column)
-
-rm(correct_answers, q_marks_long)
+# # count of participants who got each q correct
+# q_marks_long <- S1_long_data %>%
+#   select(prolific_pid, starts_with("q") & ends_with("mark")) %>%
+#   select(prolific_pid, paste0("q", 1:15, "mark")) # Explicitly select q1mark to q15mark
+# 
+# q_marks_long <- q_marks_long %>%
+#   pivot_longer(
+#     cols = -prolific_pid, # Pivot all columns except prolific_pid
+#     names_to = "question_column",
+#     values_to = "correctness"
+#   )
+# 
+# # Filter for correct answers (where correctness == 1)
+# correct_answers <- q_marks_long %>%
+#   filter(correctness == 1)
+# 
+# # Count unique participants for each question
+# # Group by the 'question_column' and then count the number of distinct 'prolific_pid's
+# participants_per_question <- correct_answers %>%
+#   group_by(question_column) %>%
+#   summarise(unique_participants_correct = n_distinct(prolific_pid)) %>%
+#   ungroup() %>%
+#   arrange(question_column)
+# 
+# rm(correct_answers, q_marks_long)
 
 
 # -------- EXPORT ALL RESULTS --------
@@ -686,13 +521,11 @@ S1_results <- list(
   clean_prob_corr = clean_t_test(prob_corr),
   clean_diff_corr = clean_t_test(diff_corr),
   clean_bayes_corr_h3 = clean_t_test(bayes_corr_h3),
-  clean_model_h1m = clean_lmer(model_h1madjusted),
-  clean_model_h1 = clean_lmer(model_h1adjusted),
+  clean_model_h1m = clean_lmer(model_h1m),
+  clean_model_h1 = clean_lmer(model_h1),
   ttest_1 = clean_t_test(S1_ttest_1),
   ttest_2 = clean_t_test(S1_ttest_2)
 )
-
-
 ```
 
 All linear Mixed Models (LMM) were computed with the “lmerTest” package to obtain p-values via Satterthwaite's degrees of freedom method (Kuznetsova et al., 2017). For other tests, the R packages used will be specified. For all statistical tests, alpha = 0.05.
@@ -704,9 +537,9 @@ All hypotheses and manipulation checks were supported by the participant data an
 Participants, given a single piece of information that another person got a particular arithmetic question right/wrong, were far better than chance at judging which other questions that person would have got right.
 This inference about the competence of others from very limited information relies on the participants assuming that performance on the arithmetic questions is nested, with people who can answer harder questions also being able to answer easier ones, but not vice-versa. In order to make use of the nestnessness of the questions, participants additionally needed to accurately assess the the rarity of reaching a correct answer in the time limit for different questions, in other words the difficulty of the questions. Our findings suggest that participants were on average able to make all of these judgments, enabling their successful competence inferences. 
 
-The arithmetic questions were manipulated to be nested by varying their difficulty. To verify that this manipulation resulted in nestedness of participant performance, two nestedness measures, NODF and Temperature, were calculated from a binary matrix of participants' successes/failures on each question. Each metric was computed using the oecosimu() function in the vegan package in R (Oksanen et al. 2013). The observed nestedness values (NODF or Temperature) were compared to a simulated distribution of possible values under the null hypothesis that the arithmetic questions were not nested. A higher, positive NODF indicates greater nestedness, while a lower, negative Temperature indicates greater nestedness. The primary manipulation check (**MC1**) was confirmed for both measures, with a significantly higher NODF and lower Temperature than under the null model (NODF: Z = `r round(nestedness_stats$Z_score[nestedness_stats$Measure=="NODF"],2)`, p = `r sub("^0","", sprintf("%.3f", nestedness_stats$p_value[nestedness_stats$Measure=="NODF"]))`; Temperature: Z = `r round(nestedness_stats$Z_score[nestedness_stats$Measure=="Temperature"],2)`, p = `r sub("^0","", sprintf("%.3f",nestedness_stats$p_value[nestedness_stats$Measure=="Temperature"]))`). This confirmed that participants who succeeded on hard questions (rarely answered correctly) also tended to succeed on easier ones (more commonly answered correctly). A secondary manipulation check (**MC1'**), directly derived from nesting, was then performed to check that, on average, the more difficult the question the higher the average performance score of those who got it right. Fitting a linear model with average performance score as the predictor and objective question difficulty (the rarity of answering correctly within the time limit) as the outcome, the secondary manipulation check was supported as the estimate was significantly positive ($\beta$ = `r S1_results$clean_model_mc$average_performance_score$estimate`, t(`r S1_results$clean_model_mc$model_fit$df.residual`) = `r S1_results$clean_model_mc$average_performance_score$statistic`, p = `r S1_results$clean_model_mc$average_performance_score$p.value`).
+The arithmetic questions were manipulated to be nested by varying their difficulty. To verify that this manipulation resulted in nestedness of participant performance, two nestedness measures, NODF and Temperature, were calculated from a binary matrix of participants' successes/failures on each question. Each metric was computed using the oecosimu() function in the vegan package in R (Oksanen et al. 2013). The observed nestedness values (NODF or Temperature) were compared to a simulated distribution of possible values under the null hypothesis that the arithmetic questions were not nested. A higher, positive NODF indicates greater nestedness, while a lower, negative Temperature indicates greater nestedness. The primary manipulation check (**MC1**) was confirmed for both measures, with a significantly higher NODF and lower Temperature than under the null model (NODF: Z = `r round(nestedness_stats$Z_score[nestedness_stats$Measure=="NODF"],2)`, p = `r sub("^0","", sprintf("%.3f", nestedness_stats$p_value[nestedness_stats$Measure=="NODF"]))`; Temperature: Z = `r round(nestedness_stats$Z_score[nestedness_stats$Measure=="Temperature"],2)`, p = `r sub("^0","", sprintf("%.3f",nestedness_stats$p_value[nestedness_stats$Measure=="Temperature"]))`). This confirmed that participants who succeeded on hard questions (rarely answered correctly) also tended to succeed on easier ones (more commonly answered correctly). A secondary manipulation check (**MC1'**), directly derived from nesting, was then performed to check that, on average, the more difficult the question the higher the average performance score of those who got it right. Fitting a linear model with average performance score as the predictor and objective question difficulty (the rarity of answering correctly within the time limit) as the outcome, the secondary manipulation check was supported as the estimate was significantly positive ($\beta$ = `r S1_results$clean_model_mc$average_score$estimate`, t(`r S1_results$clean_model_mc$model_fit$df.residual`) = `r S1_results$clean_model_mc$average_score$statistic`, p = `r S1_results$clean_model_mc$average_score$p.value`).
 
-As a pre-requisite for the participants making use of the nested nature of the questions to infer which questions the virtual agent got right, they must be able to judge the difficulty of the questions. More specifically, they must be able to accurately assess the rarity of reaching an accurate answer within the time-limit for different questions. This was our first hypothesis (**H1**). We fit a linear mixed effects model predicting true question difficulty (the inverse of the true percentage of people who could answer correctly on the arithmetic test) with participants' perception of the question difficulty (the inverse of the percentage of people they predict could answer correctly) as the fixed effect, and random effects for participants. Confirming **H1**, the fixed effect estimate for perceived difficulty was significantly positive ($\beta$ = `r S1_results$clean_model_h1[["observed_q_perceived_difficulty"]]$estimate`, p = `r S1_results$clean_model_h1[["observed_q_perceived_difficulty"]]$p.value`). Perceived difficulty and true difficulty were highly correlated (r = `r S1_results$clean_diff_corr$estimate` Pearson's product-moment correlation t(`r S1_results$clean_diff_corr$parameter`) = `r S1_results$clean_diff_corr$statistic`, p = `r S1_results$clean_diff_corr$p.value`), as visible in Figure \@ref(fig:S1-fig-behav)A. 
+As a pre-requisite for the participants making use of the nested nature of the questions to infer which questions the virtual agent got right, they must be able to judge the difficulty of the questions. More specifically, they must be able to accurately assess the rarity of reaching an accurate answer within the time-limit for different questions. This was our first hypothesis (**H1**). We fit a linear mixed effects model predicting true question difficulty (the inverse of the true percentage of people who could answer correctly on the arithmetic test) with participants' perception of the question difficulty (the inverse of the percentage of people they predict could answer correctly) as the fixed effect, and random effects for participants. Confirming **H1**, the fixed effect estimate for perceived difficulty was significantly positive ($\beta$ = `r S1_results$clean_model_h1[["observed_q_objective_difficulty"]]$estimate`, p = `r S1_results$clean_model_h1[["observed_q_objective_difficulty"]]$p.value`). Perceived difficulty and true difficulty were highly correlated (r = `r S1_results$clean_diff_corr$estimate` Pearson's product-moment correlation t(`r S1_results$clean_diff_corr$parameter`) = `r S1_results$clean_diff_corr$statistic`, p = `r S1_results$clean_diff_corr$p.value`), as visible in Figure \@ref(fig:S1-fig-behav)A. 
 
 ```{r S1-fig-behav, fig.cap = "**A**: Perceived Difficulty versus Objective Difficulty. Numbers refer to the question ID (see Materials). The red dashed line represents the optimal estimation. **B**: Estimated Conditional Probability versus True Conditional Probability. Each data point is a pair of two questions. The red line represents the optimal prediction while the dark line represents the fit of the linear model. **C**: Conditional robabilities estmiated by the Main Model vs True Conditional Probability. Each data point is a pair of two questions. The red line represents the optimal prediction while the dark line represents the fit of the linear model."}
 A <- S1_difficulty %>%
@@ -738,7 +571,7 @@ A <- S1_difficulty %>%
   custom_theme
 
 B <- S1_summarized_data %>%
-  ggplot(aes(x = true_conditional_prob, y = average_judged_conditional_prob, color = new_q_perceived_difficulty_unbounded - observed_q_perceived_difficulty_unbounded)) +
+  ggplot(aes(x = true_prob, y = judged_prob, color = new_q_perceived_difficulty_unbounded - observed_q_perceived_difficulty_unbounded)) +
   geom_point() +
   scale_color_gradient2(low = "blue", mid = "grey", high = "red") +
   geom_abline(intercept = 0, slope = 1, color = "red", linetype = "dashed") +
@@ -767,7 +600,7 @@ B <- S1_summarized_data %>%
   custom_theme
 
 C <- S1_summarized_data %>%
-  ggplot(aes(x = true_conditional_prob, y = prob_bayes, color = new_q_perceived_difficulty_unbounded - observed_q_perceived_difficulty_unbounded)) +
+  ggplot(aes(x = true_prob, y = prob_bayes, color = new_q_perceived_difficulty_unbounded - observed_q_perceived_difficulty_unbounded)) +
   geom_point() +
   scale_color_gradient2(low = "blue", mid = "grey", high = "red") +
   geom_abline(intercept = 0, slope = 1, color = "red", linetype = "dashed") +
@@ -805,11 +638,11 @@ S1_fig_behav <- (A + B + C) +
 S1_fig_behav
 ```
 
-Participants were able to use their accurate judgments of question difficulty to then infer the arithmetic competence of another based on the observation of their success or failure on just one specific question. We aggregated their judgments of which questions would be answered correctly, conditional on success or failure on the observed question. These are the estimated conditional probability values. Then, from the participants' answers to the arithmetic questions, we computed the True Conditional Probability of answering a new question given another question was successfully answered. Our second hypothesis (**H2**) was that, on average, participants' estimations of the probabilities of success for different questions, given the observation of success/failure on a particular question, would be significantly correlated with true conditional probabilities. A linear model with the average estimated conditional probability as an dependent variable and the true conditional probability as the independent variable and confirmed participants were able to predict the true conditional probability with a great precision ($\beta$ = `r S1_results$clean_model_h2$true_conditional_prob$estimate`, t(`r S1_results$clean_model_h2$model_fit$df.residual`) = `r S1_results$clean_model_h2$true_conditional_prob$statistic`, , p `r S1_results$clean_model_h2$true_conditional_prob$p.value` Adjusted $R^2$ = `r S1_results$clean_model_h2$model_fit$adj.r.squared`, F(`r S1_results$clean_model_h2$model_fit$df`,`r S1_results$clean_model_h2$model_fit$df.residual`) = `r S1_results$clean_model_h2$model_fit$statistic`, p `r S1_results$clean_model_h2$model_fit$p.value`). The high correlation (r = `r S1_results$clean_prob_corr$estimate`) between average estimated conditional probability and true conditional probability is visualized in Figure \@ref(fig:S1-fig-behav)B.
+Participants were able to use their accurate judgments of question difficulty to then infer the arithmetic competence of another based on the observation of their success or failure on just one specific question. We aggregated their judgments of which questions would be answered correctly, conditional on success or failure on the observed question. These are the estimated conditional probability values. Then, from the participants' answers to the arithmetic questions, we computed the True Conditional Probability of answering a new question given another question was successfully answered. Our second hypothesis (**H2**) was that, on average, participants' estimations of the probabilities of success for different questions, given the observation of success/failure on a particular question, would be significantly correlated with true conditional probabilities. A linear model with the average estimated conditional probability as an dependent variable and the true conditional probability as the independent variable and confirmed participants were able to predict the true conditional probability with a great precision ($\beta$ = `r S1_results$clean_model_h2$true_prob$estimate`, t(`r S1_results$clean_model_h2$model_fit$df.residual`) = `r S1_results$clean_model_h2$true_prob$statistic`, , p `r S1_results$clean_model_h2$true_prob$p.value` Adjusted $R^2$ = `r S1_results$clean_model_h2$model_fit$adj.r.squared`, F(`r S1_results$clean_model_h2$model_fit$df`,`r S1_results$clean_model_h2$model_fit$df.residual`) = `r S1_results$clean_model_h2$model_fit$statistic`, p `r S1_results$clean_model_h2$model_fit$p.value`). The high correlation (r = `r S1_results$clean_prob_corr$estimate`) between average estimated conditional probability and true conditional probability is visualized in Figure \@ref(fig:S1-fig-behav)B.
 
-We also found that participants did not have to be arithmetically competent themselves to make reasonable inferences about the competence of others. We tested whether the 30% of participants who performed worst on the arithmetic test could still judge the difficulty of the questions (**H1m**) and whether they could accurately infer the conditional probability of answering a new question given an observed question and outcome (**H2m**). Confirming H1m with a linear mixed effect model, we found that the worst performers' perception of question difficulty was highly correlated with objective question difficulty, just as much as the for the full set of participants ($\beta$ = `r S1_results$clean_model_h1m[["observed_q_perceived_difficulty"]]$estimate`, p `r S1_results$clean_model_h1m[["observed_q_perceived_difficulty"]]$p.value`, t(`r S1_results$clean_model_h1m[["observed_q_perceived_difficulty"]]$df`) = `r S1_results$clean_model_h1m[["observed_q_perceived_difficulty"]]$statistic`). 
+We also found that participants did not have to be arithmetically competent themselves to make reasonable inferences about the competence of others. We tested whether the 30% of participants who performed worst on the arithmetic test could still judge the difficulty of the questions (**H1m**) and whether they could accurately infer the conditional probability of answering a new question given an observed question and outcome (**H2m**). Confirming H1m with a linear mixed effect model, we found that the worst performers' perception of question difficulty was highly correlated with objective question difficulty, just as much as the for the full set of participants ($\beta$ = `r S1_results$clean_model_h1m[["observed_q_objective_difficulty"]]$estimate`, p `r S1_results$clean_model_h1m[["observed_q_objective_difficulty"]]$p.value`, t(`r S1_results$clean_model_h1m[["observed_q_objective_difficulty"]]$df`) = `r S1_results$clean_model_h1m[["observed_q_objective_difficulty"]]$statistic`). 
 
-Confirming H2m with a linear model, we found that the worst performers' were also better than chance at predicting which other questions the virtual agent would succeed at, with a moderate correlation between true and judged conditional probabilities ($\beta$ = `r S1_results$clean_model_h2m$true_conditional_prob$estimate`, p `r S1_results$clean_model_h2m$true_conditional_prob$p.value`, t(`r S1_results$clean_model_h2m$model_fit$df.residual`) = `r S1_results$clean_model_h2m$true_conditional_prob$statistic`, Adjusted $R^2$ = `r S1_results$clean_model_h2m$model_fit$adj.r.squared`, F(`r S1_results$clean_model_h2m$model_fit$df`,`r S1_results$clean_model_h2m$model_fit$df.residual`) = `r S1_results$clean_model_h2m$model_fit$statistic`, p `r S1_results$clean_model_h2m$model_fit$p.value`). However, the worst performing participants were far less good at making these predictions than the full set of participants, with their judgments explaining only 36% of the variance in true conditional probabilities.
+Confirming H2m with a linear model, we found that the worst performers' were also better than chance at predicting which other questions the virtual agent would succeed at, with a moderate correlation between true and judged conditional probabilities ($\beta$ = `r S1_results$clean_model_h2m$true_prob$estimate`, p `r S1_results$clean_model_h2m$true_prob$p.value`, t(`r S1_results$clean_model_h2m$model_fit$df.residual`) = `r S1_results$clean_model_h2m$true_prob$statistic`, Adjusted $R^2$ = `r S1_results$clean_model_h2m$model_fit$adj.r.squared`, F(`r S1_results$clean_model_h2m$model_fit$df`,`r S1_results$clean_model_h2m$model_fit$df.residual`) = `r S1_results$clean_model_h2m$model_fit$statistic`, p `r S1_results$clean_model_h2m$model_fit$p.value`). However, the worst performing participants were far less good at making these predictions than the full set of participants, with their judgments explaining only 36% of the variance in true conditional probabilities.
 
 ## Modelling Results - Confirmatory Analyses
 
@@ -829,22 +662,28 @@ In confirmation of H3, we found that the Main Model showed a strong correlation 
 
 plot_df <- S1_summarized_data %>%            # one long table
   pivot_longer(
-    cols  = c(average_judged_conditional_prob, prob_bayes,
+    cols  = c(judged_prob, prob_bayes,
               prob_null, prob_null_2),
     names_to  = "model",
     values_to = "judgment"
   ) %>% 
   mutate(
     model = factor(model,
-                   levels  = c("average_judged_conditional_prob",
+                   levels  = c("judged_prob",
                                "prob_bayes",
                                "prob_null",
                                "prob_null_2"),
                    labels  = c("Participant",
                                "Bayesian model",
                                "Threshold model",
-                               "Anchor model"))
-    # removed success_observed recoding since we don’t use it
+                               "Anchor model")),
+    success_observed = factor(success_observed,
+      levels = c(1, 0),
+      labels = c(
+        "Success observed",
+        "Failure observed"
+      )
+    )
   )
 
 S1_fig_model_comparison = ggplot(plot_df,
@@ -853,7 +692,7 @@ S1_fig_model_comparison = ggplot(plot_df,
            group  = observed_q_perceived_difficulty_unbounded)) +
   geom_line(alpha = .35, linewidth = .6) +
   geom_point(size = .8) +
-  facet_wrap(~ model, nrow = 1) +   # one row of panels by model only
+  facet_grid(success_observed ~ model) +   # one row of panels by model only
   scale_colour_gradientn(
     name    = "Observed Question\nPerceived Difficulty",
     colours = wes_palette("Zissou1", type = "continuous")
@@ -955,7 +794,7 @@ S1_ft
 
 
 ## Exploratory Analysis
-As further exploratory analysis, we investigated three research questions. The first was whether if we divide the data by whether the participants observed a virtual agent's success or failure, participants’ mean predictions of the probabilities of success still correlate with the true conditional probabilities (**RQ1**). In other words, we tested whether Hypothesis 2 was robust to the success/failure condition. We divided the data by whether success or failure was observed, and then for each data frame ran a linear model identical to the one used to test H2, with average estimated conditional probability as the dependent variable and true conditional probability as the independent variable. As shown in Figure \@ref(S1-fig-behav-2), for both success and failure observations the regression estimate of true conditional probability was significantly positive and close to 1 (Success: $\beta$ = `r S1_results$clean_model_rq1_S[["true_conditional_prob"]]$estimate`, t(`r S1_results$clean_model_rq1_S$model_fit$df.residual`) = `r S1_results$clean_model_rq1_S[["true_conditional_prob"]]$statistic`, p `r S1_results$clean_model_rq1_S[["true_conditional_prob"]]$p.value`. Failure: $\beta$ = `r S1_results$clean_model_rq1_F[["true_conditional_prob"]]$estimate`, t(`r S1_results$clean_model_rq1_F$model_fit$df.residual`) = `r S1_results$clean_model_rq1_F[["true_conditional_prob"]]$statistic`, p `r S1_results$clean_model_rq1_F[["true_conditional_prob"]]$p.value`.)
+As further exploratory analysis, we investigated three research questions. The first was whether if we divide the data by whether the participants observed a virtual agent's success or failure, participants’ mean predictions of the probabilities of success still correlate with the true conditional probabilities (**RQ1**). In other words, we tested whether Hypothesis 2 was robust to the success/failure condition. We divided the data by whether success or failure was observed, and then for each data frame ran a linear model identical to the one used to test H2, with average estimated conditional probability as the dependent variable and true conditional probability as the independent variable. As shown in Figure \@ref(S1-fig-behav-2), for both success and failure observations the regression estimate of true conditional probability was significantly positive and close to 1 (Success: $\beta$ = `r S1_results$clean_model_rq1_S[["true_prob"]]$estimate`, t(`r S1_results$clean_model_rq1_S$model_fit$df.residual`) = `r S1_results$clean_model_rq1_S[["true_prob"]]$statistic`, p `r S1_results$clean_model_rq1_S[["true_prob"]]$p.value`. Failure: $\beta$ = `r S1_results$clean_model_rq1_F[["true_prob"]]$estimate`, t(`r S1_results$clean_model_rq1_F$model_fit$df.residual`) = `r S1_results$clean_model_rq1_F[["true_prob"]]$statistic`, p `r S1_results$clean_model_rq1_F[["true_prob"]]$p.value`.)
 
 ```{r S1-fig-behav-2, fig.cap="Estimated Conditional Probability versus True Conditional Probability. Each data point is a pair of two questions. All variables are scaled. The red line represents the optimal prediction while the dark line represents the fit of the linear models."}
 
@@ -963,8 +802,8 @@ df_scale <- function(df) {
   df %>%
     filter(question_observed != question_evaluated) %>%
     mutate(
-      x_s = as.numeric(scale(true_conditional_prob)),
-      y_s = as.numeric(scale(average_judged_conditional_prob)),
+      x_s = as.numeric(scale(true_prob)),
+      y_s = as.numeric(scale(judged_prob)),
       diff_col = new_q_perceived_difficulty_unbounded - observed_q_perceived_difficulty_unbounded
     )
 }
@@ -1024,8 +863,8 @@ A <- S1_difficulty %>%
 # --- PANEL B ---
 B <- S1_summarized_data %>%
   mutate(
-    x_s = as.numeric(scale(true_conditional_prob)),
-    y_s = as.numeric(scale(average_judged_conditional_prob)),
+    x_s = as.numeric(scale(true_prob)),
+    y_s = as.numeric(scale(judged_prob)),
     diff_col = new_q_perceived_difficulty_unbounded - observed_q_perceived_difficulty_unbounded
   ) %>%
   ggplot(aes(x = x_s, y = y_s, color = diff_col)) +
@@ -1045,7 +884,7 @@ B <- S1_summarized_data %>%
 # --- PANEL C ---
 C <- S1_summarized_data %>%
   mutate(
-    x_s = as.numeric(scale(true_conditional_prob)),
+    x_s = as.numeric(scale(true_prob)),
     y_s = as.numeric(scale(prob_bayes)),
     diff_col = new_q_perceived_difficulty_unbounded - observed_q_perceived_difficulty_unbounded
   ) %>%
@@ -1072,18 +911,18 @@ scaled_S1_fig_behav <- (A + B + C) +
 scaled_S1_fig_behav
 ```
 
-```{r}
+```{r, include=FALSE}
 
 plot_df <- S1_summarized_data %>%            # one long table
   pivot_longer(
-    cols  = c(average_judged_conditional_prob, prob_bayes,
+    cols  = c(judged_prob, prob_bayes,
               prob_null, prob_null_2),
     names_to  = "model",
     values_to = "judgment"
   ) %>% 
   mutate(
     model = factor(model,
-                   levels  = c("average_judged_conditional_prob",
+                   levels  = c("judged_prob",
                                "prob_bayes",
                                "prob_null",
                                "prob_null_2"),

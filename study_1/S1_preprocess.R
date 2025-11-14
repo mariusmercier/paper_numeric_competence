@@ -141,6 +141,36 @@ S1_wide_answers <- S1_wide_answers %>%
     .names = "{.col}mark"
   ))
 
+# ----- Compute true conditional probabilities P(q_j = 1 | q_i solved/not solved) -----
+question_mark_cols <- paste0("q", 1:15, "mark")
+
+marks_long_obs <- S1_wide_answers %>%
+  select(prolific_pid, all_of(question_mark_cols)) %>%
+  pivot_longer(
+    cols = -prolific_pid,
+    names_to = "question_observed",
+    values_to = "observed_mark"
+  )
+
+marks_long_eval <- marks_long_obs %>%
+  rename(
+    question_evaluated = question_observed,
+    evaluated_mark = observed_mark
+  )
+
+S1_prob_df <- marks_long_obs %>%
+  inner_join(marks_long_eval, by = "prolific_pid") %>%
+  group_by(question_observed, question_evaluated, success_observed = observed_mark) %>%
+  summarise(
+    true_conditional_prob = mean(evaluated_mark, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    question_observed = as.integer(str_extract(question_observed, "\\d+")),
+    question_evaluated = as.integer(str_extract(question_evaluated, "\\d+"))
+  ) %>%
+  arrange(question_observed, success_observed, question_evaluated)
+
 #----- Calculate Perceived Difficulty -----
 
 S1_difficulty <- S1_long_data %>%
@@ -186,14 +216,21 @@ S1_objective_difficulty <- S1_wide_answers %>%
 
 S1_long_data <- S1_long_data %>% select(!diff_100_obs & !condition)
 
+S1_difficulty <- left_join(S1_difficulty, S1_objective_difficulty, by = "question")
 
-S1_difficulty = left_join(S1_difficulty, S1_objective_difficulty, by = "question")
+S1_long_data$observed_q_objective_difficulty <- S1_difficulty$objective_difficulty[match(S1_long_data$question_observed,
+                                                                                         S1_difficulty$question)]
 
 # ---- Exporting all files ----
 
 write.csv(
-  S1_perceived_difficulty,
+  S1_difficulty,
   here::here("study_1", "data", "clean", "S1_difficulty.csv"),
+  row.names = FALSE
+)
+write.csv(
+  S1_prob_df,
+  here::here("study_1", "data", "clean", "S1_prob_df.csv"),
   row.names = FALSE
 )
 
