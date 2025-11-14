@@ -71,7 +71,7 @@ S1_find_LLMax_optim <- function(S1_long_data, bayes_data, n_starts = 3) {
     -sum(S1_long_data$log_likelihoods)
   }
   
-  lower_bounds <- c(-4, 0.2, 0.2, 0)
+  lower_bounds <- c(-4, 0.1, 0.1, 0)
   upper_bounds <- c(4, 4, 4, 10)
   
   best_value <- Inf
@@ -256,20 +256,20 @@ clusterEvalQ(S1_cl, {
 clusterExport(S1_cl, c("S1_long_data", "S1_bayes_data", "S1_find_LLMax_optim", "S1_find_LLMax_alternative", "S1_find_LLMax_alternative_2", "update_and_predict_p_success", "updating", "COMP", "delta", "compute_p_success", "soft_max"))
 
 
-S1_participant_ids <- unique(S1_long_data$participant_id)
+S1_prolific_ids <- unique(S1_long_data$prolific_pid)
 
 S1_results_list <- pblapply(
- S1_participant_ids,
+ S1_prolific_ids,
  cl = S1_cl,
  FUN = function(pid) {
-   pdata <- S1_long_data[S1_long_data$participant_id == pid, ]
+   pdata <- S1_long_data[S1_long_data$prolific_pid == pid, ]
 
    p_main_LLMax <- S1_find_LLMax_optim(pdata, S1_bayes_data)
    p_null_LLMax <- S1_find_LLMax_alternative(pdata, S1_bayes_data)
    p_null_2_LLMax <- S1_find_LLMax_alternative_2(pdata, S1_bayes_data)
 
    data.frame(
-     participant_id = pid,
+    prolific_pid = pid,
      MAIN_LLMax = p_main_LLMax$LLMax,
      MAIN_mu = p_main_LLMax$best_params["mu"],
      MAIN_sigma = p_main_LLMax$best_params["sigma"],

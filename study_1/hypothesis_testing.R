@@ -13,18 +13,18 @@ source(here::here("pre-registered code", "pre-reg_model_implementation.R"))
 
 # ------ Subset S1_data_long to worst 30% of participants -------
 n_participants <- S1_long_data %>% 
-  distinct(participant_id) %>% 
+  distinct(prolific_pid) %>% 
   nrow()
 n_worst <- floor(n_participants * 0.30)
 
 worst_ids <- S1_long_data %>%
-  distinct(participant_id, total_score) %>%
+  distinct(prolific_pid, total_score) %>%
   arrange(total_score) %>%
   slice_head(n = n_worst) %>%
-  pull(participant_id)
+  pull(prolific_pid)
 
 data_worst_30 <- S1_long_data %>%
-  filter(participant_id %in% worst_ids)
+  filter(prolific_pid %in% worst_ids)
 
 #------True and Judged Conditional Probabilities (FULL DATASET)-------
 
@@ -269,7 +269,7 @@ S1_summarized_data$prob_null_2 <- mapply(
 
 model_h1 = lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|question_observed), S1_long_data)
 model_h2 <- lm(scale(average_judged_conditional_prob) ~ scale(true_conditional_prob), data = S1_summarized_data)
-model_h1m = lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|participant_id) + (1|question_observed), data_worst_30)
+model_h1m = lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|prolific_pid) + (1|question_observed), data_worst_30)
 model_h2m = lm(scale(average_judged_conditional_prob) ~ scale(true_conditional_prob), worst_30_prob_df)
 bayes_corr_h3 <- cor.test(S1_summarized_data$average_judged_conditional_prob, S1_summarized_data$prob_bayes)
 
@@ -282,11 +282,11 @@ summary(model_h1)
 #(in fact the fixed effect is constant for any value of question_observed) 
 
 #create adjusted models which exclude random_effects for question_observed
-model_h1adjusted <- lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|participant_id),
+model_h1adjusted <- lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|prolific_pid),
                 data = S1_long_data)
 summary(model_h1adjusted)
 
-model_h1madjusted = lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|participant_id), data_worst_30)
+model_h1madjusted = lmer(scale(observed_q_objective_difficulty) ~ scale(observed_q_perceived_difficulty) + (1|prolific_pid), data_worst_30)
 summary(model_h1madjusted)
 
 
@@ -326,7 +326,7 @@ S1_long_data$average_performance_score <- S1_long_data$total_score / 15
 
 # Select relevant columns and melt the qxmark columns to long format
 mc_data <- S1_long_data %>%
-  select(participant_id, average_performance_score, question_observed, observed_q_objective_difficulty, paste0("q", 1:15, "mark")) %>%
+  select(prolific_pid, average_performance_score, question_observed, observed_q_objective_difficulty, paste0("q", 1:15, "mark")) %>%
   pivot_longer(
     cols = starts_with("q") & ends_with("mark"),
     names_to = "question_number_str",
@@ -366,12 +366,12 @@ plot_mc
 
 # count of participants who got each q correct
 q_marks_long <- S1_long_data %>%
-  select(participant_id, starts_with("q") & ends_with("mark")) %>%
-  select(participant_id, paste0("q", 1:15, "mark")) # Explicitly select q1mark to q15mark
+  select(prolific_pid, starts_with("q") & ends_with("mark")) %>%
+  select(prolific_pid, paste0("q", 1:15, "mark")) # Explicitly select q1mark to q15mark
 
 q_marks_long <- q_marks_long %>%
   pivot_longer(
-    cols = -participant_id, # Pivot all columns except participant_id
+    cols = -prolific_pid, # Pivot all columns except prolific_pid
     names_to = "question_column",
     values_to = "correctness"
   )
@@ -381,10 +381,10 @@ correct_answers <- q_marks_long %>%
   filter(correctness == 1)
 
 # Count unique participants for each question
-# Group by the 'question_column' and then count the number of distinct 'participant_id's
+# Group by the 'question_column' and then count the number of distinct 'prolific_pid's
 participants_per_question <- correct_answers %>%
   group_by(question_column) %>%
-  summarise(unique_participants_correct = n_distinct(participant_id)) %>%
+  summarise(unique_participants_correct = n_distinct(prolific_pid)) %>%
   ungroup() %>%
   arrange(question_column)
 

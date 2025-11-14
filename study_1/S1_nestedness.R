@@ -17,11 +17,11 @@ nsimul <- 500
 #---- CREATE A SCORING MATRIX WITH PARTICIPANTS AS ROWS AND QUESTIONS AS Qs AS COLUMNS ----
 
 # keep only relevant data columns for nestedness, removee q16 which is the cheat test
-data_nesting <- S1_long_data %>% select(participant_id, q1mark:q15mark)
+data_nesting <- S1_long_data %>% select(prolific_pid, q1mark:q15mark)
 # there are 30 identical rows per participant, keep only 1
 data_nesting <- data_nesting %>%
-  distinct(participant_id, .keep_all = TRUE)
-# remove participant_id, rows are participants, columns are questions
+  distinct(prolific_pid, .keep_all = TRUE)
+# remove prolific_pid, rows are participants, columns are questions
 data_nesting <- data_nesting %>% select(q1mark:q15mark)
 data_nesting <- data_nesting %>% rename()
 
@@ -48,7 +48,6 @@ if (!dir.exists(fig_dir)) {
   dir.create(fig_dir, recursive = TRUE)
 }
 png_path  <- file.path(fig_dir, "nestedness_density_plots.png")
-csv_path  <- file.path(fig_dir, "nestedness_stats.csv")
 
 # create density plot of temperature and nodf simulated values
 png(
@@ -131,13 +130,7 @@ nestedness_summary_df <- data.frame(
   p_value  = c(result_nodf_r1$oecosimu$pval[3], result_temp_r1$oecosimu$pval)
 )
 
-cat("\n=== NESTEDNESS ANALYSIS SUMMARY ===\n")
-print(
-  format(nestedness_summary_df, digits = 3, nsmall = 3, justify = "left"),
-  row.names = FALSE, quote = FALSE
-)
 
 # Export summary
-write.csv(nestedness_summary_df, csv_path, row.names = FALSE)
-cat("Final contents of figures/: ", paste(list.files(fig_dir), collapse = ", "), "\n")
+write.csv(nestedness_summary_df, here("study_1", "results", "nestedness_stats.csv"), row.names = FALSE)
 
