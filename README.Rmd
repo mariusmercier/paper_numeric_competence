@@ -1,0 +1,72 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+
+yaml_metadata <- rmarkdown::yaml_front_matter(here::here("manuscript.Rmd"))
+title <- yaml_metadata$title
+abstract <- yaml_metadata$abstract
+authors <- "ANON"
+year <- "2025"
+```
+
+# `r title`
+
+---
+
+OSF blinded for peer-review: https://osf.io/n9erf/overview?view_only=12991dcd2fba4fe2b9a1a77339d6cb2f
+
+
+**All this project's materials are free and open**.
+
+- [Replicate the findings](#replicate)
+- [Check out the files glossary for this repository](#glossary)
+
+![Open data](images/data_large_color.png) &emsp; ![Open materials](images/materials_large_color.png) &emsp; ![Preregistration](images/preregistered_large_color.png)
+
+---
+
+## Abstract
+
+`r abstract`
+
+---
+
+This repository contains the code and data for our paper. 
+
+> `r authors`. `r year`. "`r title`"
+
+## Replicate {#replicate}
+
+This github repository aims to be computationaly reproducible (in one click). The manuscript was written using in RMarkdown: all results are therefore programmatically included when rendering (knitting) the document which allows us to link reported results with the code and data.
+
+To reproduce the findings and re-run the analysis, do the following:
+
+1. Download this repository. You can use GitHub to clone or fork the repository (see the green "Clone or download" button at the top of the GitHub page).
+2. Open the `manuscript.Rmd` file and run it
+
+Please find the [session info below](#session-info).
+
+## Files glossary {#glossary}
+
+- The `manuscript.Rmd` and the `preprint.Rmd` generate the paper. Manuscript is anonymized for submission.
+- The `study_[1-X]/` folders contain the data sets and pre-processing scripts for each studies.
+- `study_[1-X]/data/raw/` include the raw data.
+- `study_[1-X]/data/clean/` include preprocessed data from the `S[1-3]_preprocess.R` script. 
+- `study_[1-X]/results/` include fits results (e.g., from `S1_nestedness.R`)
+- `references.bib` contains all references and `csl/apa.csl` the citation formatting.
+- `images/` contains images used for this README file.
+
+## Session info {#session-info}
+
+```{r, echo=FALSE}
+sessionInfo()
+```
