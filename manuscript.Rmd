@@ -796,9 +796,9 @@ S1_ft
 ## Exploratory Analysis
 As further exploratory analysis, we investigated three research questions. The first was whether if we divide the data by whether the participants observed a virtual agent's success or failure, participants’ mean predictions of the probabilities of success still correlate with the true conditional probabilities (**RQ1**). In other words, we tested whether Hypothesis 2 was robust to the success/failure condition. We divided the data by whether success or failure was observed, and then for each data frame ran a linear model identical to the one used to test H2, with average estimated conditional probability as the dependent variable and true conditional probability as the independent variable. As shown in Figure \@ref(S1-fig-behav-2), for both success and failure observations the regression estimate of true conditional probability was significantly positive and close to 1 (Success: $\beta$ = `r S1_results$clean_model_rq1_S[["true_prob"]]$estimate`, t(`r S1_results$clean_model_rq1_S$model_fit$df.residual`) = `r S1_results$clean_model_rq1_S[["true_prob"]]$statistic`, p `r S1_results$clean_model_rq1_S[["true_prob"]]$p.value`. Failure: $\beta$ = `r S1_results$clean_model_rq1_F[["true_prob"]]$estimate`, t(`r S1_results$clean_model_rq1_F$model_fit$df.residual`) = `r S1_results$clean_model_rq1_F[["true_prob"]]$statistic`, p `r S1_results$clean_model_rq1_F[["true_prob"]]$p.value`.)
 
-```{r S1-fig-behav-2, fig.cap="Estimated Conditional Probability versus True Conditional Probability. Each data point is a pair of two questions. All variables are scaled. The red line represents the optimal prediction while the dark line represents the fit of the linear models."}
+```{r S1-fig-behav-2, fig.cap="Estimated Conditional Probability versus True Conditional Probability. Each data point is a pair of two questions.The red line represents the optimal prediction while the dark line represents the fit of the linear models."}
 
-df_scale <- function(df) {
+df_noscale <- function(df) {
   df %>%
     filter(question_observed != question_evaluated) %>%
     mutate(
@@ -808,9 +808,9 @@ df_scale <- function(df) {
     )
 }
 
-d1 <- df_scale(S1_summarized_data)
-d2 <- df_scale(S1_summarized_success)
-d3 <- df_scale(S1_summarized_failure)
+d1 <- df_noscale(S1_summarized_data)
+d2 <- df_noscale(S1_summarized_success)
+d3 <- df_noscale(S1_summarized_failure)
 
 p_base <- function(dat, title_txt) {
   ggplot(dat, aes(x = x_s, y = y_s, color = diff_col)) +
@@ -820,8 +820,8 @@ p_base <- function(dat, title_txt) {
     geom_smooth(method = "lm", se = TRUE, color = "black") +
     labs(
       title = title_txt,
-      x = "True Conditional Probability (scaled)",
-      y = "Human Judgement (scaled)",
+      x = "True Conditional Probability",
+      y = "Human Judgement",
       color = "Difficulty \nDifference \n(New - Obs)"
     ) +
     custom_theme
@@ -831,132 +831,14 @@ p1 <- p_base(d1, "A. All trials")
 p2 <- p_base(d2, "B. Success observed")
 p3 <- p_base(d3, "C. Failure observed")
 
-scaled_S1_fig_behav_2 <- p1 + p2 + p3 +
+S1_fig_behav_2 <- p1 + p2 + p3 +
   plot_layout(guides = "collect", axis = "collect") &
   theme(legend.position = "bottom")
 
-scaled_S1_fig_behav_2
+S1_fig_behav_2
 ```
 We finally investigated how the models compared when we allowed to the paramters to differ for each individual rather than fixing them across all individuals. We did this because individuals may have different prior distributions of competence in the population. They may also have different priors about the role of luck in answering the questions. We therefore tested whether the main model fit individual level data better than heuristic model 1 (**RQ2**) and heuristic model 2 (**RQ3**). We used a maximum likelihood optimization to estimate the best free parameters for each  participant. On average, our main model explained the behaviour of participants significantly better than Heuristic 1 ($BIC_{Bayes}$ = `r round(mean(S1_individual_fits$MAIN_BIC), 2)` ± `r round(sd(S1_individual_fits$MAIN_BIC), 2)`; $BIC_{Threshold}$ = `r round(mean(S1_individual_fits$NULL_BIC), 2)` ± `r round(sd(S1_individual_fits$NULL_BIC), 2)`; t(`r S1_results$ttest_1$parameter`) = `r S1_results$ttest_1$statistic`, p `r S1_results$ttest_1$p.value`, paired t-test) and Heuristic 2 ($BIC_{Anchor}$ = `r round(mean(S1_individual_fits$NULL_2_BIC), 2)` ± `r round(sd(S1_individual_fits$NULL_2_BIC), 2)`; t(`r S1_results$ttest_2$parameter`) = `r S1_results$ttest_2$statistic`, p `r S1_results$ttest_2$p.value`, paired t-test). The Bayesian model was the best model for `r round(mean(S1_individual_fits$MAIN_BIC < S1_individual_fits$NULL_BIC & S1_individual_fits$MAIN_BIC < S1_individual_fits$NULL_2_BIC)*100)`% of participants whereas the Heuristic 1 accounted for `r round(mean(S1_individual_fits$NULL_BIC < S1_individual_fits$MAIN_BIC & S1_individual_fits$NULL_BIC < S1_individual_fits$NULL_2_BIC)*100)`% and the Heuristic 2 accounted for `r round(mean(S1_individual_fits$NULL_2_BIC < S1_individual_fits$MAIN_BIC & S1_individual_fits$NULL_2_BIC < S1_individual_fits$NULL_BIC)*100)`%. 
 
-
-```{r, include = FALSE}
-# --- PANEL A ---
-A <- S1_difficulty %>%
-  mutate(
-    x_s = as.numeric(scale(objective_difficulty)),
-    y_s = as.numeric(scale(perceived_difficulty))
-  ) %>%
-  ggplot(aes(x = x_s, y = y_s)) +
-  geom_point(color = "#E4A70A") +
-  geom_abline(slope = 1, intercept = 0, color = "red", linetype = "dashed") +
-  geom_text(aes(label = question), hjust = 0.5, vjust = -0.7, size = 3) +
-  geom_smooth(method = "lm", se = FALSE, color = "#E4A70A") +
-  labs(
-    x = "Objective Difficulty (scaled)",
-    y = "Perceived Difficulty (scaled)",
-    title = "Participants' \nEstimations"
-  ) +
-  custom_theme
-
-
-# --- PANEL B ---
-B <- S1_summarized_data %>%
-  mutate(
-    x_s = as.numeric(scale(true_prob)),
-    y_s = as.numeric(scale(judged_prob)),
-    diff_col = new_q_perceived_difficulty_unbounded - observed_q_perceived_difficulty_unbounded
-  ) %>%
-  ggplot(aes(x = x_s, y = y_s, color = diff_col)) +
-  geom_point() +
-  scale_color_gradient2(low = "blue", mid = "grey", high = "red") +
-  geom_abline(intercept = 0, slope = 1, color = "red", linetype = "dashed") +
-  geom_smooth(method = "lm", se = TRUE, color = "black") +
-  labs(
-    x = "True Conditional Probability (scaled)",
-    y = "Estimated Conditional Probability (scaled)",
-    title = "Participants' \nEstimations",
-    color = "Difficulty \nDifference \n(New - Obs)"
-  ) +
-  custom_theme
-
-
-# --- PANEL C ---
-C <- S1_summarized_data %>%
-  mutate(
-    x_s = as.numeric(scale(true_prob)),
-    y_s = as.numeric(scale(prob_bayes)),
-    diff_col = new_q_perceived_difficulty_unbounded - observed_q_perceived_difficulty_unbounded
-  ) %>%
-  ggplot(aes(x = x_s, y = y_s, color = diff_col)) +
-  geom_point() +
-  scale_color_gradient2(low = "blue", mid = "grey", high = "red") +
-  geom_abline(intercept = 0, slope = 1, color = "red", linetype = "dashed") +
-  geom_smooth(method = "lm", se = TRUE, color = "black") +
-  labs(
-    x = "True Conditional Probability (scaled)",
-    y = "Estimated Conditional Probability (scaled)",
-    title = "Bayesian Model's \nEstimations",
-    color = "Difficulty \nDifference \n(New - Obs)"
-  ) +
-  custom_theme
-
-
-# --- COMBINE ---
-scaled_S1_fig_behav <- (A + B + C) +
-  plot_layout(guides = "collect", axis = "collect") &
-  plot_annotation(tag_levels = "A") &
-  theme(legend.position = "bottom")
-
-scaled_S1_fig_behav
-```
-
-```{r, include=FALSE}
-
-plot_df <- S1_summarized_data %>%            # one long table
-  pivot_longer(
-    cols  = c(judged_prob, prob_bayes,
-              prob_null, prob_null_2),
-    names_to  = "model",
-    values_to = "judgment"
-  ) %>% 
-  mutate(
-    model = factor(model,
-                   levels  = c("judged_prob",
-                               "prob_bayes",
-                               "prob_null",
-                               "prob_null_2"),
-                   labels  = c("Participant",
-                               "Bayesian model",
-                               "Threshold model",
-                               "Anchor model"))
-  ) %>%
-  mutate(
-    x_s = as.numeric(scale(new_q_perceived_difficulty_unbounded)),
-    y_s = as.numeric(scale(judgment))
-  )
-
-scaled_S1_fig_model_comparison <- ggplot(
-  plot_df,
-  aes(x = x_s, y = y_s,
-      colour = observed_q_perceived_difficulty_unbounded,
-      group  = observed_q_perceived_difficulty_unbounded)
-) +
-  geom_line(alpha = .35, linewidth = .6) +
-  geom_point(size = .8) +
-  facet_wrap(~ model, nrow = 1) +   # one row of panels by model only
-  scale_colour_gradientn(
-    name    = "Observed Question\nPerceived Difficulty",
-    colours = wes_palette("Zissou1", type = "continuous")
-  ) +
-  labs(x = "New question difficulty (scaled)",
-       y = "Estimated probability of success (scaled)") +
-  custom_theme +
-  theme(legend.position = "bottom")
-
-scaled_S1_fig_model_comparison
-
-```
 
 
 
