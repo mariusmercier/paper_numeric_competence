@@ -13,16 +13,23 @@ header-includes:  |
 floatsintext: yes
 linenumbers: no 
 draft: no
-mask: no
+mask: yes
 figurelist: no
 tablelist: no
 footnotelist: no
 classoption: "doc"
-output: 
-  # papaja::apa6_pdf:
-  #   keep_tex: true
-  papaja::apa6_docx: default
+output:
+  papaja::apa6_docx:
+  papaja::apa6_pdf:
+    keep_tex: true
 always_allow_html: true
+knit: (function(input, ...) {
+      rmarkdown::render(
+        input,
+        output_dir = "out",
+        envir = globalenv()
+      )
+    })
 ---
 
 ```{r setup, include=FALSE}
@@ -795,7 +802,7 @@ S1_ft
 
 
 ## Exploratory Analysis
-As further exploratory analysis, we investigated three research questions. The first was whether if we divide the data by whether the participants observed a virtual agent's success or failure, participants’ mean predictions of the probabilities of success still correlate with the true conditional probabilities (**RQ1**). In other words, we tested whether Hypothesis 2 was robust to the success/failure condition. We divided the data by whether success or failure was observed, and then for each data frame ran a linear model identical to the one used to test H2, with average estimated conditional probability as the dependent variable and true conditional probability as the independent variable. As shown in Figure \@ref(S1-fig-behav-2), for both success and failure observations the regression estimate of true conditional probability was significantly positive and close to 1 (Success: $\beta$ = `r S1_results$clean_model_rq1_S[["true_prob"]]$estimate`, t(`r S1_results$clean_model_rq1_S$model_fit$df.residual`) = `r S1_results$clean_model_rq1_S[["true_prob"]]$statistic`, p `r S1_results$clean_model_rq1_S[["true_prob"]]$p.value`. Failure: $\beta$ = `r S1_results$clean_model_rq1_F[["true_prob"]]$estimate`, t(`r S1_results$clean_model_rq1_F$model_fit$df.residual`) = `r S1_results$clean_model_rq1_F[["true_prob"]]$statistic`, p `r S1_results$clean_model_rq1_F[["true_prob"]]$p.value`.)
+As further exploratory analysis, we investigated three research questions. The first was whether if we divide the data by whether the participants observed a virtual agent's success or failure, participants’ mean predictions of the probabilities of success still correlate with the true conditional probabilities (**RQ1**). In other words, we tested whether Hypothesis 2 was robust to the success/failure condition. We divided the data by whether success or failure was observed, and then for each data frame ran a linear model identical to the one used to test H2, with average estimated conditional probability as the dependent variable and true conditional probability as the independent variable. As shown in Figure \@ref(fig:S1-fig-behav-2), for both success and failure observations the regression estimate of true conditional probability was significantly positive and close to 1 (Success: $\beta$ = `r S1_results$clean_model_rq1_S[["true_prob"]]$estimate`, t(`r S1_results$clean_model_rq1_S$model_fit$df.residual`) = `r S1_results$clean_model_rq1_S[["true_prob"]]$statistic`, p `r S1_results$clean_model_rq1_S[["true_prob"]]$p.value`. Failure: $\beta$ = `r S1_results$clean_model_rq1_F[["true_prob"]]$estimate`, t(`r S1_results$clean_model_rq1_F$model_fit$df.residual`) = `r S1_results$clean_model_rq1_F[["true_prob"]]$statistic`, p `r S1_results$clean_model_rq1_F[["true_prob"]]$p.value`.)
 
 ```{r S1-fig-behav-2, fig.cap="Estimated Conditional Probability versus True Conditional Probability. Each data point is a pair of two questions.The red line represents the optimal prediction while the dark line represents the fit of the linear models."}
 
