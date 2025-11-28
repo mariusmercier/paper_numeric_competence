@@ -84,6 +84,7 @@ library(wesanderson)  # For color palettes inspired by Wes Anderson films
 library(patchwork)    # For combining multiple ggplots
 library(here)         # For project-relative file paths
 library(ggh4x)        # For extended ggplot2 functionality
+library(car)          # For Anova function
 ```
 
 ```{r functions}
@@ -846,6 +847,149 @@ S1_fig_behav_2 <- p1 + p2 + p3 +
 S1_fig_behav_2
 ```
 We finally investigated how the models compared when we allowed to the paramters to differ for each individual rather than fixing them across all individuals. We did this because individuals may have different prior distributions of competence in the population. They may also have different priors about the role of luck in answering the questions. We therefore tested whether the main model fit individual level data better than heuristic model 1 (**RQ2**) and heuristic model 2 (**RQ3**). We used a maximum likelihood optimization to estimate the best free parameters for each  participant. On average, our main model explained the behaviour of participants significantly better than Heuristic 1 ($BIC_{Bayes}$ = `r round(mean(S1_individual_fits$MAIN_BIC), 2)` ± `r round(sd(S1_individual_fits$MAIN_BIC), 2)`; $BIC_{Threshold}$ = `r round(mean(S1_individual_fits$NULL_BIC), 2)` ± `r round(sd(S1_individual_fits$NULL_BIC), 2)`; t(`r S1_results$ttest_1$parameter`) = `r S1_results$ttest_1$statistic`, p `r S1_results$ttest_1$p.value`, paired t-test) and Heuristic 2 ($BIC_{Anchor}$ = `r round(mean(S1_individual_fits$NULL_2_BIC), 2)` ± `r round(sd(S1_individual_fits$NULL_2_BIC), 2)`; t(`r S1_results$ttest_2$parameter`) = `r S1_results$ttest_2$statistic`, p `r S1_results$ttest_2$p.value`, paired t-test). The Bayesian model was the best model for `r round(mean(S1_individual_fits$MAIN_BIC < S1_individual_fits$NULL_BIC & S1_individual_fits$MAIN_BIC < S1_individual_fits$NULL_2_BIC)*100)`% of participants whereas the Heuristic 1 accounted for `r round(mean(S1_individual_fits$NULL_BIC < S1_individual_fits$MAIN_BIC & S1_individual_fits$NULL_BIC < S1_individual_fits$NULL_2_BIC)*100)`% and the Heuristic 2 accounted for `r round(mean(S1_individual_fits$NULL_2_BIC < S1_individual_fits$MAIN_BIC & S1_individual_fits$NULL_2_BIC < S1_individual_fits$NULL_BIC)*100)`%. 
+
+
+```{r response time exploratory, include=FALSE}
+
+S1_long_time <- S1_wide_answers %>% 
+  select(prolific_pid, contains("time"), contains("mark")) %>% 
+  # 1) Make column names consistent: <measure>_<question>
+  rename_with(
+    ~ str_replace(.x, "^time_on_question(\\d+)$", "time_\\1"),
+    starts_with("time_on_question")
+  ) %>%
+  rename_with(
+    ~ str_replace(.x, "^q(\\d+)mark$", "success_\\1"),
+    matches("^q\\d+mark$")
+  ) %>%
+  # 2) Single pivot_longer with `.value`
+  pivot_longer(
+    cols = -prolific_pid,
+    names_to        = c(".value", "question"),
+    names_sep       = "_",
+    names_transform = list(question = as.integer)
+  )
+
+# ---- STATISTICAL MODELS OF SCORES ----
+
+
+# Model 2: Pairwise comparison - Among people who solved the same item, do faster solvers tend to score higher overall?
+
+participant_summary <- S1_long_time %>%
+  group_by(prolific_pid) %>%
+  summarise(
+    total_score = sum(success, na.rm = TRUE),
+    total_time  = sum(time,    na.rm = TRUE),
+    .groups = "drop"
+  )
+
+correct_responses <- S1_long_time %>%
+  filter(success == 1) %>%
+  left_join(participant_summary, by = "prolific_pid") %>%
+  select(prolific_pid, question, time, total_score) %>%
+  distinct()
+
+pairwise_all <- correct_responses %>%
+  inner_join(correct_responses, by = "question", suffix = c("_a", "_b")) %>%
+  filter(prolific_pid_a < prolific_pid_b)
+
+# first find proportion of pairs with equal RTs
+rt_tie_summary <- pairwise_all %>%
+  mutate(equal_rt = time_a == time_b) %>%
+  count(equal_rt) %>%
+  mutate(prop = n / sum(n))
+
+rt_tie_summary
+
+# then exlcude pairs with equal RTs and 
+pairwise <- pairwise_all %>%
+  filter(time_a != time_b)   # now remove ties find proportion of pairs for which faster better, slow better, or tie
+
+proportions_of_pairs <- pairwise %>%
+  transmute(
+    faster_score = if_else(time_a < time_b, total_score_a, total_score_b),
+    slower_score = if_else(time_a < time_b, total_score_b, total_score_a),
+    outcome = case_when(
+      faster_score >  slower_score ~ "faster_better",
+      faster_score == slower_score ~ "tie",
+      TRUE                         ~ "slower_better"
+    )
+  ) %>%
+  count(outcome) %>%
+  mutate(prop = n / sum(n))
+
+proportions_of_pairs
+
+prop_faster  <- proportions_of_pairs$prop[proportions_of_pairs$outcome == "faster_better"]
+prop_tie     <- proportions_of_pairs$prop[proportions_of_pairs$outcome == "tie"]
+prop_slower  <- proportions_of_pairs$prop[proportions_of_pairs$outcome == "slower_better"]
+rt_tie_prop <- rt_tie_summary$prop[rt_tie_summary$equal_rt %in% TRUE]
+
+# Model 3: Relative-speed model: Does being fast on one item predict performance on other items?
+
+# Let q be the anchor question. For people who got q correct, does being relatively faster on q predict accuracy on questions notq
+anchor_speed <- S1_long_time %>%
+  filter(success == 1) %>%
+  group_by(question) %>%
+  mutate(speed_z = scale(-time)) %>%
+  ungroup() %>%
+  select(prolific_pid, anchor_q = question, speed_z_anchor = speed_z)
+
+df_relative_speed <- S1_long_time %>%
+  rename(target_q = question, target_success = success) %>%
+  inner_join(anchor_speed, by = "prolific_pid") %>%
+  filter(target_q != anchor_q)
+
+relative_speed_model <- glmer(
+  target_success ~ speed_z_anchor +
+    (1 | prolific_pid) + (1 | target_q) + (1 | anchor_q),
+  family = binomial(),
+  data = df_relative_speed,
+  control = glmerControl(optimizer = "bobyqa")
+)
+
+rel_sum <- summary(relative_speed_model)
+beta_rel <- fixef(relative_speed_model)["speed_z_anchor"]
+p_rel    <- rel_sum$coefficients["speed_z_anchor", "Pr(>|z|)"]
+
+# Model 2: trial-level mixed logistic regression predicting correctness from RT
+model_rt_predicts_success <- glmer(
+  success ~ time + (1 | prolific_pid) + (1 | question),
+  family = binomial,
+  data   = S1_long_time
+)
+
+summary(model_rt_predicts_success)
+Anova(model_rt_predicts_success, type = "III")
+exp(fixef(model_rt_predicts_success))  # odds ratio
+
+beta_rt <- fixef(model_rt_predicts_success)["time"]
+p_rt    <- Anova(model_rt_predicts_success, type = "III")["time", "Pr(>Chisq)"]
+
+odds_ratio_rt   <- exp(beta_rt)
+pct_change_odds <- (1 - odds_ratio_rt) * 100  # negative beta -> decrease
+
+print("After computing rt_tie_prop")
+print(rt_tie_prop)
+stopifnot(exists("rt_tie_prop"))
+
+
+```
+
+## Exploring Response Time Data
+
+We began by testing, for any pair of participants who got the same question correct (for all questions), in what proportion of these pairs the one who answered faster achieved a higher total score. For each pair, we identified which participant responded faster and then compared their total scores across the task. Pairs with identical response times were excluded (only `r sprintf("%.3g", rt_tie_prop * 100)`% of the pairs). We then calculated the proportion of pairs in which (a) the faster participant achieved a higher total score, (b) both participants achieved the same total score, and (c) the faster participant achieved a lower total score. We found that in `r sprintf("%.3g", prop_faster * 100)`% of the pairs, the participant who got the right answer faster had a higher total score, in `r sprintf("%.3g", prop_tie * 100)`% of the pairs participants tied, and in `r sprintf("%.3g", prop_slower * 100)`% of pairs the participant who reached the correct answer faster had a lower total score.
+
+In order to further investigate whether participants who were faster than their peers on a question they solved tended to be more accurate on other questions, we constructed a model which used participants' relative (scaled) speed on any particular question to predict accuracy on all other questions. We first defined an anchor question *q* for each participant as any question they answered correctly. For each such *q*, we computed that participant’s relative speed on *q* by z-scoring the negative response time within that question among the subset who were correct on *q* (so higher values mean faster than peers who also solved *q*). We then created, for every participant–anchor pair (id, *q*), one row for each other target question *r ≠ q*, with the binary outcome being whether the participant was correct on *r*. From this dataset we fit a mixed-effects logistic regression predicting success on *r* with a fixed effect for relative speed on *q* and random effects for participant, *r*, and *q*.
+
+We found that the fixed effect for relative speed on anchor question *q* was very small and not significant (`r paste0("β = ", sprintf("%.3g", beta_rel))`, p = `r clean_p(p_rel)`). Being faster than peers on a question a participant solved did not meaningfully predict accuracy on other questions.
+
+Finally, we fit another mixed-effects logistic regression to investigate whether response time on a question predicted accuracy on that question across participants and items. Here we found that response time had a significant negative effect on accuracy (`r paste0("β = ", sprintf("%.3g", beta_rt))`, p `r clean_p(p_rt)`), indicating that longer response times were associated with lower accuracy. Converting from log-odds, each one-second increase in response time corresponded to a `r sprintf("%.3g", pct_change_odds)`% decrease in the odds of answering correctly.
+
+
+
+
+
 
 
 
