@@ -39,9 +39,9 @@ is_latex <- knitr::pandoc_to("latex")
 is_html <- knitr::pandoc_to("html")
 
 # Word-specific things
-table_format <- ifelse(is_docx, "huxtable", "kableExtra")  # Huxtable tables
-conditional_dpi <- ifelse(is_docx, 300, 300)  # Higher DPI
-conditional_align <- ifelse(is_docx, "default", "center")  # Word doesn't support align
+table_format <- ifelse(is_docx, "huxtable", "kableExtra") # Huxtable tables
+conditional_dpi <- ifelse(is_docx, 300, 300) # Higher DPI
+conditional_align <- ifelse(is_docx, "default", "center") # Word doesn't support align
 
 # Knitr options
 knitr::opts_chunk$set(
@@ -61,30 +61,29 @@ knitr::opts_chunk$set(
 
 # R options
 options(
-  width = 90,  # Output width
-  dplyr.summarise.inform = FALSE,  # Turn off dplyr's summarize() auto messages
-  knitr.kable.NA = "",  # Make NAs blank in kables
-  kableExtra.latex.load_packages = FALSE,  # Don't add LaTeX preamble stuff
-  modelsummary_factory_default = table_format,  # Set modelsummary backend
-  modelsummary_format_numeric_latex = "plain"  # Don't use siunitx
+  width = 90, # Output width
+  dplyr.summarise.inform = FALSE, # Turn off dplyr's summarize() auto messages
+  knitr.kable.NA = "", # Make NAs blank in kables
+  kableExtra.latex.load_packages = FALSE, # Don't add LaTeX preamble stuff
+  modelsummary_factory_default = table_format, # Set modelsummary backend
+  modelsummary_format_numeric_latex = "plain" # Don't use siunitx
 )
-
 ```
 
 ```{r libraries, include=FALSE}
 library(tidyverse)
-library(mlogit)       # For multinomial logistic regression analysis
-library(flextable)    # For creating formatted tables
-library(officer)      # For knitting formatted tables to word
-library(papaja)       # For APA-style formatting
-library(lmerTest)     # For linear mixed-effects models with p-values
-library(broom)        # For tidying model outputs
-library(broom.mixed)  # For tidying mixed effects model outputs
-library(wesanderson)  # For color palettes inspired by Wes Anderson films
-library(patchwork)    # For combining multiple ggplots
-library(here)         # For project-relative file paths
-library(ggh4x)        # For extended ggplot2 functionality
-library(car)          # For Anova function
+library(mlogit) # For multinomial logistic regression analysis
+library(flextable) # For creating formatted tables
+library(officer) # For knitting formatted tables to word
+library(papaja) # For APA-style formatting
+library(lmerTest) # For linear mixed-effects models with p-values
+library(broom) # For tidying model outputs
+library(broom.mixed) # For tidying mixed effects model outputs
+library(wesanderson) # For color palettes inspired by Wes Anderson films
+library(patchwork) # For combining multiple ggplots
+library(here) # For project-relative file paths
+library(ggh4x) # For extended ggplot2 functionality
+library(car) # For Anova function
 ```
 
 ```{r functions}
@@ -132,28 +131,27 @@ clean_lm <- function(model_output) {
 }
 
 clean_lmer <- function(model_output) {
-  
   result <- broom.mixed::tidy(model_output, conf.int = TRUE) %>%
-    filter(effect == "fixed") %>% 
+    filter(effect == "fixed") %>%
     # report p.value according to apa standards
-    mutate(p.value = case_when(p.value < 0.001 ~ "< .001",
-                               TRUE ~ paste0("= ", sprintf("%.3f", p.value))
-    )
-    ) %>% 
+    mutate(p.value = case_when(
+      p.value < 0.001 ~ "< .001",
+      TRUE ~ paste0("= ", sprintf("%.3f", p.value))
+    )) %>%
     # all other terms
-    rounded_numbers() %>% 
+    rounded_numbers() %>%
     mutate(
       term = ifelse(term == "(Intercept)", "intercept", term),
-      ci = glue::glue("[{conf.low}, {conf.high}]"), 
+      ci = glue::glue("[{conf.low}, {conf.high}]"),
       # if there is an interaction (recognized by ":"), name it just interaction
       term = str_replace(term, ".*:.*", "interaction"),
       clean_term = term %>%
-          str_replace_all("factor\\(.*?\\)", "") %>%
-          str_replace_all("scale\\((.*?)\\)", "\\1")
-      ) %>% 
-    select(clean_term, term, estimate, std.error, ci, any_of("df"), statistic, p.value) %>% 
+        str_replace_all("factor\\(.*?\\)", "") %>%
+        str_replace_all("scale\\((.*?)\\)", "\\1")
+    ) %>%
+    select(clean_term, term, estimate, std.error, ci, any_of("df"), statistic, p.value) %>%
     split(.$clean_term)
-  
+
   return(result)
 }
 
@@ -228,20 +226,23 @@ clean_mlogit <- function(model_output) {
 }
 
 custom_theme <- theme_minimal() +
-  theme(text = element_text(family = "serif"), 
-        ## ---- facet-label styling ----
-      strip.text        = element_text(colour = "black"),         # text colour
-      strip.background  = element_rect(fill = "white",            # inside of the strip
-                                      colour = "black",          # border line
-                                      linewidth = .8),
+  theme(
+    text = element_text(family = "serif"),
+    ## ---- facet-label styling ----
+    strip.text = element_text(colour = "black"), # text colour
+    strip.background = element_rect(
+      fill = "white", # inside of the strip
+      colour = "black", # border line
+      linewidth = .8
+    ),
 
-      ## ggplot2 ≥ 3.4 splits strips into x- and y-orientations;
-      ## setting these keeps the look identical for both directions
-      strip.background.x = element_rect(fill = "white", colour = "black", linewidth = .8),
-      strip.background.y = element_rect(fill = "white", colour = "black", linewidth = .8)
+    ## ggplot2 ≥ 3.4 splits strips into x- and y-orientations;
+    ## setting these keeps the look identical for both directions
+    strip.background.x = element_rect(fill = "white", colour = "black", linewidth = .8),
+    strip.background.y = element_rect(fill = "white", colour = "black", linewidth = .8)
   )
-        # panel.background = element_rect(fill = "white", colour = NA), 
-        # panel.border     = element_rect(fill = NA, colour = "black", linewidth = .4)) 
+# panel.background = element_rect(fill = "white", colour = NA),
+# panel.border     = element_rect(fill = NA, colour = "black", linewidth = .4))
 
 # Function to clean p-values for inline reporting
 clean_p <- function(p_value) {
@@ -284,15 +285,15 @@ S1_wide_answers <- read_csv(here("study_1", "data", "clean", "S1_wide_answers.cs
 source(here::here("pre-registered code", "pre-reg_model_implementation.R"))
 
 # Fit Results
-S1_fit_results       <- read_csv(here::here("study_1", "results", "S1_fit_results.csv"))
-S1_individual_fits   <- read_csv(here::here("study_1", "results", "S1_individual_fits.csv"))
+S1_fit_results <- read_csv(here::here("study_1", "results", "S1_fit_results.csv"))
+S1_individual_fits <- read_csv(here::here("study_1", "results", "S1_individual_fits.csv"))
 nestedness_stats <- read_csv(here::here("study_1", "results", "nestedness_stats.csv"))
 ```
 
 ```{r analyses}
 # ---- merge S1_long_data with true probas ----
 
-S1_long_data = left_join(S1_long_data, S1_prob_df, by = c("question_observed", "success_observed", "question_evaluated"))
+S1_long_data <- left_join(S1_long_data, S1_prob_df, by = c("question_observed", "success_observed", "question_evaluated"))
 
 n_participants <- S1_long_data %>%
   distinct(prolific_pid) %>%
@@ -312,9 +313,9 @@ S1_long_data_worst <- S1_long_data %>%
 S1_summarized_data <- S1_long_data %>%
   group_by(success_observed, question_observed, question_evaluated) %>%
   summarise(
-    judged_prob = mean(human_evaluation, na.rm=TRUE),
+    judged_prob = mean(human_evaluation, na.rm = TRUE),
     observed_q_perceived_difficulty_unbounded = mean(observed_q_perceived_difficulty_unbounded),
-    new_q_perceived_difficulty_unbounded      = mean(new_q_perceived_difficulty_unbounded),
+    new_q_perceived_difficulty_unbounded = mean(new_q_perceived_difficulty_unbounded),
     true_prob = mean(true_conditional_prob),
     .groups = "drop"
   ) %>%
@@ -373,10 +374,10 @@ difference <- beta <- S1_fit_results[S1_fit_results$model == "S1_NULL_2", ]$diff
 
 S1_summarized_data$prob_null_2 <- mapply(
   FUN = function(obs, new, success_observed) {
-    if (success_observed == 1){
-    soft_max(ifelse(obs + difference >= new, 1, 0), beta = beta)  
+    if (success_observed == 1) {
+      soft_max(ifelse(obs + difference >= new, 1, 0), beta = beta)
     } else {
-    soft_max(ifelse(obs - difference >= new, 1, 0), beta = beta)  
+      soft_max(ifelse(obs - difference >= new, 1, 0), beta = beta)
     }
   },
   obs = S1_summarized_data$observed_q_perceived_difficulty_unbounded,
@@ -386,31 +387,35 @@ S1_summarized_data$prob_null_2 <- mapply(
 
 # -------- PRE-REGISTERED ANALYSIS FOR HYPOTHESIS TESTS ----------
 
-data_h1 = S1_long_data %>% select(prolific_pid, question_observed, observed_q_objective_difficulty, observed_q_perceived_difficulty) %>% distinct()
+data_h1 <- S1_long_data %>%
+  select(prolific_pid, question_observed, observed_q_objective_difficulty, observed_q_perceived_difficulty) %>%
+  distinct()
 
-model_h1 = lmer(scale(observed_q_perceived_difficulty) ~ scale(observed_q_objective_difficulty) + (1|prolific_pid), data_h1) # TODO: this is wrong, observed_q_perceived_difficulty is the average across participants
+model_h1 <- lmer(scale(observed_q_perceived_difficulty) ~ scale(observed_q_objective_difficulty) + (1 | prolific_pid), data_h1) # TODO: this is wrong, observed_q_perceived_difficulty is the average across participants
 model_h2 <- lm(scale(judged_prob) ~ scale(true_prob), data = S1_summarized_data)
 
 
-data_h1_worst = S1_long_data_worst%>% select(prolific_pid, question_observed, observed_q_objective_difficulty, observed_q_perceived_difficulty) %>% distinct()
-model_h1m = lmer(scale(observed_q_perceived_difficulty) ~ scale(observed_q_objective_difficulty) + (1|prolific_pid), data_h1_worst)
+data_h1_worst <- S1_long_data_worst %>%
+  select(prolific_pid, question_observed, observed_q_objective_difficulty, observed_q_perceived_difficulty) %>%
+  distinct()
+model_h1m <- lmer(scale(observed_q_perceived_difficulty) ~ scale(observed_q_objective_difficulty) + (1 | prolific_pid), data_h1_worst)
 
-data_h2m = S1_long_data_worst %>% 
-  group_by(question_observed, question_evaluated, success_observed) %>% 
+data_h2m <- S1_long_data_worst %>%
+  group_by(question_observed, question_evaluated, success_observed) %>%
   summarise(
-    true_prob = mean(true_conditional_prob), 
+    true_prob = mean(true_conditional_prob),
     judged_prob = mean(human_evaluation)
   )
 
-model_h2m = lm(scale(judged_prob) ~ scale(true_prob), data_h2m)
+model_h2m <- lm(scale(judged_prob) ~ scale(true_prob), data_h2m)
 
 bayes_corr_h3 <- cor.test(S1_summarized_data$judged_prob, S1_summarized_data$prob_bayes)
 
-#for H4: S1_MAIN_BIC < S1_NULL_BIC 
+# for H4: S1_MAIN_BIC < S1_NULL_BIC
 # for H5: S1_MAIN_BIC < S1_NULL_2_BIC
 
 # find difference between BIC of main model and next best heuristic model (Anchor model)
-S1_BIC_DIFF <- S1_NULL_2_BIC-S1_MAIN_BIC
+S1_BIC_DIFF <- S1_NULL_2_BIC - S1_MAIN_BIC
 
 # for h1 and h1m, the random intercept for question_observed is redundant with
 # the fixed effect because each question has a single objective difficulty.
@@ -424,7 +429,7 @@ model_bayes <- lm(scale(judged_prob) ~ scale(prob_bayes), data = S1_summarized_d
 model_null1 <- lm(scale(judged_prob) ~ scale(prob_null), data = S1_summarized_data)
 model_null2 <- lm(scale(judged_prob) ~ scale(prob_null_2), data = S1_summarized_data)
 
-# rq1 
+# rq1
 rq1 <- S1_summarized_data %>%
   group_by(success_observed) %>%
   summarise(
@@ -440,7 +445,7 @@ S1_summarized_failure <- S1_summarized_data %>% filter(success_observed == 0)
 modelS_rq1 <- lm(scale(judged_prob) ~ scale(true_prob), data = S1_summarized_success)
 modelF_rq1 <- lm(scale(judged_prob) ~ scale(true_prob), data = S1_summarized_failure)
 
-# rq2 and rq3 
+# rq2 and rq3
 
 # paired t-tests comparing BICs for individual level fits
 S1_ttest_1 <- t.test(S1_individual_fits$MAIN_BIC, S1_individual_fits$NULL_BIC, paired = TRUE)
@@ -454,27 +459,27 @@ diff_corr <- cor.test(S1_long_data$observed_q_perceived_difficulty, S1_long_data
 
 # rq4: at the trial level, can participants predict the conditional probability?
 
-S1_rq4 = glmer(human_evaluation ~ scale(true_conditional_prob) + (1|question_observed) + (1|question_evaluated) + (1 | success_observed) + (1 + true_conditional_prob|prolific_pid), family = binomial, S1_long_data)
+S1_rq4 <- glmer(human_evaluation ~ scale(true_conditional_prob) + (1 | question_observed) + (1 | question_evaluated) + (1 | success_observed) + (1 + true_conditional_prob | prolific_pid), family = binomial, S1_long_data)
 
 # ------ Manipulation Checks --------
 
 # for MC1 see 'nestedness.R'
 
 # MC1' analysis below
-mc_data = S1_wide_answers %>% 
+mc_data <- S1_wide_answers %>%
   pivot_longer(
-    cols = contains("mark"), 
+    cols = contains("mark"),
     names_to = "question",
     values_to = "success"
-  ) %>% 
-  mutate(question = as.integer(gsub("q([0-9]+)mark", "\\1", question))) %>% 
-  filter(success == 1) %>% 
+  ) %>%
+  mutate(question = as.integer(gsub("q([0-9]+)mark", "\\1", question))) %>%
+  filter(success == 1) %>%
   group_by(question) %>%
-  select(question, total_score) %>% 
+  select(question, total_score) %>%
   summarise(average_score = mean(total_score))
 
 
-mc_data = left_join(mc_data, S1_difficulty, by = "question")
+mc_data <- left_join(mc_data, S1_difficulty, by = "question")
 
 # Run  linear model
 model_mc <- lm(objective_difficulty ~ average_score, data = mc_data)
@@ -494,18 +499,18 @@ plot_mc <- ggplot(mc_data, aes(x = average_score, y = objective_difficulty)) +
 # q_marks_long <- S1_long_data %>%
 #   select(prolific_pid, starts_with("q") & ends_with("mark")) %>%
 #   select(prolific_pid, paste0("q", 1:15, "mark")) # Explicitly select q1mark to q15mark
-# 
+#
 # q_marks_long <- q_marks_long %>%
 #   pivot_longer(
 #     cols = -prolific_pid, # Pivot all columns except prolific_pid
 #     names_to = "question_column",
 #     values_to = "correctness"
 #   )
-# 
+#
 # # Filter for correct answers (where correctness == 1)
 # correct_answers <- q_marks_long %>%
 #   filter(correctness == 1)
-# 
+#
 # # Count unique participants for each question
 # # Group by the 'question_column' and then count the number of distinct 'prolific_pid's
 # participants_per_question <- correct_answers %>%
@@ -513,7 +518,7 @@ plot_mc <- ggplot(mc_data, aes(x = average_score, y = objective_difficulty)) +
 #   summarise(unique_participants_correct = n_distinct(prolific_pid)) %>%
 #   ungroup() %>%
 #   arrange(question_column)
-# 
+#
 # rm(correct_answers, q_marks_long)
 
 
@@ -529,7 +534,6 @@ S1_results <- list(
   clean_model_rq1_S = clean_lm(modelS_rq1),
   clean_model_rq1_F = clean_lm(modelF_rq1),
   clean_model_rq4 = clean_lmer(S1_rq4),
-  
   clean_null1_corr = clean_t_test(null1_corr),
   clean_null2_corr = clean_t_test(null2_corr),
   clean_prob_corr = clean_t_test(prob_corr),
@@ -674,24 +678,30 @@ Investigating **H3**, we fit three linear models to compare the Main Model's and
 was very strongly correlated with participant behaviour ($\beta$ = `r S1_results$clean_model_bayes$prob_bayes$estimate`, t(`r S1_results$clean_model_bayes$model_fit$df.residual`) = `r S1_results$clean_model_bayes$prob_bayes$statistic`, p `r S1_results$clean_model_bayes$prob_bayes$p.value`, Adjusted $R^2$ = `r S1_results$clean_model_bayes$model_fit$adj.r.squared`). The Threshold model showed lower correlation with the data ($\beta$ = `r S1_results$clean_model_null1$prob_null$estimate`, t(`r S1_results$clean_model_null1$model_fit$df.residual`) = `r S1_results$clean_model_null1$prob_null$statistic`, p `r S1_results$clean_model_null1$prob_null$p.value`, Adjusted $R^2$ = `r S1_results$clean_model_null1$model_fit$adj.r.squared`). The Anchor model was the weakest fit to the data ($\beta$ = `r S1_results$clean_model_null2$prob_null_2$estimate`, t(`r S1_results$clean_model_null2$model_fit$df.residual`) = `r S1_results$clean_model_null2$prob_null_2$statistic`, p `r S1_results$clean_model_null2$prob_null_2$p.value`, Adjusted $R^2$ = `r S1_results$clean_model_null2$model_fit$adj.r.squared`). Figure \@ref(fig:S1-fig-model-comparison) shows participants' average prediction for each possible pair of arithmetic questions (observed and judged) compared to the three models' predictions.
 
 ```{r S1-fig-model-comparison, fig.cap="Model comparison. Each data point is a pair of two questions."}
-
-plot_df <- S1_summarized_data %>%            # one long table
+plot_df <- S1_summarized_data %>% # one long table
   pivot_longer(
-    cols  = c(judged_prob, prob_bayes,
-              prob_null, prob_null_2),
-    names_to  = "model",
+    cols = c(
+      judged_prob, prob_bayes,
+      prob_null, prob_null_2
+    ),
+    names_to = "model",
     values_to = "judgment"
-  ) %>% 
+  ) %>%
   mutate(
     model = factor(model,
-                   levels  = c("judged_prob",
-                               "prob_bayes",
-                               "prob_null",
-                               "prob_null_2"),
-                   labels  = c("Participant",
-                               "Bayesian model",
-                               "Threshold model",
-                               "Anchor model")),
+      levels = c(
+        "judged_prob",
+        "prob_bayes",
+        "prob_null",
+        "prob_null_2"
+      ),
+      labels = c(
+        "Participant",
+        "Bayesian model",
+        "Threshold model",
+        "Anchor model"
+      )
+    ),
     success_observed = factor(success_observed,
       levels = c(1, 0),
       labels = c(
@@ -701,19 +711,24 @@ plot_df <- S1_summarized_data %>%            # one long table
     )
   )
 
-S1_fig_model_comparison = ggplot(plot_df,
-       aes(new_q_perceived_difficulty_unbounded, judgment,
-           colour = observed_q_perceived_difficulty_unbounded,
-           group  = observed_q_perceived_difficulty_unbounded)) +
+S1_fig_model_comparison <- ggplot(
+  plot_df,
+  aes(new_q_perceived_difficulty_unbounded, judgment,
+    colour = observed_q_perceived_difficulty_unbounded,
+    group  = observed_q_perceived_difficulty_unbounded
+  )
+) +
   geom_line(alpha = .35, linewidth = .6) +
   geom_point(size = .8) +
-  facet_grid(success_observed ~ model) +   # one row of panels by model only
+  facet_grid(success_observed ~ model) + # one row of panels by model only
   scale_colour_gradientn(
     name    = "Observed Question\nPerceived Difficulty",
     colours = wes_palette("Zissou1", type = "continuous")
   ) +
-  labs(x = "New question difficulty",
-       y = "Estimated Probability of Success") +
+  labs(
+    x = "New question difficulty",
+    y = "Estimated Probability of Success"
+  ) +
   custom_theme +
   theme(legend.position = "bottom")
 
@@ -722,13 +737,12 @@ S1_fig_model_comparison
 To test **H4** and **H5**, we computed the Bayesian information criterion (BIC) using the maximum log-likelihood for each fitted model, which applies a penalty for model complexity. The Main Model, when fitted to the complete dataset, outperformed both alternative models ($BIC_{Bayes}$ = `r S1_MAIN_BIC`; $BIC_{Threshold}$ = `r S1_NULL_BIC`; $BIC_{Anchor}$ = `r S1_NULL_2_BIC`), confirming **H4** and **H5** respectively. The difference between the BIC of the Main Model and that of the next best heuristic model (Anchor Model) was `r S1_BIC_DIFF`,  which indicates very strong evidence in favor of our Main Model according to the standard interpretation criteria (Raftery, 1995).
 
 ```{r S1-table, tab.cap="Optimised Parameters for Bayesian, Threshold and Anchor Models"}
-
 S1_table <- data.frame(
   Type_of_Fit = c(
     rep("Same parameters for all participants", 3),
     rep("Participant-specific parameters", 3)
   ),
-  Model = c("Bayes","Threshold","Anchor","Bayes","Threshold","Anchor"),
+  Model = c("Bayes", "Threshold", "Anchor", "Bayes", "Threshold", "Anchor"),
   LLmax = c(
     round(S1_fit_results[S1_fit_results$model == "S1_MAIN", ]$LLMax, 0),
     round(S1_fit_results[S1_fit_results$model == "S1_NULL", ]$LLMax, 0),
@@ -782,11 +796,11 @@ S1_table <- data.frame(
 
 names(S1_table) <- c(
   "Type of Fit", "Model", "LLmax", "BIC",
-  "\u03BC",      # mu
-  "\u03C3\u00B2",# sigma squared
-  "\u03B5",      # epsilon
-  "\u0394",      # Delta
-  "\u03B2"      # beta
+  "\u03BC", # mu
+  "\u03C3\u00B2", # sigma squared
+  "\u03B5", # epsilon
+  "\u0394", # Delta
+  "\u03B2" # beta
 )
 
 S1_ft <- flextable(S1_table) |>
@@ -804,7 +818,6 @@ S1_ft <- flextable(S1_table) |>
   align(part = "footer", align = "left")
 
 S1_ft
-
 ```
 
 
@@ -814,7 +827,6 @@ As further exploratory analysis, we investigated several research questions. The
 In another robustness test of our analyses for H2, we analyzed participants' binary answers at the trial level. We ran a logistic mixed-effects model with participants' predictions as the dependent variable and the true conditional probability as the independent variable. We included random intercepts for the observed question, the evaluated question, for the outcome observed (success/failure) and we also included random slope and intercept for participants. We found that, at each trial, participants' binary predictions of success were correlated with with the true probabilities of success (b= `r S1_results$clean_model_rq4[["true_conditional_prob"]]$estimate`, z = `r S1_results$clean_model_rq4[["true_conditional_prob"]]$statistic`, p `r S1_results$clean_model_rq4[["true_conditional_prob"]]$p.value`).
 
 ```{r S1-fig-behav-2, fig.cap="Estimated Conditional Probability versus True Conditional Probability. Each data point is a pair of two questions.The red line represents the optimal prediction while the dark line represents the fit of the linear models."}
-
 df_noscale <- function(df) {
   df %>%
     filter(question_observed != question_evaluated) %>%
@@ -858,9 +870,8 @@ S1_fig_behav_2
 We finally investigated how the models compared when we allowed to the parameters to differ for each individual rather than fixing them across all individuals. We did this because individuals may have different prior distributions of competence in the population. They may also have different priors about the role of luck in answering the questions. We therefore tested whether the main model fit individual level data better than heuristic model 1 (**RQ2**) and heuristic model 2 (**RQ3**). We used a maximum likelihood optimization to estimate the best free parameters for each  participant. On average, our main model explained the behaviour of participants significantly better than Heuristic 1 ($BIC_{Bayes}$ = `r round(mean(S1_individual_fits$MAIN_BIC), 2)` ± `r round(sd(S1_individual_fits$MAIN_BIC), 2)`; $BIC_{Threshold}$ = `r round(mean(S1_individual_fits$NULL_BIC), 2)` ± `r round(sd(S1_individual_fits$NULL_BIC), 2)`; t(`r S1_results$ttest_1$parameter`) = `r S1_results$ttest_1$statistic`, p `r S1_results$ttest_1$p.value`, paired t-test) and Heuristic 2 ($BIC_{Anchor}$ = `r round(mean(S1_individual_fits$NULL_2_BIC), 2)` ± `r round(sd(S1_individual_fits$NULL_2_BIC), 2)`; t(`r S1_results$ttest_2$parameter`) = `r S1_results$ttest_2$statistic`, p `r S1_results$ttest_2$p.value`, paired t-test). The Bayesian model was the best model for `r round(mean(S1_individual_fits$MAIN_BIC < S1_individual_fits$NULL_BIC & S1_individual_fits$MAIN_BIC < S1_individual_fits$NULL_2_BIC)*100)`% of participants whereas the Heuristic 1 accounted for `r round(mean(S1_individual_fits$NULL_BIC < S1_individual_fits$MAIN_BIC & S1_individual_fits$NULL_BIC < S1_individual_fits$NULL_2_BIC)*100)`% and the Heuristic 2 accounted for `r round(mean(S1_individual_fits$NULL_2_BIC < S1_individual_fits$MAIN_BIC & S1_individual_fits$NULL_2_BIC < S1_individual_fits$NULL_BIC)*100)`%. 
 
 ```{r response time exploratory, include=FALSE}
-
-S1_long_time <- S1_wide_answers %>% 
-  select(prolific_pid, contains("time"), contains("mark")) %>% 
+S1_long_time <- S1_wide_answers %>%
+  select(prolific_pid, contains("time"), contains("mark")) %>%
   # 1) Make column names consistent: <measure>_<question>
   rename_with(
     ~ str_replace(.x, "^time_on_question(\\d+)$", "time_\\1"),
@@ -873,8 +884,8 @@ S1_long_time <- S1_wide_answers %>%
   # 2) Single pivot_longer with `.value`
   pivot_longer(
     cols = -prolific_pid,
-    names_to        = c(".value", "question"),
-    names_sep       = "_",
+    names_to = c(".value", "question"),
+    names_sep = "_",
     names_transform = list(question = as.integer)
   )
 
@@ -887,7 +898,7 @@ participant_summary <- S1_long_time %>%
   group_by(prolific_pid) %>%
   summarise(
     total_score = sum(success, na.rm = TRUE),
-    total_time  = sum(time,    na.rm = TRUE),
+    total_time = sum(time, na.rm = TRUE),
     .groups = "drop"
   )
 
@@ -909,18 +920,18 @@ rt_tie_summary <- pairwise_all %>%
 
 rt_tie_summary
 
-# then exlcude pairs with equal RTs and 
+# then exlcude pairs with equal RTs and
 pairwise <- pairwise_all %>%
-  filter(time_a != time_b)   # now remove ties find proportion of pairs for which faster better, slow better, or tie
+  filter(time_a != time_b) # now remove ties find proportion of pairs for which faster better, slow better, or tie
 
 proportions_of_pairs <- pairwise %>%
   transmute(
     faster_score = if_else(time_a < time_b, total_score_a, total_score_b),
     slower_score = if_else(time_a < time_b, total_score_b, total_score_a),
     outcome = case_when(
-      faster_score >  slower_score ~ "faster_better",
+      faster_score > slower_score ~ "faster_better",
       faster_score == slower_score ~ "tie",
-      TRUE                         ~ "slower_better"
+      TRUE ~ "slower_better"
     )
   ) %>%
   count(outcome) %>%
@@ -928,9 +939,9 @@ proportions_of_pairs <- pairwise %>%
 
 proportions_of_pairs
 
-prop_faster  <- proportions_of_pairs$prop[proportions_of_pairs$outcome == "faster_better"]
-prop_tie     <- proportions_of_pairs$prop[proportions_of_pairs$outcome == "tie"]
-prop_slower  <- proportions_of_pairs$prop[proportions_of_pairs$outcome == "slower_better"]
+prop_faster <- proportions_of_pairs$prop[proportions_of_pairs$outcome == "faster_better"]
+prop_tie <- proportions_of_pairs$prop[proportions_of_pairs$outcome == "tie"]
+prop_slower <- proportions_of_pairs$prop[proportions_of_pairs$outcome == "slower_better"]
 rt_tie_prop <- rt_tie_summary$prop[rt_tie_summary$equal_rt %in% TRUE]
 
 # Model 3: Relative-speed model: Does being fast on one item predict performance on other items?
@@ -958,7 +969,7 @@ relative_speed_model <- glmer(
 
 rel_sum <- summary(relative_speed_model)
 beta_rel <- fixef(relative_speed_model)["speed_z_anchor"]
-p_rel    <- rel_sum$coefficients["speed_z_anchor", "Pr(>|z|)"]
+p_rel <- rel_sum$coefficients["speed_z_anchor", "Pr(>|z|)"]
 
 # Model 2: trial-level mixed logistic regression predicting correctness from RT
 model_rt_predicts_success <- glmer(
@@ -969,19 +980,17 @@ model_rt_predicts_success <- glmer(
 
 summary(model_rt_predicts_success)
 Anova(model_rt_predicts_success, type = "III")
-exp(fixef(model_rt_predicts_success))  # odds ratio
+exp(fixef(model_rt_predicts_success)) # odds ratio
 
 beta_rt <- fixef(model_rt_predicts_success)["time"]
-p_rt    <- Anova(model_rt_predicts_success, type = "III")["time", "Pr(>Chisq)"]
+p_rt <- Anova(model_rt_predicts_success, type = "III")["time", "Pr(>Chisq)"]
 
-odds_ratio_rt   <- exp(beta_rt)
-pct_change_odds <- (1 - odds_ratio_rt) * 100  # negative beta -> decrease
+odds_ratio_rt <- exp(beta_rt)
+pct_change_odds <- (1 - odds_ratio_rt) * 100 # negative beta -> decrease
 
 print("After computing rt_tie_prop")
 print(rt_tie_prop)
 stopifnot(exists("rt_tie_prop"))
-
-
 ```
 
 ## Exploring Response Time Data
@@ -1010,58 +1019,114 @@ S2_long_answers <- read_csv(here("study_2", "data", "clean", "S2_long_answers.cs
 
 
 ```{r S2-analyses}
-# H1: Participants can accurately assess the difficulty of correctly answering the observed questions. 
+# H1: Participants can accurately assess the difficulty of correctly answering the observed questions.
 
-S2_h1 = lmer(scale(observed_q_perceived_difficulty_indiv) ~ scale(observed_q_objective_difficulty) + (1+ scale(observed_q_objective_difficulty)|prolific_pid), S2_long_data)
+S2_h1 <- lmer(scale(observed_q_perceived_difficulty_indiv) ~ scale(observed_q_objective_difficulty) + (1 + scale(observed_q_objective_difficulty) | prolific_pid), S2_long_data)
 
 # H2a: For a given pair of Quiz 1 and Quiz 2 questions, among participants who correctly answered the Quiz 2 question, those who answered under a 20-second time limit have a higher chance of answering the Quiz 1 question than those who answered under a 40-second time limit.
 
-S2_long_answers$pair = interaction(S2_long_answers$question_observed, S2_long_answers$question_evaluated, drop = TRUE )
+S2_long_answers$pair <- interaction(S2_long_answers$question_observed, S2_long_answers$question_evaluated, drop = TRUE)
 
-S2_long_answers$success_q1 = S2_long_answers$success_evaluated # rename for clarity, we use the true performance data
-S2_long_answers$time_observed =  relevel(factor(S2_long_answers$time_observed), ref= "SlowFast")
+S2_long_answers$success_q1 <- S2_long_answers$success_evaluated # rename for clarity, we use the true performance data
+S2_long_answers$time_observed <- relevel(factor(S2_long_answers$time_observed), ref = "SlowFast")
 
-S2_h2a = glmer(success_q1 ~ time_observed + (1|prolific_pid) + (1| pair), family=binomial, S2_long_answers %>% filter(success_observed == 1))
+S2_h2a <- glmer(success_q1 ~ time_observed + (1 | prolific_pid) + (1 | pair), family = binomial, S2_long_answers %>% filter(success_observed == 1))
 
-#H2b: For a given pair of Quiz 1 and Quiz 2 questions, among participants who failed the Quiz 2 question, those who failed under a 20-second time limit have a higher chance of answering the Quiz 1 question than those who failed under a 40-second time limit.
-S2_h2b = glmer(success_q1 ~ time_observed + (1|prolific_pid) + (1| pair), family=binomial, S2_long_answers %>% filter(success_observed == 0))
+# H2b: For a given pair of Quiz 1 and Quiz 2 questions, among participants who failed the Quiz 2 question, those who failed under a 20-second time limit have a higher chance of answering the Quiz 1 question than those who failed under a 40-second time limit.
+S2_h2b <- glmer(success_q1 ~ time_observed + (1 | prolific_pid) + (1 | pair), family = binomial, S2_long_answers %>% filter(success_observed == 0))
 
 # H3: On average, participants' predictions of the probabilities of success on different evaluated questions, given success or failure within the 20 second or 40 second time limit on an observed question, are significantly correlated with true conditional probabilities.
 
-summarized_data = S2_long_data %>%
-  group_by(question_observed, success_observed, time_observed, question_evaluated) %>% 
+summarized_data <- S2_long_data %>%
+  group_by(question_observed, success_observed, time_observed, question_evaluated) %>%
   summarize(
     judg_conditional_prob = mean(human_evaluation, na.rm = TRUE)
   )
 
-S2_prob_df$time_observed = as.integer(relevel(factor(S2_prob_df$time_observed), ref = "SlowFast")) - 1
+S2_prob_df$time_observed <- as.integer(relevel(factor(S2_prob_df$time_observed), ref = "SlowFast")) - 1
 
-summarized_data = left_join(summarized_data, S2_prob_df, by = c("question_observed", "success_observed", "time_observed", "question_evaluated"))
+summarized_data <- left_join(summarized_data, S2_prob_df, by = c("question_observed", "success_observed", "time_observed", "question_evaluated"))
 
-S2_h3 = lm(judg_conditional_prob ~ true_conditional_prob, data=summarized_data)
+S2_h3 <- lm(scale(judg_conditional_prob) ~ scale(true_conditional_prob), data = summarized_data)
 
 # H4a: For a given pair of Quiz 1 and Quiz 2 questions, participants’ predictions of the probabilities of success on different evaluated questions will be higher for correctly answered observed questions in under 20 seconds rather than under 40 seconds.
 
-S2_long_data$pair = interaction(S2_long_data$question_observed, S2_long_data$question_evaluated, drop = TRUE )
+S2_long_data$pair <- interaction(S2_long_data$question_observed, S2_long_data$question_evaluated, drop = TRUE)
 
-S2_h4a = glmer(human_evaluation ~ time_observed + (1|prolific_pid) + (1| pair), family=binomial, S2_long_data %>% filter(success_observed == 1))
+S2_h4a <- glmer(human_evaluation ~ factor(time_observed) + (1 | prolific_pid) + (1 | pair), family = binomial, S2_long_data %>% filter(success_observed == 1))
 
 # H4b: For a given pair of Quiz 1 and Quiz 2 questions, participants’ predictions of the probabilities of success on different evaluated questions will be higher for incorrectly answered observed questions in under 20 seconds rather than under 40 seconds.
 
-S2_h4b = glmer(human_evaluation ~ time_observed + (1|prolific_pid) + (1| pair), family=binomial, S2_long_data %>% filter(success_observed == 0))
+S2_h4b <- glmer(human_evaluation ~ factor(time_observed) + (1 | prolific_pid) + (1 | pair), family = binomial, S2_long_data %>% filter(success_observed == 0))
 
 # H1m: Even participants with minimal arithmetic ability can, for different observed questions, accurately assess the difficulty of these questions.
 
-S2_h2m
+n_participants <- S2_long_data %>%
+  distinct(prolific_pid) %>%
+  nrow()
+n_worst <- floor(n_participants * 0.30)
+
+worst_ids <- S2_long_data %>%
+  distinct(prolific_pid, total_score) %>%
+  arrange(total_score) %>%
+  slice_head(n = n_worst) %>%
+  pull(prolific_pid)
+
+S2_long_data_worst <- S2_long_data %>%
+  filter(prolific_pid %in% worst_ids)
+
+S2_h1m <- lmer(scale(observed_q_perceived_difficulty_indiv) ~ scale(observed_q_objective_difficulty) + (1 + scale(observed_q_objective_difficulty) | prolific_pid), S2_long_data_worst)
 
 # H3m: Even for participants with minimal arithmetic ability, their average predictions of the probabilities of success on different evaluated questions, given success or failure within the 20 second or 40 second time limit on an observed question, are significantly correlated with true conditional probabilities.
 
+summarized_data_worst <- S2_long_data_worst %>%
+  group_by(question_observed, success_observed, time_observed, question_evaluated) %>%
+  summarize(
+    judg_conditional_prob = mean(human_evaluation, na.rm = TRUE)
+  )
+
+summarized_data_worst <- left_join(summarized_data_worst, S2_prob_df, by = c("question_observed", "success_observed", "time_observed", "question_evaluated"))
+
+S2_h3m <- lm(scale(judg_conditional_prob) ~ scale(true_conditional_prob), data = summarized_data_worst)
+
 # H3i: At the trial level, participants' predictions of the probabilities of success on different evaluated questions, given success or failure within the 20 second or 40 second time limit on an observed question, are significantly correlated with true conditional probabilities.
 
+S2_long_data <- left_join(S2_long_data, S2_prob_df, by = c("question_observed", "success_observed", "time_observed", "question_evaluated"))
+
+S2_h3i <- glmer(human_evaluation ~ scale(true_conditional_prob) + (1 | prolific_pid) + (1 | time_observed) + (1 | question_observed) + (1 | time_observed), family = binomial, S2_long_data)
+
+# -------- EXPORT ALL RESULTS --------
+
+S2_results <- list(
+  h1 = clean_lmer(S2_h1),
+  h2a = clean_lmer(S2_h2a),
+  h2b = clean_lmer(S2_h2b),
+  h3 = clean_lm(S2_h3),
+  h4a = clean_lmer(S2_h4a),
+  h4b = clean_lmer(S2_h4b),
+  h1m = clean_lmer(S2_h1m),
+  h3m = clean_lm(S2_h3m),
+  h3i = clean_lmer(S2_h3i)
+)
 ```
 
+**H1**: Participants can accurately assess the difficulty of correctly answering the observed questions ($\beta$ = `r S2_results$h1[["observed_q_objective_difficulty"]]$estimate`, t(`r S2_results$h1[["observed_q_objective_difficulty"]]$df`) = `r S2_results$h1[["observed_q_objective_difficulty"]]$statistic`, p `r S2_results$h1[["observed_q_objective_difficulty"]]$p.value`).
 
+**H2a**: For a given pair of Quiz 1 and Quiz 2 questions, among participants who correctly answered the Quiz 2 question, those who answered under a 20-second time limit have a higher chance of answering the Quiz 1 question than those who answered under a 40-second time limit (b = `r S2_results$h2a[["time_observedFastSlow"]]$estimate`, z = `r S2_results$h2a[["time_observedFastSlow"]]$statistic`, p `r S2_results$h2a[["time_observedFastSlow"]]$p.value`).
 
+**H2b**: For a given pair of Quiz 1 and Quiz 2 questions, among participants who failed the Quiz 2 question, those who failed under a 20-second time limit have a higher chance of answering the Quiz 1 question than those who failed under a 40-second time limit (b = `r S2_results$h2b[["time_observedFastSlow"]]$estimate`, z = `r S2_results$h2b[["time_observedFastSlow"]]$statistic`, p `r S2_results$h2b[["time_observedFastSlow"]]$p.value`).
+
+**H3**: On average, participants' predictions of the probabilities of success on different evaluated questions, given success or failure within the 20 second or 40 second time limit on an observed question, are significantly correlated with true conditional probabilities ($\beta$ = `r S2_results$h3[["true_conditional_prob"]]$estimate`, t(`r S2_results$h3$model_fit$df.residual`) = `r S2_results$h3[["true_conditional_prob"]]$statistic`, p `r S2_results$h3[["true_conditional_prob"]]$p.value`, Adjusted $R^2$ = `r S2_results$h3$model_fit$adj.r.squared`).
+
+**H4a**: For a given pair of Quiz 1 and Quiz 2 questions, participants' predictions of the probabilities of success on different evaluated questions will be higher for correctly answered observed questions in under 20 seconds rather than under 40 seconds (b = `r S2_results$h4a[["1"]]$estimate`, z = `r S2_results$h4a[["1"]]$statistic`, p `r S2_results$h4a[["1"]]$p.value`).
+
+**H4b**: For a given pair of Quiz 1 and Quiz 2 questions, participants' predictions of the probabilities of success on different evaluated questions will be higher for incorrectly answered observed questions in under 20 seconds rather than under 40 seconds (b = `r S2_results$h4b[["1"]]$estimate`, z = `r S2_results$h4b[["1"]]$statistic`, p `r S2_results$h4b[["1"]]$p.value`).
+
+**H1m**: Even participants with minimal arithmetic ability can, for different observed questions, accurately assess the difficulty of these questions ($\beta$ = `r S2_results$h1m[["observed_q_objective_difficulty"]]$estimate`, t(`r S2_results$h1m[["observed_q_objective_difficulty"]]$df`) = `r S2_results$h1m[["observed_q_objective_difficulty"]]$statistic`, p `r S2_results$h1m[["observed_q_objective_difficulty"]]$p.value`).
+
+**H3m**: Even for participants with minimal arithmetic ability, their average predictions of the probabilities of success on different evaluated questions, given success or failure within the 20 second or 40 second time limit on an observed question, are significantly correlated with true conditional probabilities ($\beta$ = `r S2_results$h3m[["true_conditional_prob"]]$estimate`, t(`r S2_results$h3m$model_fit$df.residual`) = `r S2_results$h3m[["true_conditional_prob"]]$statistic`, p `r S2_results$h3m[["true_conditional_prob"]]$p.value`, Adjusted $R^2$ = `r S2_results$h3m$model_fit$adj.r.squared`).
+
+**H3i**: At the trial level, participants' predictions of the probabilities of success on different evaluated questions, given success or failure within the 20 second or 40 second time limit on an observed question, are significantly correlated with true conditional probabilities (b = `r S2_results$h3i[["true_conditional_prob"]]$estimate`, z = `r S2_results$h3i[["true_conditional_prob"]]$statistic`, p `r S2_results$h3i[["true_conditional_prob"]]$p.value`).
 
 
 
