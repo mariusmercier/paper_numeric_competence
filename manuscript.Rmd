@@ -388,7 +388,7 @@ S1_summarized_data$prob_null_2 <- mapply(
 
 data_h1 = S1_long_data %>% select(prolific_pid, question_observed, observed_q_objective_difficulty, observed_q_perceived_difficulty) %>% distinct()
 
-model_h1 = lmer(scale(observed_q_perceived_difficulty) ~ scale(observed_q_objective_difficulty) + (1|prolific_pid), data_h1)
+model_h1 = lmer(scale(observed_q_perceived_difficulty) ~ scale(observed_q_objective_difficulty) + (1|prolific_pid), data_h1) # TODO: this is wrong, observed_q_perceived_difficulty is the average across participants
 model_h2 <- lm(scale(judged_prob) ~ scale(true_prob), data = S1_summarized_data)
 
 
@@ -995,7 +995,70 @@ We found that the fixed effect for relative speed on anchor question *q* was ver
 Finally, we fit another mixed-effects logistic regression to investigate whether response time on a question predicted accuracy on that question across participants and items. Here we found that response time had a significant negative effect on accuracy (`r paste0("β = ", sprintf("%.3g", beta_rt))`, p `r clean_p(p_rt)`), indicating that longer response times were associated with lower accuracy. Converting from log-odds, each one-second increase in response time corresponded to a `r sprintf("%.3g", pct_change_odds)`% decrease in the odds of answering correctly.
 
 
+# Study 2
 
+## Confirmatory Analyses
+
+```{r S2-load-data}
+# Cleaned data
+S2_long_data <- read_csv(here::here("study_2", "data", "clean", "S2_long_data.csv"))
+S2_difficulty <- read_csv(here::here("study_2", "data", "clean", "S2_difficulty.csv"))
+S2_prob_df <- read_csv(here("study_2", "data", "clean", "S2_prob_df.csv"))
+S2_wide_answers <- read_csv(here("study_2", "data", "clean", "S2_wide_answers.csv"))
+S2_long_answers <- read_csv(here("study_2", "data", "clean", "S2_long_answers.csv"))
+```
+
+
+```{r S2-analyses}
+# H1: Participants can accurately assess the difficulty of correctly answering the observed questions. 
+
+S2_h1 = lmer(scale(observed_q_perceived_difficulty_indiv) ~ scale(observed_q_objective_difficulty) + (1+ scale(observed_q_objective_difficulty)|prolific_pid), S2_long_data)
+
+# H2a: For a given pair of Quiz 1 and Quiz 2 questions, among participants who correctly answered the Quiz 2 question, those who answered under a 20-second time limit have a higher chance of answering the Quiz 1 question than those who answered under a 40-second time limit.
+
+S2_long_answers$pair = interaction(S2_long_answers$question_observed, S2_long_answers$question_evaluated, drop = TRUE )
+
+S2_long_answers$success_q1 = S2_long_answers$success_evaluated # rename for clarity, we use the true performance data
+S2_long_answers$time_observed =  relevel(factor(S2_long_answers$time_observed), ref= "SlowFast")
+
+S2_h2a = glmer(success_q1 ~ time_observed + (1|prolific_pid) + (1| pair), family=binomial, S2_long_answers %>% filter(success_observed == 1))
+
+#H2b: For a given pair of Quiz 1 and Quiz 2 questions, among participants who failed the Quiz 2 question, those who failed under a 20-second time limit have a higher chance of answering the Quiz 1 question than those who failed under a 40-second time limit.
+S2_h2b = glmer(success_q1 ~ time_observed + (1|prolific_pid) + (1| pair), family=binomial, S2_long_answers %>% filter(success_observed == 0))
+
+# H3: On average, participants' predictions of the probabilities of success on different evaluated questions, given success or failure within the 20 second or 40 second time limit on an observed question, are significantly correlated with true conditional probabilities.
+
+summarized_data = S2_long_data %>%
+  group_by(question_observed, success_observed, time_observed, question_evaluated) %>% 
+  summarize(
+    judg_conditional_prob = mean(human_evaluation, na.rm = TRUE)
+  )
+
+S2_prob_df$time_observed = as.integer(relevel(factor(S2_prob_df$time_observed), ref = "SlowFast")) - 1
+
+summarized_data = left_join(summarized_data, S2_prob_df, by = c("question_observed", "success_observed", "time_observed", "question_evaluated"))
+
+S2_h3 = lm(judg_conditional_prob ~ true_conditional_prob, data=summarized_data)
+
+# H4a: For a given pair of Quiz 1 and Quiz 2 questions, participants’ predictions of the probabilities of success on different evaluated questions will be higher for correctly answered observed questions in under 20 seconds rather than under 40 seconds.
+
+S2_long_data$pair = interaction(S2_long_data$question_observed, S2_long_data$question_evaluated, drop = TRUE )
+
+S2_h4a = glmer(human_evaluation ~ time_observed + (1|prolific_pid) + (1| pair), family=binomial, S2_long_data %>% filter(success_observed == 1))
+
+# H4b: For a given pair of Quiz 1 and Quiz 2 questions, participants’ predictions of the probabilities of success on different evaluated questions will be higher for incorrectly answered observed questions in under 20 seconds rather than under 40 seconds.
+
+S2_h4b = glmer(human_evaluation ~ time_observed + (1|prolific_pid) + (1| pair), family=binomial, S2_long_data %>% filter(success_observed == 0))
+
+# H1m: Even participants with minimal arithmetic ability can, for different observed questions, accurately assess the difficulty of these questions.
+
+S2_h2m
+
+# H3m: Even for participants with minimal arithmetic ability, their average predictions of the probabilities of success on different evaluated questions, given success or failure within the 20 second or 40 second time limit on an observed question, are significantly correlated with true conditional probabilities.
+
+# H3i: At the trial level, participants' predictions of the probabilities of success on different evaluated questions, given success or failure within the 20 second or 40 second time limit on an observed question, are significantly correlated with true conditional probabilities.
+
+```
 
 
 
