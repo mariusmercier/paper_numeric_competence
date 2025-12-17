@@ -225,6 +225,19 @@ S1_difficulty <- left_join(S1_difficulty, S1_objective_difficulty, by = "questio
 S1_long_data$observed_q_objective_difficulty <- S1_difficulty$objective_difficulty[match(S1_long_data$question_observed,
                                                                                          S1_difficulty$question)]
 
+# ---- process demographics ----
+
+S1_demo = read_csv(here("study_1", "data", "raw", "S1_demo.csv"))
+
+S1_demo = S1_demo %>% 
+  filter(
+    `Participant id` %in% S1_wide_answers$prolific_pid 
+  )
+
+mean(as.numeric(S1_demo$Age), na.rm = TRUE)
+sd(as.numeric(S1_demo$Age), na.rm = TRUE)
+table(S1_demo$Sex)
+
 # ---- Exporting all files ----
 
 write.csv(
