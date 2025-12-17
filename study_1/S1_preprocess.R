@@ -188,7 +188,11 @@ S1_long_data$observed_q_perceived_difficulty <- S1_difficulty$perceived_difficul
                                                                                                    S1_difficulty$question)]
 S1_long_data$new_q_perceived_difficulty <- S1_difficulty$perceived_difficulty[match(S1_long_data$question_evaluated,
                                                                                               S1_difficulty$question)]
-
+S1_long_data = S1_long_data %>% 
+  mutate(
+    observed_q_perceived_difficulty_indiv = 1 - ((diff_100_obs) / 100)
+  )
+  
 #----- Calculate Objective Difficulty -----
 # inverse of percentage of people who get the question right
 
