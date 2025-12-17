@@ -235,6 +235,20 @@ S2_long_q2 = S2_wide_answers %>%
 
 S2_long_answers = left_join(S2_long_q2, S2_long_q1, by = "prolific_pid", relationship = "many-to-many")
 
+
+# ---- process demographics ----
+
+S2_demo = read_csv(here("study_2", "data", "raw", "S2_demo_15_12_2025.csv"))
+
+S2_demo = S2_demo %>% 
+  filter(
+    `Participant id` %in% S2_wide_answers$prolific_pid
+  )
+
+mean(as.numeric(S2_demo$Age), na.rm = TRUE)
+sd(as.numeric(S2_demo$Age), na.rm = TRUE)
+table(S2_demo$Sex)
+
 # ---- Exporting all files ----
 
 write.csv(
