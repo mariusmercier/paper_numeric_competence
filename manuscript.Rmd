@@ -19,17 +19,12 @@ tablelist: no
 footnotelist: no
 classoption: "doc"
 output:
-  papaja::apa6_docx:
   papaja::apa6_pdf:
     keep_tex: true
+  papaja::apa6_docx:
 always_allow_html: true
-knit: (function(input, ...) {
-      rmarkdown::render(
-        input,
-        output_dir = "out",
-        envir = globalenv()
-      )
-    })
+# knit: (function(input, ...) {
+#       rmarkdown::render(
 ---
 
 ```{r setup, include=FALSE}
@@ -73,7 +68,8 @@ options(
 ```{r libraries, include=FALSE}
 library(tidyverse)
 library(mlogit) # For multinomial logistic regression analysis
-library(flextable) # For creating formatted tables
+library(flextable) # For creating formatted tables (Word output)
+library(kableExtra) # For creating formatted tables (PDF output)
 library(officer) # For knitting formatted tables to word
 library(papaja) # For APA-style formatting
 library(lmerTest) # For linear mixed-effects models with p-values
@@ -792,30 +788,53 @@ S1_table <- data.frame(
   check.names = FALSE
 )
 
-names(S1_table) <- c(
-  "Type of Fit", "Model", "LLmax", "BIC",
-  "\u03BC", # mu
-  "\u03C3\u00B2", # sigma squared
-  "\u03B5", # epsilon
-  "\u0394", # Delta
-  "\u03B2" # beta
-)
+if (is_docx) {
+  names(S1_table) <- c(
+    "Type of Fit", "Model", "LLmax", "BIC",
+    "\u03BC", # mu
+    "\u03C3\u00B2", # sigma squared
+    "\u03B5", # epsilon
+    "\u0394", # Delta
+    "\u03B2" # beta
+  )
+} else {
+  names(S1_table) <- c(
+    "Type of Fit", "Model", "LLmax", "BIC",
+    "$\\mu$",
+    "$\\sigma^2$",
+    "$\\varepsilon$",
+    "$\\Delta$",
+    "$\\beta$"
+  )
+}
 
-S1_ft <- flextable(S1_table) |>
-  merge_v(j = "Type of Fit") |>
-  valign(j = "Type of Fit", valign = "top") |>
-  align(j = names(S1_table)[-1], align = "center", part = "all") |>
-  align(j = "Type of Fit", align = "left", part = "all") |>
-  autofit() |>
-  theme_booktabs() |>
-  set_caption("Table 1. Summary of the fit results.") |>
-  add_footer_lines(
-    values = "Note: We use the same parameters for all participants in the Average Model Comparison and we use participant-specific parameters for the Exploratory Analyses. For participant-specific parameters, we report the average inferred parameters along with the standard deviation in parenthesis."
-  ) |>
-  italic(part = "footer") |>
-  align(part = "footer", align = "left")
-
-S1_ft
+if (is_docx) {
+  # Use flextable for Word output
+  S1_ft <- flextable(S1_table) |>
+    merge_v(j = "Type of Fit") |>
+    valign(j = "Type of Fit", valign = "top") |>
+    align(j = names(S1_table)[-1], align = "center", part = "all") |>
+    align(j = "Type of Fit", align = "left", part = "all") |>
+    autofit() |>
+    theme_booktabs() |>
+    set_caption("Table 1. Summary of the fit results.") |>
+    add_footer_lines(
+      values = "Note: We use the same parameters for all participants in the Average Model Comparison and we use participant-specific parameters for the Exploratory Analyses. For participant-specific parameters, we report the average inferred parameters along with the standard deviation in parenthesis."
+    ) |>
+    italic(part = "footer") |>
+    align(part = "footer", align = "left")
+  S1_ft
+} else {
+  # Use kableExtra for PDF/LaTeX output
+  kable(S1_table, format = "latex", booktabs = TRUE,
+        caption = "Optimised Parameters for Bayesian, Threshold and Anchor Models",
+        escape = FALSE, linesep = "") |>
+    kable_styling(latex_options = c("hold_position", "scale_down")) |>
+    collapse_rows(columns = 1, valign = "top", latex_hline = "major") |>
+    footnote(general = "We use the same parameters for all participants in the Average Model Comparison and we use participant-specific parameters for the Exploratory Analyses. For participant-specific parameters, we report the average inferred parameters along with the standard deviation in parenthesis.",
+             general_title = "Note: ",
+             footnote_as_chunk = TRUE)
+}
 ```
 
 ## Exploratory Analysis
@@ -986,20 +1005,28 @@ p_rt <- Anova(model_rt_predicts_success, type = "III")["time", "Pr(>Chisq)"]
 odds_ratio_rt <- exp(beta_rt)
 pct_change_odds <- (1 - odds_ratio_rt) * 100 # negative beta -> decrease
 
-print("After computing rt_tie_prop")
-print(rt_tie_prop)
-stopifnot(exists("rt_tie_prop"))
+# Add response time results to S1_results
+S1_results$rt_pairwise <- list(
+  rt_tie_prop = rt_tie_prop * 100,
+  prop_faster = prop_faster * 100,
+  prop_tie = prop_tie * 100,
+  prop_slower = prop_slower * 100
+)
+
+S1_results$rt_relative_speed <- clean_lmer(relative_speed_model)
+S1_results$rt_predicts_success <- clean_lmer(model_rt_predicts_success)
+S1_results$rt_predicts_success$pct_change_odds <- pct_change_odds
 ```
 
 ## Exploring Response Time Data
 
-We began by testing, for any pair of participants who got the same question correct (for all questions), in what proportion of these pairs the one who answered faster achieved a higher total score. For each pair, we identified which participant responded faster and then compared their total scores across the task. Pairs with identical response times were excluded (only `r sprintf("%.3g", rt_tie_prop * 100)`% of the pairs). We then calculated the proportion of pairs in which (a) the faster participant achieved a higher total score, (b) both participants achieved the same total score, and (c) the faster participant achieved a lower total score. We found that in `r sprintf("%.3g", prop_faster * 100)`% of the pairs, the participant who got the right answer faster had a higher total score, in `r sprintf("%.3g", prop_tie * 100)`% of the pairs participants tied, and in `r sprintf("%.3g", prop_slower * 100)`% of pairs the participant who reached the correct answer faster had a lower total score.
+We began by testing, for any pair of participants who got the same question correct (for all questions), in what proportion of these pairs the one who answered faster achieved a higher total score. For each pair, we identified which participant responded faster and then compared their total scores across the task. Pairs with identical response times were excluded (only `r sprintf("%.3g", S1_results$rt_pairwise$rt_tie_prop)`% of the pairs). We then calculated the proportion of pairs in which (a) the faster participant achieved a higher total score, (b) both participants achieved the same total score, and (c) the faster participant achieved a lower total score. We found that in `r sprintf("%.3g", S1_results$rt_pairwise$prop_faster)`% of the pairs, the participant who got the right answer faster had a higher total score, in `r sprintf("%.3g", S1_results$rt_pairwise$prop_tie)`% of the pairs participants tied, and in `r sprintf("%.3g", S1_results$rt_pairwise$prop_slower)`% of pairs the participant who reached the correct answer faster had a lower total score.
 
-In order to further investigate whether participants who were faster than their peers on a question they solved tended to be more accurate on other questions, we constructed a model which used participants' relative (scaled) speed on any particular question to predict accuracy on all other questions. We first defined an anchor question *q* for each participant as any question they answered correctly. For each such *q*, we computed that participant’s relative speed on *q* by z-scoring the negative response time within that question among the subset who were correct on *q* (so higher values mean faster than peers who also solved *q*). We then created, for every participant–anchor pair (id, *q*), one row for each other target question *r ≠ q*, with the binary outcome being whether the participant was correct on *r*. From this dataset we fit a mixed-effects logistic regression predicting success on *r* with a fixed effect for relative speed on *q* and random effects for participant, *r*, and *q*.
+In order to further investigate whether participants who were faster than their peers on a question they solved tended to be more accurate on other questions, we constructed a model which used participants' relative (scaled) speed on any particular question to predict accuracy on all other questions. We first defined an anchor question *q* for each participant as any question they answered correctly. For each such *q*, we computed that participant’s relative speed on *q* by z-scoring the negative response time within that question among the subset who were correct on *q* (so higher values mean faster than peers who also solved *q*). We then created, for every participant–anchor pair (id, *q*), one row for each other target question *r* $\neq$ *q*, with the binary outcome being whether the participant was correct on *r*. From this dataset we fit a mixed-effects logistic regression predicting success on *r* with a fixed effect for relative speed on *q* and random effects for participant, *r*, and *q*.
 
-We found that the fixed effect for relative speed on anchor question *q* was very small and not significant (`r paste0("β = ", sprintf("%.3g", beta_rel))`, p = `r clean_p(p_rel)`). Being faster than peers on a question a participant solved did not meaningfully predict accuracy on other questions.
+We found that the fixed effect for relative speed on anchor question *q* was very small and not significant ($\beta$ = `r S1_results$rt_relative_speed[["speed_z_anchor"]]$estimate`, p `r S1_results$rt_relative_speed[["speed_z_anchor"]]$p.value`). Being faster than peers on a question a participant solved did not meaningfully predict accuracy on other questions.
 
-Finally, we fit another mixed-effects logistic regression to investigate whether response time on a question predicted accuracy on that question across participants and items. Here we found that response time had a significant negative effect on accuracy (`r paste0("β = ", sprintf("%.3g", beta_rt))`, p `r clean_p(p_rt)`), indicating that longer response times were associated with lower accuracy. Converting from log-odds, each one-second increase in response time corresponded to a `r sprintf("%.3g", pct_change_odds)`% decrease in the odds of answering correctly.
+Finally, we fit another mixed-effects logistic regression to investigate whether response time on a question predicted accuracy on that question across participants and items. Here we found that response time had a significant negative effect on accuracy ($\beta$ = `r S1_results$rt_predicts_success[["time"]]$estimate`, p `r S1_results$rt_predicts_success[["time"]]$p.value`), indicating that longer response times were associated with lower accuracy. Converting from log-odds, each one-second increase in response time corresponded to a `r sprintf("%.3g", S1_results$rt_predicts_success$pct_change_odds)`% decrease in the odds of answering correctly.
 
 # Study 2
 

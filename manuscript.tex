@@ -2,8 +2,8 @@
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \documentclass[
-  10pt,
-  letterpaper]{article}
+  english,
+  doc,mask,floatsintext]{apa6}
 \usepackage{xcolor}
 \usepackage{amsmath,amssymb}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
@@ -37,16 +37,29 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{longtable,booktabs,array}
-\usepackage{calc} % for calculating minipage widths
-% Correct order of tables after \paragraph or \subparagraph
-\usepackage{etoolbox}
+% Make \paragraph and \subparagraph free-standing
 \makeatletter
-\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
 \makeatother
-% Allow footnotes in longtable head/foot
-\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
-\makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
 \newsavebox\pandoc@box
@@ -62,42 +75,108 @@
 % Set default figure placement to htbp
 \def\fps@figure{htbp}
 \makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\ifLuaTeX
+  \usepackage[english]{selnolig} % disable illegal ligatures
+\fi
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\usepackage[]{biblatex}
-\addbibresource{references.bib}
+% Manuscript styling
+\usepackage{upgreek}
+\captionsetup{font=singlespacing,justification=justified}
+
+% Table formatting
+\usepackage{longtable}
+\usepackage{lscape}
+% \usepackage[counterclockwise]{rotating}   % Landscape page setup for large tables
+\usepackage{multirow}		% Table styling
+\usepackage{tabularx}		% Control Column width
+\usepackage[flushleft]{threeparttable}	% Allows for three part tables with a specified notes section
+\usepackage{threeparttablex}            % Lets threeparttable work with longtable
+
+% Create new environments so endfloat can handle them
+% \newenvironment{ltable}
+%   {\begin{landscape}\centering\begin{threeparttable}}
+%   {\end{threeparttable}\end{landscape}}
+\newenvironment{lltable}{\begin{landscape}\centering\begin{ThreePartTable}}{\end{ThreePartTable}\end{landscape}}
+
+% Enables adjusting longtable caption width to table width
+% Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
+\makeatletter
+\newcommand\LastLTentrywidth{1em}
+\newlength\longtablewidth
+\setlength{\longtablewidth}{1in}
+\newcommand{\getlongtablewidth}{\begingroup \ifcsname LT@\roman{LT@tables}\endcsname \global\longtablewidth=0pt \renewcommand{\LT@entry}[2]{\global\advance\longtablewidth by ##2\relax\gdef\LastLTentrywidth{##2}}\@nameuse{LT@\roman{LT@tables}} \fi \endgroup}
+
+% \setlength{\parindent}{0.5in}
+% \setlength{\parskip}{0pt plus 0pt minus 0pt}
+
+% Overwrite redefinition of paragraph and subparagraph by the default LaTeX template
+% See https://github.com/crsh/papaja/issues/292
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries\itshape\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{1em}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-\z@\relax}%
+  {\normalfont\normalsize\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
+\makeatletter
+\usepackage{etoolbox}
+\patchcmd{\maketitle}
+  {\section{\normalfont\normalsize\abstractname}}
+  {\section*{\normalfont\normalsize\abstractname}}
+  {}{\typeout{Failed to patch abstract.}}
+\patchcmd{\maketitle}
+  {\section{\protect\normalfont{\@title}}}
+  {\section*{\protect\normalfont{\@title}}}
+  {}{\typeout{Failed to patch title.}}
+\makeatother
+
+\usepackage{xpatch}
+\makeatletter
+\xapptocmd\appendix
+  {\xapptocmd\section
+    {\addcontentsline{toc}{section}{\appendixname\ifoneappendix\else~\theappendix\fi: #1}}
+    {}{\InnerPatchFailed}%
+  }
+{}{\PatchFailed}
+\makeatother
+\usepackage{csquotes}
 \usepackage{placeins}
-\usepackage[final]{cogsci_template/cogsci}
-\usepackage{float}
-\usepackage{booktabs}
-\setlength{\bibhang}{.125in}
-% Only the corresponding author should include an email address.
-\author[1]{\mbox{Marius Mercier (mariusmercier1@gmail.com)}}
-\author[2]{\mbox{Ruby de Lanerolle}}
-\affil[1]{IJN}
-\affil[2]{UCL}
 
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
   pdftitle={Result reports of `Inferring Competence on a Numerical Task'},
+  pdflang={en-EN},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
 \title{Result reports of `Inferring Competence on a Numerical Task'}
-\author{}
-\date{\vspace{-2.5em}2026-01-15}
+\author{\textsuperscript{}}
+\date{2026-01-21}
+
+
+\shorttitle{SHORT TITLE}
+
+\affiliation{\vspace{0.5cm}\textsuperscript{} }
 
 \begin{document}
 \maketitle
-\begin{abstract}
-This is a short placeholder abstract for the CogSci submission. It will be
-replaced with the final study summary once results are finalized.
-
-\textbf{Keywords:} numerical competence; Bayesian inference; judgment; decision making
-\end{abstract}
 
 All linear Mixed Models (LMM) were computed with the ``lmerTest'' package to obtain p-values via Satterthwaite's degrees of freedom method (Kuznetsova et al., 2017). For other tests, the R packages used will be specified. For all statistical tests, alpha = 0.05.
 
@@ -135,7 +214,7 @@ For each model, we determined the optimal free parameters by maximizing the log-
 
 In the Main model, we varied the prior mean (\(\mu\)) between 0 and 1, the standard deviation (\(\sigma\)) between 0.05 and 1, the noise parameter between 0.05 and 1, and the beta parameter of the softmax function between 0 and 10. In the Threshold heuristic model, only the beta parameter was varied. In the Anchor heuristic model, both the beta parameter and the difficulty parameter were adjusted. All models received the following inputs: the fact that the virtual agent succeeded (\(S = 1\)) on a question with perceived difficulty \(D_{\text{obs}}\), and a request to predict the likelihood of success on a new question with perceived difficulty \(D_{\text{new}}\). Table \ref{tab:S1-table} indicates the best fitting parameters for each model.
 
-Investigating \textbf{H3}, we fit three linear models to compare the Main Model's and the two heuristic models' fit with participants' answers, as well as how much variance in participant behaviour they explained. We found that our Main Model was very strongly correlated with participant behaviour (\(\beta\) = 0.94, t(418) = 58.29, p \textless{} .001, Adjusted \(R^2\) = 0.89). The Threshold model showed lower correlation with the data (\(\beta\) = 0.63, t(418) = 16.4, p \textless{} .001, Adjusted \(R^2\) = 0.39). The Anchor model was the weakest fit to the data (\(\beta\) = 0.77, t(418) = 24.39, p \textless{} .001, Adjusted \(R^2\) = 0.59). Figure \ref{fig:S1-fig-model-comparison} shows participants' average prediction for each possible pair of arithmetic questions (observed and judged) compared to the three models' predictions.
+Investigating \textbf{H3}, we fit three linear models to compare the Main Model's and the two heuristic models' fit with participants' answers, as well as how much variance in participant behaviour they explained. We found that our Main Model was very strongly correlated with participant behaviour (\(\beta\) = 0.94, t(418) = 58.29, p \textless{} .001, Adjusted \(R^2\) = 0.89). The Threshold model showed lower correlation with the data (\(\beta\) = 0.63, t(418) = 16.40, p \textless{} .001, Adjusted \(R^2\) = 0.39). The Anchor model was the weakest fit to the data (\(\beta\) = 0.77, t(418) = 24.39, p \textless{} .001, Adjusted \(R^2\) = 0.59). Figure \ref{fig:S1-fig-model-comparison} shows participants' average prediction for each possible pair of arithmetic questions (observed and judged) compared to the three models' predictions.
 
 \begin{figure}
 \centering
@@ -143,28 +222,32 @@ Investigating \textbf{H3}, we fit three linear models to compare the Main Model'
 \caption{\label{fig:S1-fig-model-comparison}Model comparison. Each data point is a pair of two questions.}
 \end{figure}
 
-To test \textbf{H4} and \textbf{H5}, we computed the Bayesian information criterion (BIC) using the maximum log-likelihood for each fitted model, which applies a penalty for model complexity. The Main Model, when fitted to the complete dataset, outperformed both alternative models (\(BIC_{Bayes}\) = \ensuremath{1.6063719\times 10^{4}}; \(BIC_{Threshold}\) = \ensuremath{1.9411919\times 10^{4}}; \(BIC_{Anchor}\) = \ensuremath{1.8259962\times 10^{4}}), confirming \textbf{H4} and \textbf{H5} respectively. The difference between the BIC of the Main Model and that of the next best heuristic model (Anchor Model) was 2196.2432309, which indicates very strong evidence in favor of our Main Model according to the standard interpretation criteria (Raftery, 1995).
+To test \textbf{H4} and \textbf{H5}, we computed the Bayesian information criterion (BIC) using the maximum log-likelihood for each fitted model, which applies a penalty for model complexity. The Main Model, when fitted to the complete dataset, outperformed both alternative models (\(BIC_{Bayes}\) = 16,063.72; \(BIC_{Threshold}\) = 19,411.92; \(BIC_{Anchor}\) = 18,259.96), confirming \textbf{H4} and \textbf{H5} respectively. The difference between the BIC of the Main Model and that of the next best heuristic model (Anchor Model) was 2,196.24, which indicates very strong evidence in favor of our Main Model according to the standard interpretation criteria (Raftery, 1995).
 
-\begin{table*}
-
+\begin{table}[!h]
+\centering
 \caption{\label{tab:S1-table}Optimised Parameters for Bayesian, Threshold and Anchor Models}
 \centering
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{tabular}[t]{lllllllll}
 \toprule
-Type of Fit & Model & LLmax & BIC & \$\textbackslash{}mu\$ & \$\textbackslash{}sigma\textasciicircum{}2\$ & \$\textbackslash{}varepsilon\$ & \$\textbackslash{}Delta\$ & \$\textbackslash{}beta\$\\
+Type of Fit & Model & LLmax & BIC & $\mu$ & $\sigma^2$ & $\varepsilon$ & $\Delta$ & $\beta$\\
 \midrule
-Same parameters for all participants & Bayes & -8012 & 16064 & -0.07 & 0.55 & 0.43 &  & 2.53\\
-Same parameters for all participants & Threshold & -9701 & 19412 &  &  &  &  & 1.05\\
-Same parameters for all participants & Anchor & -9120 & 18260 &  &  &  & 0.33 & 1.11\\
-Participant-specific parameters & Bayes & -26.7 (10.19) & 70.66 (20.38) & 0.07 (1.33) & 0.78 (0.68) & 0.91 (0.87) &  & 5.91 (3.06)\\
-Participant-specific parameters & Threshold & -41.83 (8.9) & 87.97 (17.81) &  &  &  &  & 1.22 (0.85)\\
-\addlinespace
-Participant-specific parameters & Anchor & -36.11 (9.9) & 80.86 (19.8) &  &  &  & 0.78 (0.77) & 1.47 (0.73)\\
+ & Bayes & -8012 & 16064 & -0.07 & 0.55 & 0.43 &  & 2.53\\
+
+ & Threshold & -9701 & 19412 &  &  &  &  & 1.05\\
+
+\multirow[t]{-3}{*}{\raggedright\arraybackslash Same parameters for all participants} & Anchor & -9120 & 18260 &  &  &  & 0.33 & 1.11\\
+\cmidrule{1-9}
+ & Bayes & -26.7 (10.19) & 70.66 (20.38) & 0.07 (1.33) & 0.78 (0.68) & 0.91 (0.87) &  & 5.91 (3.06)\\
+
+ & Threshold & -41.83 (8.9) & 87.97 (17.81) &  &  &  &  & 1.22 (0.85)\\
+
+\multirow[t]{-3}{*}{\raggedright\arraybackslash Participant-specific parameters} & Anchor & -36.11 (9.9) & 80.86 (19.8) &  &  &  & 0.78 (0.77) & 1.47 (0.73)\\
 \bottomrule
-\multicolumn{9}{l}{\rule{0pt}{1em}\textit{Note: }}\\
-\multicolumn{9}{l}{\rule{0pt}{1em}We use the same parameters for all participants in the Average Model Comparison and we use participant-specific parameters for the Exploratory Analyses. For participant-specific parameters, we report the average inferred parameters along with the standard deviation in parenthesis.}\\
-\end{tabular}
-\end{table*}
+\multicolumn{9}{l}{\rule{0pt}{1em}\textit{Note: } We use the same parameters for all participants in the Average Model Comparison and we use participant-specific parameters for the Exploratory Analyses. For participant-specific parameters, we report the average inferred parameters along with the standard deviation in parenthesis.}\\
+\end{tabular}}
+\end{table}
 
 \subsection{Exploratory Analysis}\label{exploratory-analysis}
 
@@ -178,7 +261,7 @@ In another robustness test of our analyses for H2, we analyzed participants' bin
 \caption{\label{fig:S1-fig-behav-2}Estimated Conditional Probability versus True Conditional Probability. Each data point is a pair of two questions.The red line represents the optimal prediction while the dark line represents the fit of the linear models.}
 \end{figure}
 
-We finally investigated how the models compared when we allowed to the parameters to differ for each individual rather than fixing them across all individuals. We did this because individuals may have different prior distributions of competence in the population. They may also have different priors about the role of luck in answering the questions. We therefore tested whether the main model fit individual level data better than heuristic model 1 (\textbf{RQ2}) and heuristic model 2 (\textbf{RQ3}). We used a maximum likelihood optimization to estimate the best free parameters for each participant. On average, our main model explained the behaviour of participants significantly better than Heuristic 1 (\(BIC_{Bayes}\) = 70.66 \(\pm\) 20.38; \(BIC_{Threshold}\) = 87.97 \(\pm\) 17.81; t(216) = -16.93, p \textless{} .001, paired t-test) and Heuristic 2 (\(BIC_{Anchor}\) = 80.86 \(\pm\) 19.8; t(216) = -10.84, p \textless{} .001, paired t-test). The Bayesian model was the best model for 72\% of participants whereas the Heuristic 1 accounted for 6\% and the Heuristic 2 accounted for 21\%.
+We finally investigated how the models compared when we allowed to the parameters to differ for each individual rather than fixing them across all individuals. We did this because individuals may have different prior distributions of competence in the population. They may also have different priors about the role of luck in answering the questions. We therefore tested whether the main model fit individual level data better than heuristic model 1 (\textbf{RQ2}) and heuristic model 2 (\textbf{RQ3}). We used a maximum likelihood optimization to estimate the best free parameters for each participant. On average, our main model explained the behaviour of participants significantly better than Heuristic 1 (\(BIC_{Bayes}\) = 70.66 ± 20.38; \(BIC_{Threshold}\) = 87.97 ± 17.81; t(216) = -16.93, p \textless{} .001, paired t-test) and Heuristic 2 (\(BIC_{Anchor}\) = 80.86 ± 19.80; t(216) = -10.84, p \textless{} .001, paired t-test). The Bayesian model was the best model for 72\% of participants whereas the Heuristic 1 accounted for 6\% and the Heuristic 2 accounted for 21\%.
 
 \subsection{Exploring Response Time Data}\label{exploring-response-time-data}
 
@@ -186,9 +269,9 @@ We began by testing, for any pair of participants who got the same question corr
 
 In order to further investigate whether participants who were faster than their peers on a question they solved tended to be more accurate on other questions, we constructed a model which used participants' relative (scaled) speed on any particular question to predict accuracy on all other questions. We first defined an anchor question \emph{q} for each participant as any question they answered correctly. For each such \emph{q}, we computed that participant's relative speed on \emph{q} by z-scoring the negative response time within that question among the subset who were correct on \emph{q} (so higher values mean faster than peers who also solved \emph{q}). We then created, for every participant--anchor pair (id, \emph{q}), one row for each other target question \emph{r} \(\neq\) \emph{q}, with the binary outcome being whether the participant was correct on \emph{r}. From this dataset we fit a mixed-effects logistic regression predicting success on \emph{r} with a fixed effect for relative speed on \emph{q} and random effects for participant, \emph{r}, and \emph{q}.
 
-We found that the fixed effect for relative speed on anchor question \emph{q} was very small and not significant (\(\beta\) = 0.0304, p = 0.193). Being faster than peers on a question a participant solved did not meaningfully predict accuracy on other questions.
+We found that the fixed effect for relative speed on anchor question \emph{q} was very small and not significant (\(\beta\) = 0.03, p = 0.193). Being faster than peers on a question a participant solved did not meaningfully predict accuracy on other questions.
 
-Finally, we fit another mixed-effects logistic regression to investigate whether response time on a question predicted accuracy on that question across participants and items. Here we found that response time had a significant negative effect on accuracy (\(\beta\) = -0.104, p \textless{} .001), indicating that longer response times were associated with lower accuracy. Converting from log-odds, each one-second increase in response time corresponded to a 9.88\% decrease in the odds of answering correctly.
+Finally, we fit another mixed-effects logistic regression to investigate whether response time on a question predicted accuracy on that question across participants and items. Here we found that response time had a significant negative effect on accuracy (\(\beta\) = -0.10, p \textless{} .001), indicating that longer response times were associated with lower accuracy. Converting from log-odds, each one-second increase in response time corresponded to a 9.88\% decrease in the odds of answering correctly.
 
 \section{Study 2}\label{study-2}
 
@@ -204,6 +287,5 @@ We further tested if our results for H1 and H3 were robust when testing predicti
 
 Moreover, participants' predictions of the conditional probabilities of success were still correlated with the true probability when analyzed at the trial level (H3i: b = 1.95, z = 46.19, p \textless{} .001).
 
-\printbibliography
 
 \end{document}
