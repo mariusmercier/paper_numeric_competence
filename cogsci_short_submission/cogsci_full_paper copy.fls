@@ -2,8 +2,8 @@ PWD /Users/mariusmercier/Desktop/02. Coding/02. Competence/paper_numeric_compete
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf.cnf
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/web2c/texmf.cnf
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/mariusmercier/Desktop/02. Coding/02. Competence/paper_numeric_competence/cogsci_short_submission/cogsci_full_paper.tex
-OUTPUT cogsci_full_paper.log
+INPUT /Users/mariusmercier/Desktop/02. Coding/02. Competence/paper_numeric_competence/cogsci_short_submission/cogsci_full_paper copy.tex
+OUTPUT cogsci_full_paper copy.log
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo
@@ -18,7 +18,7 @@ INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/tfm/jknappen/ec/ecrm1000.tfm
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/cmap/t1.cmap
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/cmap/t1.cmap
-OUTPUT cogsci_full_paper.pdf
+OUTPUT cogsci_full_paper copy.pdf
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/cmap/t1.cmap
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/generic/babel/babel.sty
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/generic/babel/babel.sty
@@ -208,10 +208,10 @@ INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/r
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
-INPUT ./cogsci_full_paper.aux
-INPUT ./cogsci_full_paper.aux
-INPUT cogsci_full_paper.aux
-OUTPUT cogsci_full_paper.aux
+INPUT ./cogsci_full_paper copy.aux
+INPUT ./cogsci_full_paper copy.aux
+INPUT cogsci_full_paper copy.aux
+OUTPUT cogsci_full_paper copy.aux
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/newtx/omlntxmi.fd
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/newtx/omlntxmi.fd
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/newtx/omlntxmi.fd
@@ -251,19 +251,19 @@ INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/biblatex/lbx/ame
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/biblatex/lbx/english.lbx
-OUTPUT cogsci_full_paper.bcf
-INPUT cogsci_full_paper.bbl
-INPUT ./cogsci_full_paper.bbl
-INPUT ./cogsci_full_paper.bbl
-INPUT ./cogsci_full_paper.bbl
-INPUT cogsci_full_paper.bbl
-INPUT ./cogsci_full_paper.out
-INPUT ./cogsci_full_paper.out
-INPUT cogsci_full_paper.out
-INPUT cogsci_full_paper.out
-INPUT ./cogsci_full_paper.out
-INPUT ./cogsci_full_paper.out
-OUTPUT cogsci_full_paper.out
+OUTPUT cogsci_full_paper copy.bcf
+INPUT cogsci_full_paper copy.bbl
+INPUT ./cogsci_full_paper copy.bbl
+INPUT ./cogsci_full_paper copy.bbl
+INPUT ./cogsci_full_paper copy.bbl
+INPUT cogsci_full_paper copy.bbl
+INPUT ./cogsci_full_paper copy.out
+INPUT ./cogsci_full_paper copy.out
+INPUT cogsci_full_paper copy.out
+INPUT cogsci_full_paper copy.out
+INPUT ./cogsci_full_paper copy.out
+INPUT ./cogsci_full_paper copy.out
+OUTPUT cogsci_full_paper copy.out
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-t1.tfm
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/tfm/public/newtx/ntx-Bold-tlf-t1.tfm
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-t1.tfm
@@ -377,11 +377,11 @@ INPUT ../figures/S2-fig-behav-1.pdf
 INPUT ../figures/S2-fig-behav-1.pdf
 INPUT ../figures/S2-fig-behav-1.pdf
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/tfm/public/newtx/ntx-Italic-tlf-t1.tfm
-INPUT cogsci_full_paper.aux
-INPUT ./cogsci_full_paper.out
-INPUT ./cogsci_full_paper.out
-INPUT cogsci_full_paper.run.xml
-OUTPUT cogsci_full_paper.run.xml
+INPUT cogsci_full_paper copy.aux
+INPUT ./cogsci_full_paper copy.out
+INPUT ./cogsci_full_paper copy.out
+INPUT cogsci_full_paper copy.run.xml
+OUTPUT cogsci_full_paper copy.run.xml
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb
 INPUT /Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexs.pfb

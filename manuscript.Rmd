@@ -553,7 +553,7 @@ The arithmetic questions were manipulated to be nested by varying their difficul
 
 As a pre-requisite for the participants making use of the nested nature of the questions to infer which questions the virtual agent got right, they must be able to judge the difficulty of the questions. More specifically, they must be able to accurately assess the rarity of reaching an accurate answer within the time-limit for different questions. This was our first hypothesis (**H1**). We fit a linear mixed effects model predicting true question difficulty (the inverse of the true percentage of people who could answer correctly on the arithmetic test) with participants' perception of the question difficulty (the inverse of the percentage of people they predict could answer correctly) as the fixed effect, and random effects for participants. Confirming **H1**, the fixed effect estimate for perceived difficulty was significantly positive ($\beta$ = `r S1_results$clean_model_h1[["observed_q_objective_difficulty"]]$estimate`, t(`r S1_results$clean_model_h1[["observed_q_objective_difficulty"]]$df`) = `r S1_results$clean_model_h1[["observed_q_objective_difficulty"]]$statistic`, p = `r S1_results$clean_model_h1[["observed_q_objective_difficulty"]]$p.value`). The high correlation between perceived difficulty and true difficultyis visible in Figure \@ref(fig:S1-fig-behav)A.
 
-```{r S1-fig-behav, fig.cap = "**A**: Perceived Difficulty versus Objective Difficulty. Numbers refer to the question ID (see Materials). The red dashed line represents the optimal estimation. **B**: Estimated Conditional Probability versus True Conditional Probability. Each data point is a pair of two questions. The red line represents the optimal prediction while the dark line represents the fit of the linear model. **C**: Conditional robabilities estmiated by the Main Model vs True Conditional Probability. Each data point is a pair of two questions. The red line represents the optimal prediction while the dark line represents the fit of the linear model."}
+```{r S1-fig-behav, fig.cap = "(\\textbf{A}) Each question's estimated difficulty as a function of its true difficulty. Numbers refer to the question ID (see SM, section 1). The red dashed line represents a perfectly accurate estimation. (\\textbf{B}) Participants' estimated probability of answering a new question correctly, conditioned on the performance on the observed question, as a function of true conditional probabilities. (\\textbf{C}) Our Bayesian model's estimated conditional probabilities as a function of true conditional probabilities. For (\\textbf{B}) and (\\textbf{C}), each data point corresponds to the average values for a pair of two questions: one for which the individual's performance is observed, and one for which the individual's performance has to be guessed. The red line represents a perfectly accurate prediction, while the dark line represents the fit of the linear model.", fig.width = 7, fig.height = 4}
 A <- S1_difficulty %>%
   ggplot(aes(x = objective_difficulty, y = perceived_difficulty)) +
   geom_point(color = "#E4A70A") +
@@ -563,8 +563,8 @@ A <- S1_difficulty %>%
   xlim(0, 1) +
   ylim(0, 1) +
   labs(
-    x = "Objective Difficulty", y = "Perceived Difficulty",
-    title = "Participants' \nEstimations",
+    x = "True difficulty", y = "Estimated difficulty",
+    title = "Participants'\nestimations",
   ) +
   # FOR SLIDES:
   # annotate(
@@ -589,10 +589,10 @@ B <- S1_summarized_data %>%
   geom_abline(intercept = 0, slope = 1, color = "red", linetype = "dashed") +
   geom_smooth(method = "lm", se = TRUE, color = "black") +
   labs(
-    x = "True Conditional Probability",
-    y = "Estimated Conditional Probability",
-    title = "Participants' \nEstimations",
-    color = "Difficulty \nDifference \n(New - Obs)"
+    x = expression("True "*italic(P)*"("*italic(S)[new]==1~"|"~italic(S)[obs]*", "*italic(beta)[obs]*", "*italic(beta)[new]*")"),
+    y = expression("Estimated "*italic(P)*"("*italic(S)[new]==1~"|"~italic(S)[obs]*", "*italic(beta)[obs]*", "*italic(beta)[new]*")"),
+    title = "Participants'\nestimations",
+    color = expression(atop(atop("Difficulty", "difference"), "("*italic(beta)[new]~"-"~italic(beta)[obs]*")"))
   ) +
   ylim(0, 1) +
   xlim(0, 1) +
@@ -618,10 +618,10 @@ C <- S1_summarized_data %>%
   geom_abline(intercept = 0, slope = 1, color = "red", linetype = "dashed") +
   geom_smooth(method = "lm", se = TRUE, color = "black") +
   labs(
-    x = "True Conditional Probability",
-    y = "Estimated Conditional Probability",
-    title = "Bayesian Model's \nEstimations",
-    color = "Difficulty \nDifference \n(New - Obs)"
+    x = expression("True "*italic(P)*"("*italic(S)[new]==1~"|"~italic(S)[obs]*", "*italic(beta)[obs]*", "*italic(beta)[new]*")"),
+    y = expression("Estimated "*italic(P)*"("*italic(S)[new]==1~"|"~italic(S)[obs]*", "*italic(beta)[obs]*", "*italic(beta)[new]*")"),
+    title = "Bayesian model's\nestimations",
+    color = expression(atop(atop("Difficulty", "difference"), "("*italic(beta)[new]~"-"~italic(beta)[obs]*")"))
   ) +
   ylim(0, 1) +
   xlim(0, 1) +
@@ -643,7 +643,8 @@ C <- S1_summarized_data %>%
 S1_fig_behav <- (A + B + C) +
   plot_layout(guides = "collect", axis = "collect") &
   plot_annotation(tag_levels = "A") & theme(
-  legend.position = "bottom"
+  legend.position = "bottom",
+  axis.title = element_text(size = 9)
   # , plot.background = element_rect(fill = "black", color = NA)
 )
 
@@ -1034,8 +1035,8 @@ Finally, we fit another mixed-effects logistic regression to investigate whether
 
 ```{r S2-load-data}
 # Cleaned data
-S2_long_data <- read_csv(here::here("study_2", "data", "clean", "S2_long_data.csv"))
-S2_difficulty <- read_csv(here::here("study_2", "data", "clean", "S2_difficulty.csv"))
+S2_long_data <- read_csv(here("study_2", "data", "clean", "S2_long_data.csv"))
+S2_difficulty <- read_csv(here("study_2", "data", "clean", "S2_difficulty.csv"))
 S2_prob_df <- read_csv(here("study_2", "data", "clean", "S2_prob_df.csv"))
 S2_wide_answers <- read_csv(here("study_2", "data", "clean", "S2_wide_answers.csv"))
 S2_long_answers <- read_csv(here("study_2", "data", "clean", "S2_long_answers.csv"))
@@ -1143,7 +1144,169 @@ We further tested if our results for H1 and H3 were robust when testing predicti
 
 Moreover, participants' predictions of the conditional probabilities of success were still correlated with the true probability when analyzed at the trial level (H3i: b = `r S2_results$h3i[["true_conditional_prob"]]$estimate`, z = `r S2_results$h3i[["true_conditional_prob"]]$statistic`, p `r S2_results$h3i[["true_conditional_prob"]]$p.value`).
 
-```{r}
+```{r S2-fig-behav, fig.cap="Estimated Conditional Probability versus True Conditional Probability in Study 2. Each data point is a pair of two questions. The red line represents the optimal prediction while the dark line represents the fit of the linear models.", fig.width = 7, fig.height = 4}
+
+# Get difficulty data for observed questions (Quiz 2) - raw perceived_difficulty
+S2_difficulty_obs_fig1 <- S2_difficulty %>%
+  select(question, perceived_difficulty) %>%
+  rename(observed_q_perceived_difficulty = perceived_difficulty)
+
+# Mapping from S2 Quiz 1 questions to S1 question numbers (based on answer keys)
+# S2 "1_1" = 821 → S1 q2, "1_2" = 4906 → S1 q6, "1_3" = 930 → S1 q8,
+# "1_4" = 2370000 → S1 q13, "1_5" = 92575 → S1 q15
+s2_to_s1_mapping_fig1 <- tibble(
+  question_evaluated = c("1_1", "1_2", "1_3", "1_4", "1_5"),
+  s1_question = c(2, 6, 8, 13, 15)
+)
+
+# Get difficulty data for evaluated questions (Quiz 1 mapped to S1)
+S1_difficulty_eval_fig1 <- S1_difficulty %>%
+  select(question, perceived_difficulty) %>%
+  inner_join(s2_to_s1_mapping_fig1, by = c("question" = "s1_question")) %>%
+  select(question_evaluated, perceived_difficulty) %>%
+  rename(new_q_perceived_difficulty = perceived_difficulty)
+
+# Create enhanced summarized data with raw difficulty columns
+S2_summarized_enhanced <- S2_long_data %>%
+  group_by(question_observed, success_observed, time_observed, question_evaluated) %>%
+  summarise(
+    judg_conditional_prob = mean(human_evaluation, na.rm = TRUE),
+    true_conditional_prob = mean(true_conditional_prob, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  left_join(S2_difficulty_obs_fig1, by = c("question_observed" = "question")) %>%
+  left_join(S1_difficulty_eval_fig1, by = "question_evaluated")
+
+# Create subsets for each condition
+S2_summarized_all <- S2_summarized_enhanced
+S2_summarized_fast <- S2_summarized_enhanced %>% filter(time_observed == 1)
+S2_summarized_slow <- S2_summarized_enhanced %>% filter(time_observed == 0)
+
+# Function to create scaled data with difficulty difference (raw)
+df_s2_scale <- function(df) {
+  df %>%
+    mutate(
+      x_s = as.numeric(scale(true_conditional_prob)),
+      y_s = as.numeric(scale(judg_conditional_prob)),
+      diff_col = new_q_perceived_difficulty - observed_q_perceived_difficulty
+    )
+}
+
+d1_s2 <- df_s2_scale(S2_summarized_all)
+d2_s2 <- df_s2_scale(S2_summarized_fast)
+d3_s2 <- df_s2_scale(S2_summarized_slow)
+
+# Base plotting function
+p_base_s2 <- function(dat, title_txt) {
+  ggplot(dat, aes(x = x_s, y = y_s, color = diff_col)) +
+    geom_point() +
+    scale_color_gradient2(low = "blue", mid = "grey", high = "red") +
+    geom_abline(intercept = 0, slope = 1, color = "red", linetype = "dashed") +
+    geom_smooth(method = "lm", se = TRUE, color = "black") +
+    labs(
+      title = title_txt,
+      x = expression("True "*italic(P)*"("*italic(S)[new]==1~"|"~italic(S)[obs]*", "*italic(beta)[obs]*", "*italic(beta)[new]*")"),
+      y = expression("Estimated "*italic(P)*"("*italic(S)[new]==1~"|"~italic(S)[obs]*", "*italic(beta)[obs]*", "*italic(beta)[new]*")"),
+      color = expression(atop(atop("Difficulty", "difference"), "("*italic(beta)[new]~"-"~italic(beta)[obs]*")"))
+    ) +
+    custom_theme
+}
+
+p1_s2 <- p_base_s2(d1_s2, "A. All trials")
+p2_s2 <- p_base_s2(d2_s2, "B. Fast condition (20s)")
+p3_s2 <- p_base_s2(d3_s2, "C. Slow condition (40s)")
+
+S2_fig_behav <- p1_s2 + p2_s2 + p3_s2 +
+  plot_layout(guides = "collect", axis = "collect") &
+  theme(
+    legend.position = "bottom",
+    axis.title = element_text(size = 12)
+  )
+
+S2_fig_behav
+```
+
+
+```{r S2-fig-behav-2, fig.cap="Estimated Conditional Probability versus True Conditional Probability. Each data point is a pair of two questions.The red line represents the optimal prediction while the dark line represents the fit of the linear models."}
+# Get difficulty data for observed questions (Quiz 2) - raw perceived_difficulty
+S2_difficulty_obs <- S2_difficulty %>%
+  select(question, perceived_difficulty) %>%
+  rename(observed_q_perceived_difficulty = perceived_difficulty)
+
+# Mapping from S2 Quiz 1 questions to S1 question numbers (based on answer keys)
+# S2 "1_1" = 821 → S1 q2, "1_2" = 4906 → S1 q6, "1_3" = 930 → S1 q8,
+# "1_4" = 2370000 → S1 q13, "1_5" = 92575 → S1 q15
+s2_to_s1_mapping <- tibble(
+  question_evaluated = c("1_1", "1_2", "1_3", "1_4", "1_5"),
+  s1_question = c(2, 6, 8, 13, 15)
+)
+
+# Get difficulty data for evaluated questions (Quiz 1 mapped to S1)
+S1_difficulty_eval <- S1_difficulty %>%
+  select(question, perceived_difficulty) %>%
+  inner_join(s2_to_s1_mapping, by = c("question" = "s1_question")) %>%
+  select(question_evaluated, perceived_difficulty) %>%
+  rename(new_q_perceived_difficulty = perceived_difficulty)
+
+# Create enhanced summarized data with raw difficulty columns
+S2_summarized_enhanced_raw <- S2_long_data %>%
+  group_by(question_observed, success_observed, time_observed, question_evaluated) %>%
+  summarise(
+    judg_conditional_prob = mean(human_evaluation, na.rm = TRUE),
+    true_conditional_prob = mean(true_conditional_prob, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  left_join(S2_difficulty_obs, by = c("question_observed" = "question")) %>%
+  left_join(S1_difficulty_eval, by = "question_evaluated")
+
+# Create subsets by success/failure
+S2_summarized_all_raw <- S2_summarized_enhanced_raw
+S2_summarized_success_raw <- S2_summarized_enhanced_raw %>% filter(success_observed == 1)
+S2_summarized_failure_raw <- S2_summarized_enhanced_raw %>% filter(success_observed == 0)
+
+# Function to create scaled data with difficulty difference (raw)
+df_s2_noscale <- function(df) {
+  df %>%
+    filter(question_observed != question_evaluated) %>%
+    mutate(
+      x_s = as.numeric(scale(true_conditional_prob)),
+      y_s = as.numeric(scale(judg_conditional_prob)),
+      diff_col = new_q_perceived_difficulty - observed_q_perceived_difficulty
+    )
+}
+
+d1 <- df_s2_noscale(S2_summarized_all_raw)
+d2 <- df_s2_noscale(S2_summarized_success_raw)
+d3 <- df_s2_noscale(S2_summarized_failure_raw)
+
+p_base <- function(dat, title_txt) {
+  ggplot(dat, aes(x = x_s, y = y_s, color = diff_col)) +
+    geom_point() +
+    scale_color_gradient2(low = "blue", mid = "grey", high = "red") +
+    geom_abline(intercept = 0, slope = 1, color = "red") +
+    geom_smooth(method = "lm", se = TRUE, color = "black") +
+    labs(
+      title = title_txt,
+      x = "True Conditional Probability",
+      y = "Human Judgement",
+      color = "Difficulty \nDifference \n(New - Obs)"
+    ) +
+    custom_theme
+}
+
+p1 <- p_base(d1, "A. All trials")
+p2 <- p_base(d2, "B. Success observed")
+p3 <- p_base(d3, "C. Failure observed")
+
+S2_fig_behav_2 <- p1 + p2 + p3 +
+  plot_layout(guides = "collect", axis = "collect") &
+  theme(legend.position = "bottom")
+
+S2_fig_behav_2
+```
+
+
+```{r, include=FALSE}
 # explo analysis made during the meeting w/ Hugo
 # test = S2_long_data %>% 
 #   group_by(prolific_pid, question_observed, success_observed, time_observed) %>% summarise(score_estim = sum(human_evaluation))
@@ -1151,4 +1314,30 @@ Moreover, participants' predictions of the conditional probabilities of success 
 # summary(lm(score_estim ~ factor(time_observed), test %>%filter(success_observed == 1)))
 # 
 # summary(lm(score_estim ~ factor(time_observed), test %>%filter(success_observed == 0)))
+
+
+test = S2_long_data %>% 
+  group_by(question_observed, time_observed) %>% 
+  summarise(mean_estim = mean(human_evaluation, na.rm = TRUE), .groups = "drop") %>% 
+  mutate(time_observed = if_else(time_observed == 1, "fast", "slow"))
+
+test = test %>% 
+  pivot_wider(
+    names_from = time_observed,
+    values_from = mean_estim
+  )
+
+t.test(test$slow, test$fast, paired = TRUE)
+
+test_by_success = S2_long_data %>% 
+  group_by(success_observed, question_observed, time_observed) %>% 
+  summarise(mean_estim = mean(human_evaluation, na.rm = TRUE), .groups = "drop") %>% 
+  mutate(time_observed = if_else(time_observed == 1, "fast", "slow")) %>% 
+  pivot_wider(
+    names_from = time_observed,
+    values_from = mean_estim
+  )
+
+split(test_by_success, test_by_success$success_observed) %>% 
+  lapply(function(df) t.test(df$slow, df$fast, paired = TRUE))
 ```

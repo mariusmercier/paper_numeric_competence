@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.1.27)  1 FEB 2026 14:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.1.27)  31 JAN 2026 16:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/Users/mariusmercier/Desktop/02. Coding/02. Competence/paper_numeric_competence/cogsci_short_submission/cogsci_full_paper.tex"
-(/Users/mariusmercier/Desktop/02. Coding/02. Competence/paper_numeric_competence/cogsci_short_submission/cogsci_full_paper.tex
+**"/Users/mariusmercier/Desktop/02. Coding/02. Competence/paper_numeric_competence/cogsci_short_submission/cogsci_full_paper copy.tex"
+(/Users/mariusmercier/Desktop/02. Coding/02. Competence/paper_numeric_competence/cogsci_short_submission/cogsci_full_paper copy.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
 (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
@@ -748,8 +748,8 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 284.
 )
 \Hy@SectionHShift=\skip81
-) (./cogsci_full_paper.aux)
-\openout1 = `cogsci_full_paper.aux'.
+) (./cogsci_full_paper copy.aux)
+\openout1 = `"cogsci_full_paper copy.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 68.
 LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 68.
@@ -836,17 +836,17 @@ File: english.lbx 2025/07/10 v3.21 biblatex localization (PK/MW)
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
-\openout3 = `cogsci_full_paper.bcf'.
+\openout3 = `"cogsci_full_paper copy.bcf"'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'cogsci_full_paper.bbl' found.
- (./cogsci_full_paper.bbl)
+Package biblatex Info: ... file '"cogsci_full_paper copy".bbl' found.
+ (./cogsci_full_paper copy.bbl)
 Package biblatex Info: Reference section=0 on input line 68.
 Package biblatex Info: Reference segment=0 on input line 68.
 Package hyperref Info: Link coloring OFF on input line 68.
- (./cogsci_full_paper.out) (./cogsci_full_paper.out)
+ (./cogsci_full_paper copy.out) (./cogsci_full_paper copy.out)
 \@outlinefile=\write4
-\openout4 = `cogsci_full_paper.out'.
+\openout4 = `"cogsci_full_paper copy.out"'.
 
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 14.0pt on input line 71.
@@ -863,173 +863,169 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 9.0pt on input line 75.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 12.0pt on input line 83.
+(Font)              scaled to size 12.0pt on input line 104.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 83.
-LaTeX Font Info:    Trying to load font information for OT1+minntx on input line 97.
+(Font)              scaled to size 12.0pt on input line 104.
+LaTeX Font Info:    Trying to load font information for OT1+minntx on input line 118.
  (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/newtx/ot1minntx.fd
 File: ot1minntx.fd 2023/09/09 v1.1 font definition file for OT1/minntx
 )
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 10.0pt on input line 97.
+(Font)              scaled to size 10.0pt on input line 118.
 <<ot1.cmap>>
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 7.3pt on input line 97.
+(Font)              scaled to size 7.3pt on input line 118.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 5.5pt on input line 97.
+(Font)              scaled to size 5.5pt on input line 118.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 10.0pt on input line 97.
+(Font)              scaled to size 10.0pt on input line 118.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 7.3pt on input line 97.
+(Font)              scaled to size 7.3pt on input line 118.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 5.5pt on input line 97.
+(Font)              scaled to size 5.5pt on input line 118.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 10.0pt on input line 97.
+(Font)              scaled to size 10.0pt on input line 118.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 7.3pt on input line 97.
+(Font)              scaled to size 7.3pt on input line 118.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 5.5pt on input line 97.
+(Font)              scaled to size 5.5pt on input line 118.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 10.0pt on input line 97.
+(Font)              scaled to size 10.0pt on input line 118.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 7.3pt on input line 97.
+(Font)              scaled to size 7.3pt on input line 118.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 5.5pt on input line 97.
-LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 97.
+(Font)              scaled to size 5.5pt on input line 118.
+LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 118.
  (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2024/04/09 Fontinst v1.933 font definitions for U/ntxmia.
 )
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 10.0pt on input line 97.
+(Font)              scaled to size 10.0pt on input line 118.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 7.3pt on input line 97.
+(Font)              scaled to size 7.3pt on input line 118.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 5.5pt on input line 97.
-LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 97.
+(Font)              scaled to size 5.5pt on input line 118.
+LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 118.
  (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/newtx/untxsym.fd
 File: untxsym.fd 2023/08/16 Fontinst v1.933 font definitions for U/ntxsym.
 )
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 10.0pt on input line 97.
+(Font)              scaled to size 10.0pt on input line 118.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 7.3pt on input line 97.
+(Font)              scaled to size 7.3pt on input line 118.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 5.5pt on input line 97.
-LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 97.
+(Font)              scaled to size 5.5pt on input line 118.
+LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 118.
  (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 10.0pt on input line 97.
+(Font)              scaled to size 10.0pt on input line 118.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 7.3pt on input line 97.
+(Font)              scaled to size 7.3pt on input line 118.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 5.5pt on input line 97.
+(Font)              scaled to size 5.5pt on input line 118.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 10.0pt on input line 97.
+(Font)              scaled to size 10.0pt on input line 118.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 7.3pt on input line 97.
+(Font)              scaled to size 7.3pt on input line 118.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 5.5pt on input line 97.
-Package biblatex Info: Delimiter 'nameyeardelim' in context '' already defined, overwriting on input line 103.
+(Font)              scaled to size 5.5pt on input line 118.
  [1{/Users/mariusmercier/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}
 
 
 
 {/Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}]
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.3pt on input line 107.
+(Font)              scaled to size 7.3pt on input line 128.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 9.0pt on input line 107.
+(Font)              scaled to size 9.0pt on input line 128.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 6.6pt on input line 107.
+(Font)              scaled to size 6.6pt on input line 128.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 9.0pt on input line 107.
+(Font)              scaled to size 9.0pt on input line 128.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 6.6pt on input line 107.
+(Font)              scaled to size 6.6pt on input line 128.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 9.0pt on input line 107.
+(Font)              scaled to size 9.0pt on input line 128.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 6.6pt on input line 107.
+(Font)              scaled to size 6.6pt on input line 128.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 9.0pt on input line 107.
+(Font)              scaled to size 9.0pt on input line 128.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 6.6pt on input line 107.
+(Font)              scaled to size 6.6pt on input line 128.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 9.0pt on input line 107.
+(Font)              scaled to size 9.0pt on input line 128.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 6.6pt on input line 107.
+(Font)              scaled to size 6.6pt on input line 128.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 9.0pt on input line 107.
+(Font)              scaled to size 9.0pt on input line 128.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 6.6pt on input line 107.
+(Font)              scaled to size 6.6pt on input line 128.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 9.0pt on input line 107.
+(Font)              scaled to size 9.0pt on input line 128.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 6.6pt on input line 107.
+(Font)              scaled to size 6.6pt on input line 128.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 9.0pt on input line 107.
+(Font)              scaled to size 9.0pt on input line 128.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 6.6pt on input line 107.
+(Font)              scaled to size 6.6pt on input line 128.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.6pt on input line 107.
+(Font)              scaled to size 6.6pt on input line 128.
 
-Underfull \hbox (badness 1043) in paragraph at lines 125--126
+Underfull \hbox (badness 1043) in paragraph at lines 146--147
  []\T1/ntxtlf/b/n/10 Procedure[] \T1/ntxtlf/m/n/10 This ex-per-i-ment repli-cate the paradigm of
  []
 
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.5pt on input line 140.
+(Font)              scaled to size 5.5pt on input line 161.
 [2]
-<../figures/S1-fig-behav-1.pdf, id=131, 505.89pt x 312.16624pt>
+<../figures/S1-fig-behav-1.pdf, id=127, 505.89pt x 312.16624pt>
 File: ../figures/S1-fig-behav-1.pdf Graphic file (type pdf)
 <use ../figures/S1-fig-behav-1.pdf>
-Package pdftex.def Info: ../figures/S1-fig-behav-1.pdf  used on input line 166.
+Package pdftex.def Info: ../figures/S1-fig-behav-1.pdf  used on input line 194.
 (pdftex.def)             Requested size: 219.51863pt x 135.45778pt.
-<../figures/S1-fig-model-comparison-1.pdf, id=132, 505.89pt x 312.16624pt>
+<../figures/S1-fig-model-comparison-1.pdf, id=128, 505.89pt x 312.16624pt>
 File: ../figures/S1-fig-model-comparison-1.pdf Graphic file (type pdf)
 <use ../figures/S1-fig-model-comparison-1.pdf>
-Package pdftex.def Info: ../figures/S1-fig-model-comparison-1.pdf  used on input line 175.
+Package pdftex.def Info: ../figures/S1-fig-model-comparison-1.pdf  used on input line 223.
 (pdftex.def)             Requested size: 219.51863pt x 135.45778pt.
  [3 <../figures/S1-fig-behav-1.pdf> <../figures/S1-fig-model-comparison-1.pdf>] [4]
-<../figures/S2-fig-behav-1.pdf, id=182, 505.89pt x 312.16624pt>
+<../figures/S2-fig-behav-1.pdf, id=172, 505.89pt x 312.16624pt>
 File: ../figures/S2-fig-behav-1.pdf Graphic file (type pdf)
 <use ../figures/S2-fig-behav-1.pdf>
-Package pdftex.def Info: ../figures/S2-fig-behav-1.pdf  used on input line 240.
+Package pdftex.def Info: ../figures/S2-fig-behav-1.pdf  used on input line 317.
 (pdftex.def)             Requested size: 219.51863pt x 135.45778pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [5 <../figures/S2-fig-behav-1.pdf>]
-Package biblatex Info: Delimiter 'nameyeardelim' in context '' already defined, overwriting on input line 254.
-
-Underfull \vbox (badness 4582) has occurred while \output is active []
-
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
-(Font)              scaled to size 10.0pt on input line 261.
- [6] [7
-
-] (./cogsci_full_paper.aux)
+(Font)              scaled to size 10.0pt on input line 338.
+ [6] (./cogsci_full_paper copy.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2020/03/25>
  ***********
-Package rerunfilecheck Info: File `cogsci_full_paper.out' has not changed.
-(rerunfilecheck)             Checksum: 4241708BDC0E71E127C02F98405006BE;1000.
-Package logreq Info: Writing requests to 'cogsci_full_paper.run.xml'.
-\openout1 = `cogsci_full_paper.run.xml'.
+Package rerunfilecheck Info: File `"cogsci_full_paper copy".out' has not changed.
+(rerunfilecheck)             Checksum: 717F2A94B5B8F20C3AC3DFF161727366;1000.
+Package logreq Info: Writing requests to '"cogsci_full_paper copy".run.xml'.
+\openout1 = `"cogsci_full_paper copy.run.xml"'.
 
  ) 
 Here is how much of TeX's memory you used:
- 23682 strings out of 469453
- 407488 string characters out of 5466278
- 1360881 words of memory out of 5000000
- 51950 multiletter control sequences out of 15000+600000
+ 23649 strings out of 469453
+ 406806 string characters out of 5466278
+ 1360760 words of memory out of 5000000
+ 51927 multiletter control sequences out of 15000+600000
  695968 words of font info for 114 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 89i,12n,112p,2062b,5372s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 89i,12n,112p,2209b,5372s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/type1/public/newtx/txexs.pfb></Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/type1/public/newtx/txsys.pfb></Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on cogsci_full_paper.pdf (7 pages, 355019 bytes).
+Output written on "cogsci_full_paper copy.pdf" (6 pages, 348620 bytes).
 PDF statistics:
- 298 PDF objects out of 1000 (max. 8388607)
- 261 compressed objects within 3 object streams
- 64 named destinations out of 1000 (max. 500000)
+ 269 PDF objects out of 1000 (max. 8388607)
+ 234 compressed objects within 3 object streams
+ 54 named destinations out of 1000 (max. 500000)
  96 words of extra memory for PDF output out of 10000 (max. 10000000)
 

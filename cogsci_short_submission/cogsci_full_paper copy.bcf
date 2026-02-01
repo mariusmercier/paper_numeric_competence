@@ -3101,27 +3101,20 @@
     <bcf:citekey order="15" intorder="1">Mercier-2025c</bcf:citekey>
     <bcf:citekey order="16" intorder="1">Mercier-2025c</bcf:citekey>
     <bcf:citekey order="17" intorder="1">Jansen-2021</bcf:citekey>
-    <bcf:citekey order="18" intorder="1">Rasch-1960</bcf:citekey>
+    <bcf:citekey order="18" intorder="1">Mercier-2025c</bcf:citekey>
     <bcf:citekey order="19" intorder="1">Mercier-2025c</bcf:citekey>
     <bcf:citekey order="20" intorder="1">Mercier-2025c</bcf:citekey>
     <bcf:citekey order="21" intorder="1">Mercier-2025c</bcf:citekey>
     <bcf:citekey order="22" intorder="1">Mercier-2025c</bcf:citekey>
-    <bcf:citekey order="23" intorder="1">Dehaene-2011</bcf:citekey>
-    <bcf:citekey order="24" intorder="1">Dehaene-2011</bcf:citekey>
-    <bcf:citekey order="25" intorder="1">Mercier-2025c</bcf:citekey>
+    <bcf:citekey order="23" intorder="1">Mercier-2025c</bcf:citekey>
+    <bcf:citekey order="24" intorder="1">Rasch-1960</bcf:citekey>
+    <bcf:citekey order="25" intorder="1">Rasch-1960</bcf:citekey>
     <bcf:citekey order="26" intorder="1">Mercier-2025c</bcf:citekey>
-    <bcf:citekey order="27" intorder="1">Rasch-1960</bcf:citekey>
-    <bcf:citekey order="28" intorder="1">Mercier-2025c</bcf:citekey>
-    <bcf:citekey order="29" intorder="1">Mercier-2025c</bcf:citekey>
-    <bcf:citekey order="30" intorder="1">Hedge-2018</bcf:citekey>
-    <bcf:citekey order="30" intorder="2">Goldhammer-2011</bcf:citekey>
-    <bcf:citekey order="30" intorder="3">Richardson-2022</bcf:citekey>
-    <bcf:citekey order="30" intorder="4">Berke-2023</bcf:citekey>
-    <bcf:citekey order="30" intorder="5">Kruger-2004</bcf:citekey>
-    <bcf:citekey order="31" intorder="1">Dehaene-2011</bcf:citekey>
-    <bcf:citekey order="32" intorder="1">Mercier-2025c</bcf:citekey>
-    <bcf:citekey order="32" intorder="2">Aboody-2025</bcf:citekey>
-    <bcf:citekey order="33" intorder="1">Leonard-2019</bcf:citekey>
+    <bcf:citekey order="27" intorder="1">Mercier-2025c</bcf:citekey>
+    <bcf:citekey order="28" intorder="1">Hedge-2018</bcf:citekey>
+    <bcf:citekey order="28" intorder="2">Goldhammer-2011</bcf:citekey>
+    <bcf:citekey order="28" intorder="3">Richardson-2022</bcf:citekey>
+    <bcf:citekey order="28" intorder="4">Berke-2023</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="apa">

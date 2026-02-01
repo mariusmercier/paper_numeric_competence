@@ -1,0 +1,2721 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{apa/apasortcite//global/global/global}
+    \entry{Baker-2017}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=de3e74deaaca6d4ba07e1e6d0e7b7244}{%
+           family={Baker},
+           familyi={B\bibinitperiod},
+           given={Chris\bibnamedelima L.},
+           giveni={C\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4a3fcf471def93d28d7799c4fe0a7286}{%
+           family={{Jara-Ettinger}},
+           familyi={J\bibinitperiod},
+           given={Julian},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6fea16fbc3912bb352504facda6a3007}{%
+           family={Saxe},
+           familyi={S\bibinitperiod},
+           given={Rebecca},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5c7ff02e1f8b4c4aa7bfddece14f23d2}{%
+           family={Tenenbaum},
+           familyi={T\bibinitperiod},
+           given={Joshua\bibnamedelima B.},
+           giveni={J\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{52d0737fea2a8ee736bb1026462f161a}
+      \strng{fullhash}{7814e4a4ad428a8df892e14234bf981e}
+      \strng{fullhashraw}{7814e4a4ad428a8df892e14234bf981e}
+      \strng{bibnamehash}{7814e4a4ad428a8df892e14234bf981e}
+      \strng{authorbibnamehash}{7814e4a4ad428a8df892e14234bf981e}
+      \strng{authornamehash}{52d0737fea2a8ee736bb1026462f161a}
+      \strng{authorfullhash}{7814e4a4ad428a8df892e14234bf981e}
+      \strng{authorfullhashraw}{7814e4a4ad428a8df892e14234bf981e}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2397-3374}
+      \field{journaltitle}{Nature Human Behaviour}
+      \field{langid}{english}
+      \field{month}{3}
+      \field{number}{4}
+      \field{title}{Rational Quantitative Attribution of Beliefs, Desires and Percepts in Human Mentalizing}
+      \field{urlday}{5}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{volume}{1}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \field{pages}{0064}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1038/s41562-017-0064
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/HH83526V/Baker-2017.pdf
+      \endverb
+    \endentry
+    \entry{Bramley-2015}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=c75b7075e6b936f16665d8465ce3686e}{%
+           family={Bramley},
+           familyi={B\bibinitperiod},
+           given={Neil\bibnamedelima R.},
+           giveni={N\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e7217f2e21106cf2fb139fd36946da97}{%
+           family={Lagnado},
+           familyi={L\bibinitperiod},
+           given={David\bibnamedelima A.},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=aa2bcefbbebd7fcf69edad382bc0f765}{%
+           family={Speekenbrink},
+           familyi={S\bibinitperiod},
+           given={Maarten},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {US}%
+      }
+      \list{publisher}{1}{%
+        {American Psychological Association}%
+      }
+      \strng{namehash}{28cbddcc8ac0a378b6edf9129c5ec2f6}
+      \strng{fullhash}{92c967cce8a44a082cd75649590ff9f0}
+      \strng{fullhashraw}{92c967cce8a44a082cd75649590ff9f0}
+      \strng{bibnamehash}{92c967cce8a44a082cd75649590ff9f0}
+      \strng{authorbibnamehash}{92c967cce8a44a082cd75649590ff9f0}
+      \strng{authornamehash}{28cbddcc8ac0a378b6edf9129c5ec2f6}
+      \strng{authorfullhash}{92c967cce8a44a082cd75649590ff9f0}
+      \strng{authorfullhashraw}{92c967cce8a44a082cd75649590ff9f0}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Interacting with a system is key to uncovering its causal structure. A computational framework for interventional causal learning has been developed over the last decade, but how real causal learners might achieve or approximate the computations entailed by this framework is still poorly understood. Here we describe an interactive computer task in which participants were incentivized to learn the structure of probabilistic causal systems through free selection of multiple interventions. We develop models of participants' intervention choices and online structure judgments, using expected utility gain, probability gain, and information gain and introducing plausible memory and processing constraints. We find that successful participants are best described by a model that acts to maximize information (rather than expected score or probability of being correct); that forgets much of the evidence received in earlier trials; but that mitigates this by being conservative, preferring structures consistent with earlier stated beliefs. We explore 2 heuristics that partly explain how participants might be approximating these models without explicitly representing or updating a hypothesis space. (PsycINFO Database Record (c) 2016 APA, all rights reserved)}
+      \field{issn}{1939-1285}
+      \field{journaltitle}{Journal of Experimental Psychology: Learning, Memory, and Cognition}
+      \field{number}{3}
+      \field{shorttitle}{Conservative Forgetful Scholars}
+      \field{title}{Conservative Forgetful Scholars: {{How}} People Learn Causal Structure through Sequences of Interventions}
+      \field{volume}{41}
+      \field{year}{2015}
+      \field{pages}{708\bibrangedash 731}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.1037/xlm0000061
+      \endverb
+      \keyw{Causality,Computational Modeling,Intervention,Learning,Statistical Probability}
+    \endentry
+    \entry{Croissant-2020}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=2475d5bed2d8345c0fa76ae06ba6685f}{%
+           family={Croissant},
+           familyi={C\bibinitperiod},
+           given={Yves},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{2475d5bed2d8345c0fa76ae06ba6685f}
+      \strng{fullhash}{2475d5bed2d8345c0fa76ae06ba6685f}
+      \strng{fullhashraw}{2475d5bed2d8345c0fa76ae06ba6685f}
+      \strng{bibnamehash}{2475d5bed2d8345c0fa76ae06ba6685f}
+      \strng{authorbibnamehash}{2475d5bed2d8345c0fa76ae06ba6685f}
+      \strng{authornamehash}{2475d5bed2d8345c0fa76ae06ba6685f}
+      \strng{authorfullhash}{2475d5bed2d8345c0fa76ae06ba6685f}
+      \strng{authorfullhashraw}{2475d5bed2d8345c0fa76ae06ba6685f}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{mlogit is a package for R which enables the estimation of random utility models with choice situation and/or alternative specific variables. The main extensions of the basic multinomial model (heteroscedastic, nested and random parameter models) are implemented.}
+      \field{issn}{1548-7660}
+      \field{journaltitle}{Journal of Statistical Software}
+      \field{langid}{english}
+      \field{month}{10}
+      \field{shorttitle}{Estimation of {{Random Utility Models}} in {{R}}}
+      \field{title}{Estimation of {{Random Utility Models}} in {{R}}: {{The}} Mlogit {{Package}}}
+      \field{urlday}{19}
+      \field{urlmonth}{3}
+      \field{urlyear}{2025}
+      \field{volume}{95}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 41}
+      \range{pages}{41}
+      \verb{doi}
+      \verb 10.18637/jss.v095.i11
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/7EF52ET9/Croissant-2020.pdf
+      \endverb
+      \keyw{discrete choice models,econometrics,maximum likelihood estimation,R}
+    \endentry
+    \entry{Cuddy-2011}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=df9efa17f186c273d5dadd51d8271fa2}{%
+           family={Cuddy},
+           familyi={C\bibinitperiod},
+           given={Amy\bibnamedelimb J.\bibnamedelimi C.},
+           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0caceabd8cca2f5fffeb46b18c3a88e0}{%
+           family={Glick},
+           familyi={G\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=37bb25d5c7f464fb42c91717ca467c54}{%
+           family={Beninger},
+           familyi={B\bibinitperiod},
+           given={Anna},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{ecc3b55f5020173fab9adc22c023b183}
+      \strng{fullhash}{2a715c376da126c0ee0f96171c3eadfa}
+      \strng{fullhashraw}{2a715c376da126c0ee0f96171c3eadfa}
+      \strng{bibnamehash}{2a715c376da126c0ee0f96171c3eadfa}
+      \strng{authorbibnamehash}{2a715c376da126c0ee0f96171c3eadfa}
+      \strng{authornamehash}{ecc3b55f5020173fab9adc22c023b183}
+      \strng{authorfullhash}{2a715c376da126c0ee0f96171c3eadfa}
+      \strng{authorfullhashraw}{2a715c376da126c0ee0f96171c3eadfa}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Two traits -- warmth and competence -- govern social judgments of individuals and groups, and these judgments shape people's emotions and behaviors. The present chapter describes the causes and consequences of warmth and competence judgments; how, when and why they determine significant professional and organizational outcomes, such as hiring, employee evaluation, and allocation of tasks and resources. Warmth and competence represent the central dimensions of group stereotypes, the majority of which are ambivalent -- characterizing groups as warm but incompetent (e.g., older people, working mothers) or competent but cold (e.g., ``model minorities,'' female leaders), in turn eliciting ambivalent feelings (i.e., pity and envy, respectively) and actions toward members of those groups. However, through nonverbal behaviors that subtly communicate warmth and competence information, people can manage the impressions they make on colleagues, potential employers, and possible investors. Finally, we discuss important directions for future research, such as investigating the causes and consequences of how organizations and industries are evaluated on warmth and competence.}
+      \field{issn}{0191-3085}
+      \field{journaltitle}{Research in Organizational Behavior}
+      \field{month}{1}
+      \field{title}{The Dynamics of Warmth and Competence Judgments, and Their Outcomes in Organizations}
+      \field{urlday}{23}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{31}
+      \field{year}{2011}
+      \field{urldateera}{ce}
+      \field{pages}{73\bibrangedash 98}
+      \range{pages}{26}
+      \verb{doi}
+      \verb 10.1016/j.riob.2011.10.004
+      \endverb
+    \endentry
+    \entry{Davis-2025}{article}{}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=380924744f76d384293d4aa1bcb6e24f}{%
+           family={Davis},
+           familyi={D\bibinitperiod},
+           given={Zachary\bibnamedelima J.},
+           giveni={Z\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=41a6434687957f087fd3a1837510ab08}{%
+           family={Allen},
+           familyi={A\bibinitperiod},
+           given={Kelsey\bibnamedelima R.},
+           giveni={K\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4e7207db71a35b350cba30f89c24691d}{%
+           family={{Kleiman-Weiner}},
+           familyi={K\bibinitperiod},
+           given={Max},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4a3fcf471def93d28d7799c4fe0a7286}{%
+           family={{Jara-Ettinger}},
+           familyi={J\bibinitperiod},
+           given={Julian},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e7984042ee7d500f82c1c171b2054899}{%
+           family={Gerstenberg},
+           familyi={G\bibinitperiod},
+           given={Tobias},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d3a9815009f7c123cbf5f81c030b20f5}
+      \strng{fullhash}{8aaedc1ff6c5fa2b8bfc0f4d4d5c5c2d}
+      \strng{fullhashraw}{8aaedc1ff6c5fa2b8bfc0f4d4d5c5c2d}
+      \strng{bibnamehash}{8aaedc1ff6c5fa2b8bfc0f4d4d5c5c2d}
+      \strng{authorbibnamehash}{8aaedc1ff6c5fa2b8bfc0f4d4d5c5c2d}
+      \strng{authornamehash}{d3a9815009f7c123cbf5f81c030b20f5}
+      \strng{authorfullhash}{8aaedc1ff6c5fa2b8bfc0f4d4d5c5c2d}
+      \strng{authorfullhashraw}{8aaedc1ff6c5fa2b8bfc0f4d4d5c5c2d}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{People have a remarkable ability to infer the hidden causes of things. From physical evidence, such as muddy footprints on the floor, we can figure out what happened and who did it. Here, we investigate another source of evidence: social evaluations. Social evaluations, such as praise or blame, are commonplace in everyday conversations. While such evaluations do not fully reveal what happened, they provide valuable clues. Across three experiments, we present situations where a person was praised or blamed, and participants' task is to use that information to figure out what happened. In Experiment 1, we find that people draw systematic inferences from social evaluations about situational factors, a person's actions, capabilities, and social roles. In Experiments 2 and 3, we develop computational models that generate praise and blame judgments by considering what causal role a person's action played, and what action they should have taken. Inverting these generative models of praise and blame via Bayesian inference yields accurate predictions about what inferences participants draw based on social evaluations. (PsycInfo Database Record (c) 2025 APA, all rights reserved).}
+      \field{issn}{1939-1315}
+      \field{journaltitle}{Journal of Personality and Social Psychology}
+      \field{langid}{english}
+      \field{month}{4}
+      \field{title}{Inference from Social Evaluation}
+      \field{year}{2025}
+      \verb{doi}
+      \verb 10.1037/pspa0000445
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/GXUVDDJR/Davis-2025.pdf
+      \endverb
+    \endentry
+    \entry{Dubey-2020}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=c74d0640bb86828b83f915904f633589}{%
+           family={Dubey},
+           familyi={D\bibinitperiod},
+           given={Rachit},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=15f19cfb916ba0b8afb494f250ea80a2}{%
+           family={Griffiths},
+           familyi={G\bibinitperiod},
+           given={Thomas\bibnamedelima L.},
+           giveni={T\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{addb37fd3777c31c81055e3e84d31f31}
+      \strng{fullhash}{addb37fd3777c31c81055e3e84d31f31}
+      \strng{fullhashraw}{addb37fd3777c31c81055e3e84d31f31}
+      \strng{bibnamehash}{addb37fd3777c31c81055e3e84d31f31}
+      \strng{authorbibnamehash}{addb37fd3777c31c81055e3e84d31f31}
+      \strng{authornamehash}{addb37fd3777c31c81055e3e84d31f31}
+      \strng{authorfullhash}{addb37fd3777c31c81055e3e84d31f31}
+      \strng{authorfullhashraw}{addb37fd3777c31c81055e3e84d31f31}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1939-1471, 0033-295X}
+      \field{journaltitle}{Psychological Review}
+      \field{langid}{english}
+      \field{month}{4}
+      \field{number}{3}
+      \field{title}{Reconciling Novelty and Complexity through a Rational Analysis of Curiosity.}
+      \field{urlday}{14}
+      \field{urlmonth}{11}
+      \field{urlyear}{2022}
+      \field{volume}{127}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{455\bibrangedash 476}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.1037/rev0000175
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/947J74DQ/Dubey-2020.pdf
+      \endverb
+    \endentry
+    \entry{Dubourg-2025}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=905737871e06c389c5770bda96fadd63}{%
+           family={Dubourg},
+           familyi={D\bibinitperiod},
+           given={Edgar},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=959d077afa1f31ff07c0f16cff1369cf}{%
+           family={Morin},
+           familyi={M\bibinitperiod},
+           given={Olivier},
+           giveni={O\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f70379da697a3b48dab3e96d2c59fddc}{%
+           family={Mercier},
+           familyi={M\bibinitperiod},
+           given={Hugo},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{0ee15415692d0ffc435f4811c7ffb24a}
+      \strng{fullhash}{87255a0ae424f64f3b90fe48b6a89b44}
+      \strng{fullhashraw}{87255a0ae424f64f3b90fe48b6a89b44}
+      \strng{bibnamehash}{87255a0ae424f64f3b90fe48b6a89b44}
+      \strng{authorbibnamehash}{87255a0ae424f64f3b90fe48b6a89b44}
+      \strng{authornamehash}{0ee15415692d0ffc435f4811c7ffb24a}
+      \strng{authorfullhash}{87255a0ae424f64f3b90fe48b6a89b44}
+      \strng{authorfullhashraw}{87255a0ae424f64f3b90fe48b6a89b44}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Psychological Science}
+      \field{number}{6}
+      \field{title}{Using the {{Nested Structure}} of {{Knowledge}} to {{Infer What Others Know}}}
+      \field{volume}{36}
+      \field{year}{2025}
+      \field{pages}{443\bibrangedash 450}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1177/09567976251339633
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/AJ7IV3B7/Dubourg-2025.pdf;/Users/mariusmercier/Zotero/storage/JSAGSGEY/sj-docx-1-pss-10.1177_09567976251339633.docx
+      \endverb
+    \endentry
+    \entry{Garfield-2025}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=afb0926f67e64911bccc8141938a3e14}{%
+           family={Garfield},
+           familyi={G\bibinitperiod},
+           given={Zachary\bibnamedelima H.},
+           giveni={Z\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=41c35120d925ef570567ca82aa69dc44}{%
+           family={{von Rueden}},
+           familyi={v\bibinitperiod},
+           given={Christopher\bibnamedelima R.},
+           giveni={C\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f5b4a4f2975e8c667cea290f8a11266d}{%
+           family={Hagen},
+           familyi={H\bibinitperiod},
+           given={Edward\bibnamedelima H.},
+           giveni={E\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{ebfae1c6684ad5493e031b7a1db49e36}
+      \strng{fullhash}{0529c23378c7be172b2a3915b64fa25d}
+      \strng{fullhashraw}{0529c23378c7be172b2a3915b64fa25d}
+      \strng{bibnamehash}{0529c23378c7be172b2a3915b64fa25d}
+      \strng{authorbibnamehash}{0529c23378c7be172b2a3915b64fa25d}
+      \strng{authornamehash}{ebfae1c6684ad5493e031b7a1db49e36}
+      \strng{authorfullhash}{0529c23378c7be172b2a3915b64fa25d}
+      \strng{authorfullhashraw}{0529c23378c7be172b2a3915b64fa25d}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Human leadership and followership take many forms, shaped by the social, economic, political, and cultural contexts of our groups and societies. Underlying this complexity, we argue, are key elements of human social psychology regarding social comparison and the resolution of coordination and collective action problems. The Multi-Capital Leadership (MCL) theory posits that leader emergence and effectiveness depend on perceptions of individuals' abilities to provide benefits or impose costs in solving challenges of group living, through the deployment of different forms of capital: material, social, somatic (e.g., physical formidability, height, immune functionality), and neural (e.g., knowledge, intelligence, personality, supernatural abilities). We integrate this framework with a review of leadership across human societies, including in non-state and non-industrial contexts, and with novel comparative analyses of ethnographic data. This synthesis highlights how context-specific demands for coordination and collective action, and the accuracy of social comparison, shape the structure and dynamics of leadership and followership across cultures.}
+      \field{issn}{1936-4776}
+      \field{journaltitle}{Human Nature}
+      \field{langid}{english}
+      \field{month}{10}
+      \field{title}{The {{Multi-Capital Leadership Theory}}}
+      \field{urlday}{7}
+      \field{urlmonth}{11}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1007/s12110-025-09503-y
+      \endverb
+      \keyw{Context,Cultural diversity,Embodied capital,Followership,Human capital,Leadership}
+    \endentry
+    \entry{Gigerenzer-2011}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=b48d2c7ac3f28cdcd52b92c3c2953a61}{%
+           family={Gigerenzer},
+           familyi={G\bibinitperiod},
+           given={Gerd},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=315ba9b27bf95aa1b3df4d7621f0e43e}{%
+           family={Gaissmaier},
+           familyi={G\bibinitperiod},
+           given={Wolfgang},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Annual Reviews}%
+      }
+      \strng{namehash}{9ecd14c61d73982a6fda66d70c726a1f}
+      \strng{fullhash}{9ecd14c61d73982a6fda66d70c726a1f}
+      \strng{fullhashraw}{9ecd14c61d73982a6fda66d70c726a1f}
+      \strng{bibnamehash}{9ecd14c61d73982a6fda66d70c726a1f}
+      \strng{authorbibnamehash}{9ecd14c61d73982a6fda66d70c726a1f}
+      \strng{authornamehash}{9ecd14c61d73982a6fda66d70c726a1f}
+      \strng{authorfullhash}{9ecd14c61d73982a6fda66d70c726a1f}
+      \strng{authorfullhashraw}{9ecd14c61d73982a6fda66d70c726a1f}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{As reflected in the amount of controversy, few areas in psychology have undergone such dramatic conceptual changes in the past decade as the emerging science of heuristics. Heuristics are efficient cognitive processes, conscious or unconscious, that ignore part of the information. Because using heuristics saves effort, the classical view has been that heuristic decisions imply greater errors than do ``rational'' decisions as defined by logic or statistical models. However, for many decisions, the assumptions of rational models are not met, and it is an empirical rather than an a priori issue how well cognitive heuristics function in an uncertain world. To answer both the descriptive question (``Which heuristics do people use in which situations?'') and the prescriptive question (``When should people rely on a given heuristic rather than a complex strategy to make better judgments?''), formal models are indispensable. We review research that tests formal models of heuristic inference, including in business organizations, health care, and legal institutions. This research indicates that (a) individuals and organizations often rely on simple heuristics in an adaptive way, and (b) ignoring part of the information can lead to more accurate judgments than weighting and adding all information, for instance for low predictability and small samples. The big future challenge is to develop a systematic theory of the building blocks of heuristics as well as the core capacities and environmental structures these exploit.}
+      \field{issn}{0066-4308, 1545-2085}
+      \field{journaltitle}{Annual Review of Psychology}
+      \field{langid}{french}
+      \field{month}{1}
+      \field{number}{Volume 62, 2011}
+      \field{title}{{Heuristic Decision Making}}
+      \field{urlday}{21}
+      \field{urlmonth}{10}
+      \field{urlyear}{2025}
+      \field{volume}{62}
+      \field{year}{2011}
+      \field{urldateera}{ce}
+      \field{pages}{451\bibrangedash 482}
+      \range{pages}{32}
+      \verb{doi}
+      \verb 10.1146/annurev-psych-120709-145346
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/Z4FGUPXZ/Gigerenzer-2011.pdf
+      \endverb
+    \endentry
+    \entry{Harris-2018}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=0fdfb74e9fbce0d8ce526fe64b379a97}{%
+           family={Harris},
+           familyi={H\bibinitperiod},
+           given={Paul\bibnamedelima L.},
+           giveni={P\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3b4b1e2b9bc6e05f2807c0118c87da34}{%
+           family={Koenig},
+           familyi={K\bibinitperiod},
+           given={Melissa\bibnamedelima A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=96b44dc8cd577cc884e35e734faa7497}{%
+           family={Corriveau},
+           familyi={C\bibinitperiod},
+           given={Kathleen\bibnamedelima H.},
+           giveni={K\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=afc50a6e90be091e1ef27d9a769e6d1c}{%
+           family={Jaswal},
+           familyi={J\bibinitperiod},
+           given={Vikram\bibnamedelima K.},
+           giveni={V\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{416ec202105701b6b3c3bdf496a19a71}
+      \strng{fullhash}{3681c2d8dc0a9685ff2a1726adb8b772}
+      \strng{fullhashraw}{3681c2d8dc0a9685ff2a1726adb8b772}
+      \strng{bibnamehash}{3681c2d8dc0a9685ff2a1726adb8b772}
+      \strng{authorbibnamehash}{3681c2d8dc0a9685ff2a1726adb8b772}
+      \strng{authornamehash}{416ec202105701b6b3c3bdf496a19a71}
+      \strng{authorfullhash}{3681c2d8dc0a9685ff2a1726adb8b772}
+      \strng{authorfullhashraw}{3681c2d8dc0a9685ff2a1726adb8b772}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Humans acquire much of their knowledge from the testimony of other people. An understanding of the way that information can be conveyed via gesture and vocalization is present in infancy. Thus, infants seek information from well-informed interlocutors, supply information to the ignorant, and make sense of communicative acts that they observe from a third-party perspective. This basic understanding is refined in the course of development. As they age, children's reasoning about testimony increasingly reflects an ability not just to detect imperfect or inaccurate claims but also to assess what inferences may or may not be drawn about informants given their particular situation. Children also attend to the broader characteristics of particular informants---their group membership, personality characteristics, and agreement or disagreement with other potential informants. When presented with unexpected or counterintuitive testimony, children are prone to set aside their own prior convictions, but they may sometimes defer to informants for inherently social reasons.}
+      \field{issn}{0066-4308, 1545-2085}
+      \field{journaltitle}{Annual Review of Psychology}
+      \field{langid}{english}
+      \field{month}{1}
+      \field{number}{1}
+      \field{title}{Cognitive {{Foundations}} of {{Learning}} from {{Testimony}}}
+      \field{urlday}{19}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{volume}{69}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \field{pages}{251\bibrangedash 273}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.1146/annurev-psych-122216-011710
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/ZRF9WN3A/Harris-2018.pdf
+      \endverb
+    \endentry
+    \entry{Jansen-2021}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=6457f1040c476387ae1003e961481d0d}{%
+           family={Jansen},
+           familyi={J\bibinitperiod},
+           given={Rachel\bibnamedelima A.},
+           giveni={R\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0c82cd787eaab8af8494102f217028e1}{%
+           family={Rafferty},
+           familyi={R\bibinitperiod},
+           given={Anna\bibnamedelima N.},
+           giveni={A\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=15f19cfb916ba0b8afb494f250ea80a2}{%
+           family={Griffiths},
+           familyi={G\bibinitperiod},
+           given={Thomas\bibnamedelima L.},
+           giveni={T\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{5c073f404bf7a8b2ab1e421f55066427}
+      \strng{fullhash}{9c409656db82c47597051117766f3216}
+      \strng{fullhashraw}{9c409656db82c47597051117766f3216}
+      \strng{bibnamehash}{9c409656db82c47597051117766f3216}
+      \strng{authorbibnamehash}{9c409656db82c47597051117766f3216}
+      \strng{authornamehash}{5c073f404bf7a8b2ab1e421f55066427}
+      \strng{authorfullhash}{9c409656db82c47597051117766f3216}
+      \strng{authorfullhashraw}{9c409656db82c47597051117766f3216}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2397-3374}
+      \field{journaltitle}{Nature Human Behaviour}
+      \field{langid}{english}
+      \field{month}{2}
+      \field{number}{6}
+      \field{title}{A Rational Model of the {{Dunning}}--{{Kruger}} Effect Supports Insensitivity to Evidence in Low Performers}
+      \field{urlday}{5}
+      \field{urlmonth}{1}
+      \field{urlyear}{2026}
+      \field{volume}{5}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \field{pages}{756\bibrangedash 763}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1038/s41562-021-01057-0
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/7LTH3FH9/Jansen-2021.pdf
+      \endverb
+    \endentry
+    \entry{Jara-Ettinger-2017}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=4a3fcf471def93d28d7799c4fe0a7286}{%
+           family={{Jara-Ettinger}},
+           familyi={J\bibinitperiod},
+           given={Julian},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f47df9b39116c7d4bfbbb58fe9e03035}{%
+           family={Gweon},
+           familyi={G\bibinitperiod},
+           given={Hyowon},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{e9ed4dab447c93ca1d3158944b4f8e87}
+      \strng{fullhash}{e9ed4dab447c93ca1d3158944b4f8e87}
+      \strng{fullhashraw}{e9ed4dab447c93ca1d3158944b4f8e87}
+      \strng{bibnamehash}{e9ed4dab447c93ca1d3158944b4f8e87}
+      \strng{authorbibnamehash}{e9ed4dab447c93ca1d3158944b4f8e87}
+      \strng{authornamehash}{e9ed4dab447c93ca1d3158944b4f8e87}
+      \strng{authorfullhash}{e9ed4dab447c93ca1d3158944b4f8e87}
+      \strng{authorfullhashraw}{e9ed4dab447c93ca1d3158944b4f8e87}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{When we reason about others' behavior, there are often many equally-plausible explanations. If Bob climbs a tree to get an apple, we may be unsure if Bob found climbing difficult but really wanted an apple; if he found climbing easy and was not particularly excited about the apple; or if he found climbing intrinsically fun and just got the apple because it was convenient. Past research suggests that we solve this problem by obtaining repeated observations about the agent and about the world. Here we argue that, beyond allowing us to sharpen our inferences about agents and the world, covariation data also enables us to do one-shot inferences about novel agents. We show that given minimal covariation data, people can infer objective and subjective properties of a new agent from a single event. We show that a model that assumes that agents maximize utilities matches participant judgments with quantitative precision.}
+      \field{journaltitle}{Proceedings of the Annual Meeting of the Cognitive Science Society}
+      \field{langid}{english}
+      \field{number}{0}
+      \field{title}{Minimal Covariation Data Support Future One-Shot Inferences about Unobservable Properties of Novel Agents}
+      \field{volume}{39}
+      \field{year}{2017}
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/BS6JYPJX/Jara-Ettinger-2017.pdf
+      \endverb
+    \endentry
+    \entry{Jara-Ettinger-2015a}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=4a3fcf471def93d28d7799c4fe0a7286}{%
+           family={{Jara-Ettinger}},
+           familyi={J\bibinitperiod},
+           given={Julian},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f47df9b39116c7d4bfbbb58fe9e03035}{%
+           family={Gweon},
+           familyi={G\bibinitperiod},
+           given={Hyowon},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5c7ff02e1f8b4c4aa7bfddece14f23d2}{%
+           family={Tenenbaum},
+           familyi={T\bibinitperiod},
+           given={Joshua\bibnamedelima B.},
+           giveni={J\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5e1702e9c07eafe082c6a49d079b7cc1}{%
+           family={Schulz},
+           familyi={S\bibinitperiod},
+           given={Laura\bibnamedelima E.},
+           giveni={L\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{24c5b1cb4816645ec1587810b7a94821}
+      \strng{fullhash}{ba1294225213d83fcb5ce67ca66ea725}
+      \strng{fullhashraw}{ba1294225213d83fcb5ce67ca66ea725}
+      \strng{bibnamehash}{ba1294225213d83fcb5ce67ca66ea725}
+      \strng{authorbibnamehash}{ba1294225213d83fcb5ce67ca66ea725}
+      \strng{authornamehash}{24c5b1cb4816645ec1587810b7a94821}
+      \strng{authorfullhash}{ba1294225213d83fcb5ce67ca66ea725}
+      \strng{authorfullhashraw}{ba1294225213d83fcb5ce67ca66ea725}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Cognition}
+      \field{title}{Children's Understanding of the Costs and Rewards Underlying Rational Action}
+      \field{urlday}{7}
+      \field{urlmonth}{1}
+      \field{urlyear}{2026}
+      \field{volume}{140}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \field{pages}{14\bibrangedash 23}
+      \range{pages}{10}
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/5TTFNEI3/Jara-Ettinger-2015a.pdf
+      \endverb
+    \endentry
+    \entry{Jones-1989}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f1076a65a8ea7bbae56a97b5a1800787}{%
+           family={Jones},
+           familyi={J\bibinitperiod},
+           given={Edward\bibnamedelima E.},
+           giveni={E\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {SAGE Publications Inc}%
+      }
+      \strng{namehash}{f1076a65a8ea7bbae56a97b5a1800787}
+      \strng{fullhash}{f1076a65a8ea7bbae56a97b5a1800787}
+      \strng{fullhashraw}{f1076a65a8ea7bbae56a97b5a1800787}
+      \strng{bibnamehash}{f1076a65a8ea7bbae56a97b5a1800787}
+      \strng{authorbibnamehash}{f1076a65a8ea7bbae56a97b5a1800787}
+      \strng{authornamehash}{f1076a65a8ea7bbae56a97b5a1800787}
+      \strng{authorfullhash}{f1076a65a8ea7bbae56a97b5a1800787}
+      \strng{authorfullhashraw}{f1076a65a8ea7bbae56a97b5a1800787}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The challenge of how to appear competent (to oneself and others) is closely tied to the attributional relationship between ability (can) and effort (try). Data are presented to support the layperson's understanding of the discounting principle that describes this relationship: Holding performance constant, the lower the apparent effort and the more difficult the task, the greater the attributed ability. It is proposed that people in our culture attach great value to the appearance of basic, or "natural," ability. Depending on available opportunities, people will withdraw effort, emphasize task difficulty, and even handicap themselves to protect their competence image. Experimental results also make clear that self-promoters must avoid claims that are refutable, excessive, or seen as out of context.}
+      \field{issn}{0146-1672}
+      \field{journaltitle}{Personality and Social Psychology Bulletin}
+      \field{langid}{english}
+      \field{month}{12}
+      \field{number}{4}
+      \field{title}{The {{Framing}} of {{Competence}}}
+      \field{urlday}{24}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{volume}{15}
+      \field{year}{1989}
+      \field{urldateera}{ce}
+      \field{pages}{477\bibrangedash 492}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1177/0146167289154001
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/WZTNBVT6/Jones-1989.pdf
+      \endverb
+    \endentry
+    \entry{Klayman-1987}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=f8f938f5e4d9253c72f5216d12f4626c}{%
+           family={Klayman},
+           familyi={K\bibinitperiod},
+           given={Joshua},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=31d8b02d35f84135f53630963d4cf270}{%
+           family={Ha},
+           familyi={H\bibinitperiod},
+           given={Young-won},
+           giveni={Y\bibinithyphendelim w\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {US}%
+      }
+      \list{publisher}{1}{%
+        {American Psychological Association}%
+      }
+      \strng{namehash}{c6577cb4288b569981547d1b4d2a1d3d}
+      \strng{fullhash}{c6577cb4288b569981547d1b4d2a1d3d}
+      \strng{fullhashraw}{c6577cb4288b569981547d1b4d2a1d3d}
+      \strng{bibnamehash}{c6577cb4288b569981547d1b4d2a1d3d}
+      \strng{authorbibnamehash}{c6577cb4288b569981547d1b4d2a1d3d}
+      \strng{authornamehash}{c6577cb4288b569981547d1b4d2a1d3d}
+      \strng{authorfullhash}{c6577cb4288b569981547d1b4d2a1d3d}
+      \strng{authorfullhashraw}{c6577cb4288b569981547d1b4d2a1d3d}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A number of philosophers and psychologists stress the importance of disconfirmation in reasoning and suggest that people are instead prone to a general deleterious "confirmation bias." In particular, it is suggested that people tend to test those cases that have the best chance of verifying current beliefs rather than those that have the best chance of falsifying them. We show, however, that many phenomena labeled "confirmation bias" are better understood in terms of a general positive test strategy. With this strategy, there is a tendency to test cases that are expected (or known) to have the property of interest rather than those expected (or known) to lack that property. We show that the positive test strategy can be a very good heuristic for determining the truth or falsity of a hypothesis under realistic conditions. It can, however, lead to systematic errors or inefficiencies. (PsycINFO Database Record (c) 2016 APA, all rights reserved)}
+      \field{issn}{1939-1471}
+      \field{journaltitle}{Psychological Review}
+      \field{number}{2}
+      \field{title}{Confirmation, Disconfirmation, and Information in Hypothesis Testing}
+      \field{volume}{94}
+      \field{year}{1987}
+      \field{pages}{211\bibrangedash 228}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1037/0033-295X.94.2.211
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/TC52QU5I/Klayman-1987.pdf
+      \endverb
+      \keyw{Experimentation,Experimenter Bias,Hypothesis Testing,Prediction,Strategies}
+    \endentry
+    \entry{Kuznetsova-2017}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=7cd3845a800c3291e727a82c1f2df45e}{%
+           family={Kuznetsova},
+           familyi={K\bibinitperiod},
+           given={Alexandra},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=17e06e730e273b9c94400089772b8b02}{%
+           family={Brockhoff},
+           familyi={B\bibinitperiod},
+           given={Per\bibnamedelima B.},
+           giveni={P\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=54ec03df91a5b51c9a62ed4f70da8712}{%
+           family={Christensen},
+           familyi={C\bibinitperiod},
+           given={Rune\bibnamedelimb H.\bibnamedelimi B.},
+           giveni={R\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{ee90b672a0dbf4106ee60268eb8768fd}
+      \strng{fullhash}{0734b43304bc167fad6d2532bc75460a}
+      \strng{fullhashraw}{0734b43304bc167fad6d2532bc75460a}
+      \strng{bibnamehash}{0734b43304bc167fad6d2532bc75460a}
+      \strng{authorbibnamehash}{0734b43304bc167fad6d2532bc75460a}
+      \strng{authornamehash}{ee90b672a0dbf4106ee60268eb8768fd}
+      \strng{authorfullhash}{0734b43304bc167fad6d2532bc75460a}
+      \strng{authorfullhashraw}{0734b43304bc167fad6d2532bc75460a}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{One of the frequent questions by users of the mixed model function lmer of the lme4 package has been: How can I get p values for the F and t tests for objects returned by lmer? The lmerTest package extends the 'lmerMod' class of the lme4 package, by overloading the anova and summary functions by providing p values for tests for fixed effects. We have implemented the Satterthwaite's method for approximating degrees of freedom for the t and F tests. We have also implemented the construction of Type I - III ANOVA tables. Furthermore, one may also obtain the summary as well as the anova table using the Kenward-Roger approximation for denominator degrees of freedom (based on the KRmodcomp function from the pbkrtest package). Some other convenient mixed model analysis tools such as a step method, that performs backward elimination of nonsignificant effects - both random and fixed, calculation of population means and multiple comparison tests together with plot facilities are provided by the package as well.}
+      \field{issn}{1548-7660}
+      \field{journaltitle}{Journal of Statistical Software}
+      \field{langid}{english}
+      \field{month}{12}
+      \field{shorttitle}{{{lmerTest Package}}}
+      \field{title}{{{lmerTest Package}}: {{Tests}} in {{Linear Mixed Effects Models}}}
+      \field{urlday}{21}
+      \field{urlmonth}{5}
+      \field{urlyear}{2022}
+      \field{volume}{82}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 26}
+      \range{pages}{26}
+      \verb{doi}
+      \verb 10.18637/jss.v082.i13
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/2Q2K63IL/Kuznetsova-2017.pdf
+      \endverb
+    \endentry
+    \entry{Liefgreen-2020}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=a30e0493f760044568785ad9c8369f8a}{%
+           family={Liefgreen},
+           familyi={L\bibinitperiod},
+           given={Alice},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=62e3ef4c9c8461501f32b1befb4090ca}{%
+           family={Pilditch},
+           familyi={P\bibinitperiod},
+           given={Toby},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=efbafa30e59d6829929a7bd553487abb}{%
+           family={Lagnado},
+           familyi={L\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Netherlands}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier Science}%
+      }
+      \strng{namehash}{42e935180af391919a2de175f891c96d}
+      \strng{fullhash}{bb00501ddcde1aa3e4c830cc8e754dfe}
+      \strng{fullhashraw}{bb00501ddcde1aa3e4c830cc8e754dfe}
+      \strng{bibnamehash}{bb00501ddcde1aa3e4c830cc8e754dfe}
+      \strng{authorbibnamehash}{bb00501ddcde1aa3e4c830cc8e754dfe}
+      \strng{authornamehash}{42e935180af391919a2de175f891c96d}
+      \strng{authorfullhash}{bb00501ddcde1aa3e4c830cc8e754dfe}
+      \strng{authorfullhashraw}{bb00501ddcde1aa3e4c830cc8e754dfe}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Within the domain of psychology, Optimal Experimental Design (OED) principles have been used to model how people seek and evaluate information. Despite proving valuable as computational-level methods to account for people's behaviour, their descriptive and explanatory powers remain largely unexplored. In a series of experiments, we used a naturalistic crime investigation scenario to examine how people evaluate queries, as well as outcomes, in probabilistic contexts. We aimed to uncover the psychological strategies that people use, not just to assess whether they deviated from OED principles. In addition, we explored the adaptiveness of the identified strategies across both one-shot and stepwise information search tasks. We found that people do not always evaluate queries strictly in OED terms and use distinct strategies, such as by identifying a leading contender at the outset. Moreover, we identified aspects of zero-sum thinking and risk aversion that interact with people's information search strategies. Our findings have implications for building a descriptive account of information seeking and evaluation, accounting for factors that currently lie outside the realm of information-theoretic OED measures, such as context and the learner's own preferences. (PsycInfo Database Record (c) 2021 APA, all rights reserved)}
+      \field{issn}{1095-5623}
+      \field{journaltitle}{Cognitive Psychology}
+      \field{title}{Strategies for Selecting and Evaluating Information}
+      \field{volume}{123}
+      \field{year}{2020}
+      \verb{doi}
+      \verb 10.1016/j.cogpsych.2020.101332
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/3Q4YH7SH/Liefgreen-2020a.pdf
+      \endverb
+      \keyw{Bayesian Analysis,Crime,Experimental Design,Experimentation,Information Seeking,Preferences,Probability,Reasoning,Statistical Probability}
+    \endentry
+    \entry{Mercier-2025c}{misc}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=50a0d8f646e56a9ea66a7985c27adbda}{%
+           family={Mercier},
+           familyi={M\bibinitperiod},
+           given={Marius},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=959d077afa1f31ff07c0f16cff1369cf}{%
+           family={Morin},
+           familyi={M\bibinitperiod},
+           given={Olivier},
+           giveni={O\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f70379da697a3b48dab3e96d2c59fddc}{%
+           family={Mercier},
+           familyi={M\bibinitperiod},
+           given={Hugo},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1e244c4c80e5f97c1788baf1d143d9ee}{%
+           family={Quillien},
+           familyi={Q\bibinitperiod},
+           given={Tadeg},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {PsyArXiv}%
+      }
+      \strng{namehash}{cf6a163979a15a06dcc1b66d4188ddb4}
+      \strng{fullhash}{ca7ad4cbf3b7910c5a2fc6a15f4750f2}
+      \strng{fullhashraw}{ca7ad4cbf3b7910c5a2fc6a15f4750f2}
+      \strng{bibnamehash}{ca7ad4cbf3b7910c5a2fc6a15f4750f2}
+      \strng{authorbibnamehash}{ca7ad4cbf3b7910c5a2fc6a15f4750f2}
+      \strng{authornamehash}{cf6a163979a15a06dcc1b66d4188ddb4}
+      \strng{authorfullhash}{ca7ad4cbf3b7910c5a2fc6a15f4750f2}
+      \strng{authorfullhashraw}{ca7ad4cbf3b7910c5a2fc6a15f4750f2}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{One of the main challenges of social cognition is inferring the competence of others, which often occurs in contexts of limited information. Recent researchs suggest that people can successfully infer the knowledgeability of others from past accuracy, but the computational principles underlying these judgments are unknown. We test whether people can both infer and search for information about others' competence in a near-optimal way, consistent with rational Bayesian reasoning. In Studies 1 and 2, participants were presented with an individual's performance on a trivia question and predicted the individual's ability to answer other trivia questions from the same theme. Replicating and extending past results, we observe that participants very accurately predict performance from limited information. Computational modelling shows that participants' inferences are better described by Bayesian processes than by plausible heuristics, suggesting that participants rationally integrate new information with their prior expectations about others' competence. Study 3 shows that participants can select which information would be most diagnostic for inferring an individual's competence, again in a manner consistent with Bayesian rationality. Overall, our results suggest that people approximate a rational Bayesian model both when searching for and when integrating information about others' competence.}
+      \field{month}{11}
+      \field{number}{rt8ux\_v1}
+      \field{shorttitle}{Who Knows What?}
+      \field{title}{Who Knows What? {{Bayesian Competence Inference}} Guides {{Knowledge Attribution}} and {{Information}} Search}
+      \field{urlday}{20}
+      \field{urlmonth}{11}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.31234/osf.io/rt8ux_v1
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/224U235P/Mercier-2025c.pdf
+      \endverb
+      \keyw{Competence,Computational Modeling,Information Search,Knowledge Attribution,Social Cognition}
+    \endentry
+    \entry{Nelson-2005}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d66829142a46b1d2b66baa6c4ca7e334}{%
+           family={Nelson},
+           familyi={N\bibinitperiod},
+           given={Jonathan\bibnamedelima D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {US}%
+      }
+      \list{publisher}{1}{%
+        {American Psychological Association}%
+      }
+      \strng{namehash}{d66829142a46b1d2b66baa6c4ca7e334}
+      \strng{fullhash}{d66829142a46b1d2b66baa6c4ca7e334}
+      \strng{fullhashraw}{d66829142a46b1d2b66baa6c4ca7e334}
+      \strng{bibnamehash}{d66829142a46b1d2b66baa6c4ca7e334}
+      \strng{authorbibnamehash}{d66829142a46b1d2b66baa6c4ca7e334}
+      \strng{authornamehash}{d66829142a46b1d2b66baa6c4ca7e334}
+      \strng{authorfullhash}{d66829142a46b1d2b66baa6c4ca7e334}
+      \strng{authorfullhashraw}{d66829142a46b1d2b66baa6c4ca7e334}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{[Correction Notice: An erratum for this article was reported in Vol 114(3) of Psychological Review (see record 2007-10421-013). In Table 13, the data should indicate that 7\% of females had short hair and 93\% of females had long hair. The calculations and discussion in the article were based on these correct percentages.] Several norms for how people should assess a question's usefulness have been proposed, notably Bayesian diagnosticity, information gain (mutual information), Kullback-Liebler distance, probability gain (error minimization), and impact (absolute change). Several probabilistic models of previous experiments on categorization, covariation assessment, medical diagnosis, and the selection task are shown to not discriminate among these norms as descriptive models of human intuitions and behavior. Computational optimization found situations in which information gain, probability gain, and impact strongly contradict Bayesian diagnosticity. In these situations, diagnosticity's claims are normatively inferior. Results of a new experiment strongly contradict the predictions of Bayesian diagnosticity. Normative theoretical concerns also argue against use of diagnosticity. It is concluded that Bayesian diagnosticity is normatively flawed and empirically unjustified. (PsycINFO Database Record (c) 2016 APA, all rights reserved)}
+      \field{issn}{1939-1471}
+      \field{journaltitle}{Psychological Review}
+      \field{number}{4}
+      \field{shorttitle}{Finding {{Useful Questions}}}
+      \field{title}{Finding {{Useful Questions}}: {{On Bayesian Diagnosticity}}, {{Probability}}, {{Impact}}, and {{Information Gain}}}
+      \field{volume}{112}
+      \field{year}{2005}
+      \field{pages}{979\bibrangedash 999}
+      \range{pages}{21}
+      \verb{doi}
+      \verb 10.1037/0033-295X.112.4.979
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/VK3NSAG2/Nelson-2005.pdf
+      \endverb
+      \keyw{Decision Theory,Diagnosis,Experimental Design,Information,Questioning,Statistical Probability}
+    \endentry
+    \entry{Oaksford-1994}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=aafa17fb35a5123e14e0c21659088821}{%
+           family={Oaksford},
+           familyi={O\bibinitperiod},
+           given={Mike},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=68f539b14c5ba5fb2395b9309d555ad7}{%
+           family={Chater},
+           familyi={C\bibinitperiod},
+           given={Nick},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {US}%
+      }
+      \list{publisher}{1}{%
+        {American Psychological Association}%
+      }
+      \strng{namehash}{c9892eeafdb412e5fabe2e764e2b69cc}
+      \strng{fullhash}{c9892eeafdb412e5fabe2e764e2b69cc}
+      \strng{fullhashraw}{c9892eeafdb412e5fabe2e764e2b69cc}
+      \strng{bibnamehash}{c9892eeafdb412e5fabe2e764e2b69cc}
+      \strng{authorbibnamehash}{c9892eeafdb412e5fabe2e764e2b69cc}
+      \strng{authornamehash}{c9892eeafdb412e5fabe2e764e2b69cc}
+      \strng{authorfullhash}{c9892eeafdb412e5fabe2e764e2b69cc}
+      \strng{authorfullhashraw}{c9892eeafdb412e5fabe2e764e2b69cc}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Human reasoning in hypothesis-testing tasks like P. C. Wason's (1968) selection task has been depicted as prone to systematic biases. However, performance on this task has been assessed against a now outmoded falsificationist philosophy of science. Therefore, the experimental data is reassessed in the light of a Bayesian model of optimal data selection in inductive hypothesis testing. The model provides a rational analysis (J. R. Anderson, 1990) of the selection task that fits well with people's performance on both abstract and thematic versions of the task. The model suggests that reasoning in these tasks may be rational rather than subject to systematic bias. (PsycINFO Database Record (c) 2016 APA, all rights reserved)}
+      \field{issn}{1939-1471}
+      \field{journaltitle}{Psychological Review}
+      \field{number}{4}
+      \field{title}{A Rational Analysis of the Selection Task as Optimal Data Selection}
+      \field{volume}{101}
+      \field{year}{1994}
+      \field{pages}{608\bibrangedash 631}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.1037/0033-295X.101.4.608
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/WRSPF5MB/Oaksford-1994.pdf
+      \endverb
+      \keyw{Hypothesis Testing,Reasoning,Statistical Probability}
+    \endentry
+    \entry{Quillien-2023a}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=1e244c4c80e5f97c1788baf1d143d9ee}{%
+           family={Quillien},
+           familyi={Q\bibinitperiod},
+           given={Tadeg},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{1e244c4c80e5f97c1788baf1d143d9ee}
+      \strng{fullhash}{1e244c4c80e5f97c1788baf1d143d9ee}
+      \strng{fullhashraw}{1e244c4c80e5f97c1788baf1d143d9ee}
+      \strng{bibnamehash}{1e244c4c80e5f97c1788baf1d143d9ee}
+      \strng{authorbibnamehash}{1e244c4c80e5f97c1788baf1d143d9ee}
+      \strng{authornamehash}{1e244c4c80e5f97c1788baf1d143d9ee}
+      \strng{authorfullhash}{1e244c4c80e5f97c1788baf1d143d9ee}
+      \strng{authorfullhashraw}{1e244c4c80e5f97c1788baf1d143d9ee}
+      \field{sortinit}{Q}
+      \field{sortinithash}{ce69a400a872ddd02ee7fdb3b38c6abd}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{00100277}
+      \field{journaltitle}{Cognition}
+      \field{langid}{english}
+      \field{month}{2}
+      \field{title}{Rational Information Search in Welfare-Tradeoff Cognition}
+      \field{urlday}{4}
+      \field{urlmonth}{3}
+      \field{urlyear}{2024}
+      \field{volume}{231}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \field{pages}{105317}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.cognition.2022.105317
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/CI7G68L4/Quillien-2023.pdf
+      \endverb
+    \endentry
+    \entry{Rasch-1960}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=72bec79f8a64b0a276f2e4b763e4dea0}{%
+           family={Rasch},
+           familyi={R\bibinitperiod},
+           given={Georg},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Oxford, England}%
+      }
+      \list{publisher}{1}{%
+        {Nielsen \& Lydiche}%
+      }
+      \strng{namehash}{72bec79f8a64b0a276f2e4b763e4dea0}
+      \strng{fullhash}{72bec79f8a64b0a276f2e4b763e4dea0}
+      \strng{fullhashraw}{72bec79f8a64b0a276f2e4b763e4dea0}
+      \strng{bibnamehash}{72bec79f8a64b0a276f2e4b763e4dea0}
+      \strng{authorbibnamehash}{72bec79f8a64b0a276f2e4b763e4dea0}
+      \strng{authornamehash}{72bec79f8a64b0a276f2e4b763e4dea0}
+      \strng{authorfullhash}{72bec79f8a64b0a276f2e4b763e4dea0}
+      \strng{authorfullhashraw}{72bec79f8a64b0a276f2e4b763e4dea0}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{This monograph attempts a new approach for testing construction in psychology. A probabilistic model is developed for 3 different types of tests. Each model implies 2 types of parameters: a "difficulty" for each test or item and an "ability" for each person, independent of which set of tests or items has been employed. Both parameters are estimated from the data. Chapters 1-7 present the basic theory with a minimum of mathematics. Chapters 8-10 present in detail the mathematics underlying the models. From Psyc Abstracts 36:05:5HB84R. (PsycINFO Database Record (c) 2016 APA, all rights reserved)}
+      \field{series}{Studies in Mathematical Psychology: {{I}}. {{Probabilistic}} Models for Some Intelligence and Attainment Tests}
+      \field{shorttitle}{Studies in Mathematical Psychology}
+      \field{title}{Studies in Mathematical Psychology: {{I}}. {{Probabilistic}} Models for Some Intelligence and Attainment Tests}
+      \field{year}{1960}
+      \field{pages}{xiii\bibrangessep 184}
+      \range{pages}{2}
+    \endentry
+    \entry{Tsividis-2014}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=fb78a99785ac2cd9e9882d40585bbef6}{%
+           family={Tsividis},
+           familyi={T\bibinitperiod},
+           given={Pedro},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2c9ceb68af3d8ec7899ab093a4e89ba4}{%
+           family={Gershman},
+           familyi={G\bibinitperiod},
+           given={Samuel},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=48de56ec34034a2f537d9cc56f0774d2}{%
+           family={Tenenbaum},
+           familyi={T\bibinitperiod},
+           given={Josh},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6bc603331efc2a046e153b6392ac3348}{%
+           family={Schulz},
+           familyi={S\bibinitperiod},
+           given={Laura},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{14c2899853843717927cbe0a7fada5a6}
+      \strng{fullhash}{db23cc072e6a73ef6e955a5dcf7b8b78}
+      \strng{fullhashraw}{db23cc072e6a73ef6e955a5dcf7b8b78}
+      \strng{bibnamehash}{db23cc072e6a73ef6e955a5dcf7b8b78}
+      \strng{authorbibnamehash}{db23cc072e6a73ef6e955a5dcf7b8b78}
+      \strng{authornamehash}{14c2899853843717927cbe0a7fada5a6}
+      \strng{authorfullhash}{db23cc072e6a73ef6e955a5dcf7b8b78}
+      \strng{authorfullhashraw}{db23cc072e6a73ef6e955a5dcf7b8b78}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the {{Annual Meeting}} of the {{Cognitive Science Society}}}
+      \field{title}{Information Selection in Noisy Environments with Large Action Spaces}
+      \field{urlday}{4}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{36}
+      \field{year}{2014}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/RGDIGF8T/Tsividis-2014.pdf
+      \endverb
+    \endentry
+    \entry{Wu-2017}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=82e6adb45133e0a6bdeb631f8b59d6a6}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Charley\bibnamedelima M.},
+           giveni={C\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a88fc7dfaaf1c8d0c9ec5a1b5b635f07}{%
+           family={Meder},
+           familyi={M\bibinitperiod},
+           given={Björn},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c6abcd91873bf034a7f5894e0064e245}{%
+           family={Filimon},
+           familyi={F\bibinitperiod},
+           given={Flavia},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d66829142a46b1d2b66baa6c4ca7e334}{%
+           family={Nelson},
+           familyi={N\bibinitperiod},
+           given={Jonathan\bibnamedelima D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {American Psychological Association}%
+      }
+      \strng{namehash}{d29508cf2b2ad6b869353e40f1c7ca94}
+      \strng{fullhash}{9904ae33b41016963cc6e18613f151fd}
+      \strng{fullhashraw}{9904ae33b41016963cc6e18613f151fd}
+      \strng{bibnamehash}{9904ae33b41016963cc6e18613f151fd}
+      \strng{authorbibnamehash}{9904ae33b41016963cc6e18613f151fd}
+      \strng{authornamehash}{d29508cf2b2ad6b869353e40f1c7ca94}
+      \strng{authorfullhash}{9904ae33b41016963cc6e18613f151fd}
+      \strng{authorfullhashraw}{9904ae33b41016963cc6e18613f151fd}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{journaltitle}{Journal of Experimental Psychology: Learning, Memory, and Cognition}
+      \field{number}{8}
+      \field{shorttitle}{Asking Better Questions}
+      \field{title}{Asking Better Questions: {{How}} Presentation Formats Influence Information Search.}
+      \field{urlday}{4}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{43}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \field{pages}{1274\bibrangedash 1297}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.1037/xlm0000374
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/PWXHYADN/Wu-2017.pdf
+      \endverb
+    \endentry
+    \entry{Xiang-2026}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=baa983e0769e57b7f9a497fc98e9a245}{%
+           family={Xiang},
+           familyi={X\bibinitperiod},
+           given={Yang},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=947b5ff2e5969eafe5136b3e017c5c01}{%
+           family={Gershman},
+           familyi={G\bibinitperiod},
+           given={Samuel\bibnamedelima J.},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e7984042ee7d500f82c1c171b2054899}{%
+           family={Gerstenberg},
+           familyi={G\bibinitperiod},
+           given={Tobias},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{6df653078dd452db94971f805b3abbc4}
+      \strng{fullhash}{e3e54a47521aa34de0cf191507ddbee6}
+      \strng{fullhashraw}{e3e54a47521aa34de0cf191507ddbee6}
+      \strng{bibnamehash}{e3e54a47521aa34de0cf191507ddbee6}
+      \strng{authorbibnamehash}{e3e54a47521aa34de0cf191507ddbee6}
+      \strng{authornamehash}{6df653078dd452db94971f805b3abbc4}
+      \strng{authorfullhash}{e3e54a47521aa34de0cf191507ddbee6}
+      \strng{authorfullhashraw}{e3e54a47521aa34de0cf191507ddbee6}
+      \field{sortinit}{X}
+      \field{sortinithash}{1965c258adceecf23ce3d67b05113442}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Cognition}
+      \field{title}{A Signaling Theory of Self-Handicapping}
+      \field{urlday}{3}
+      \field{urlmonth}{10}
+      \field{urlyear}{2025}
+      \field{volume}{266}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \field{pages}{106288}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.cognition.2025.106288
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/9Z55259I/Xiang-2026.pdf
+      \endverb
+    \endentry
+  \enddatalist
+  \datalist[entry]{apa/global//global/global/global}
+    \entry{Baker-2017}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=de3e74deaaca6d4ba07e1e6d0e7b7244}{%
+           family={Baker},
+           familyi={B\bibinitperiod},
+           given={Chris\bibnamedelima L.},
+           giveni={C\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4a3fcf471def93d28d7799c4fe0a7286}{%
+           family={{Jara-Ettinger}},
+           familyi={J\bibinitperiod},
+           given={Julian},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6fea16fbc3912bb352504facda6a3007}{%
+           family={Saxe},
+           familyi={S\bibinitperiod},
+           given={Rebecca},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5c7ff02e1f8b4c4aa7bfddece14f23d2}{%
+           family={Tenenbaum},
+           familyi={T\bibinitperiod},
+           given={Joshua\bibnamedelima B.},
+           giveni={J\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{52d0737fea2a8ee736bb1026462f161a}
+      \strng{fullhash}{7814e4a4ad428a8df892e14234bf981e}
+      \strng{fullhashraw}{7814e4a4ad428a8df892e14234bf981e}
+      \strng{bibnamehash}{7814e4a4ad428a8df892e14234bf981e}
+      \strng{authorbibnamehash}{7814e4a4ad428a8df892e14234bf981e}
+      \strng{authornamehash}{52d0737fea2a8ee736bb1026462f161a}
+      \strng{authorfullhash}{7814e4a4ad428a8df892e14234bf981e}
+      \strng{authorfullhashraw}{7814e4a4ad428a8df892e14234bf981e}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2397-3374}
+      \field{journaltitle}{Nature Human Behaviour}
+      \field{langid}{english}
+      \field{month}{3}
+      \field{number}{4}
+      \field{title}{Rational Quantitative Attribution of Beliefs, Desires and Percepts in Human Mentalizing}
+      \field{urlday}{5}
+      \field{urlmonth}{8}
+      \field{urlyear}{2025}
+      \field{volume}{1}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \field{pages}{0064}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1038/s41562-017-0064
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/HH83526V/Baker-2017.pdf
+      \endverb
+    \endentry
+    \entry{Bramley-2015}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=c75b7075e6b936f16665d8465ce3686e}{%
+           family={Bramley},
+           familyi={B\bibinitperiod},
+           given={Neil\bibnamedelima R.},
+           giveni={N\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e7217f2e21106cf2fb139fd36946da97}{%
+           family={Lagnado},
+           familyi={L\bibinitperiod},
+           given={David\bibnamedelima A.},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=aa2bcefbbebd7fcf69edad382bc0f765}{%
+           family={Speekenbrink},
+           familyi={S\bibinitperiod},
+           given={Maarten},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {US}%
+      }
+      \list{publisher}{1}{%
+        {American Psychological Association}%
+      }
+      \strng{namehash}{28cbddcc8ac0a378b6edf9129c5ec2f6}
+      \strng{fullhash}{92c967cce8a44a082cd75649590ff9f0}
+      \strng{fullhashraw}{92c967cce8a44a082cd75649590ff9f0}
+      \strng{bibnamehash}{92c967cce8a44a082cd75649590ff9f0}
+      \strng{authorbibnamehash}{92c967cce8a44a082cd75649590ff9f0}
+      \strng{authornamehash}{28cbddcc8ac0a378b6edf9129c5ec2f6}
+      \strng{authorfullhash}{92c967cce8a44a082cd75649590ff9f0}
+      \strng{authorfullhashraw}{92c967cce8a44a082cd75649590ff9f0}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Interacting with a system is key to uncovering its causal structure. A computational framework for interventional causal learning has been developed over the last decade, but how real causal learners might achieve or approximate the computations entailed by this framework is still poorly understood. Here we describe an interactive computer task in which participants were incentivized to learn the structure of probabilistic causal systems through free selection of multiple interventions. We develop models of participants' intervention choices and online structure judgments, using expected utility gain, probability gain, and information gain and introducing plausible memory and processing constraints. We find that successful participants are best described by a model that acts to maximize information (rather than expected score or probability of being correct); that forgets much of the evidence received in earlier trials; but that mitigates this by being conservative, preferring structures consistent with earlier stated beliefs. We explore 2 heuristics that partly explain how participants might be approximating these models without explicitly representing or updating a hypothesis space. (PsycINFO Database Record (c) 2016 APA, all rights reserved)}
+      \field{issn}{1939-1285}
+      \field{journaltitle}{Journal of Experimental Psychology: Learning, Memory, and Cognition}
+      \field{number}{3}
+      \field{shorttitle}{Conservative Forgetful Scholars}
+      \field{title}{Conservative Forgetful Scholars: {{How}} People Learn Causal Structure through Sequences of Interventions}
+      \field{volume}{41}
+      \field{year}{2015}
+      \field{pages}{708\bibrangedash 731}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.1037/xlm0000061
+      \endverb
+      \keyw{Causality,Computational Modeling,Intervention,Learning,Statistical Probability}
+    \endentry
+    \entry{Croissant-2020}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=2475d5bed2d8345c0fa76ae06ba6685f}{%
+           family={Croissant},
+           familyi={C\bibinitperiod},
+           given={Yves},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{2475d5bed2d8345c0fa76ae06ba6685f}
+      \strng{fullhash}{2475d5bed2d8345c0fa76ae06ba6685f}
+      \strng{fullhashraw}{2475d5bed2d8345c0fa76ae06ba6685f}
+      \strng{bibnamehash}{2475d5bed2d8345c0fa76ae06ba6685f}
+      \strng{authorbibnamehash}{2475d5bed2d8345c0fa76ae06ba6685f}
+      \strng{authornamehash}{2475d5bed2d8345c0fa76ae06ba6685f}
+      \strng{authorfullhash}{2475d5bed2d8345c0fa76ae06ba6685f}
+      \strng{authorfullhashraw}{2475d5bed2d8345c0fa76ae06ba6685f}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{mlogit is a package for R which enables the estimation of random utility models with choice situation and/or alternative specific variables. The main extensions of the basic multinomial model (heteroscedastic, nested and random parameter models) are implemented.}
+      \field{issn}{1548-7660}
+      \field{journaltitle}{Journal of Statistical Software}
+      \field{langid}{english}
+      \field{month}{10}
+      \field{shorttitle}{Estimation of {{Random Utility Models}} in {{R}}}
+      \field{title}{Estimation of {{Random Utility Models}} in {{R}}: {{The}} Mlogit {{Package}}}
+      \field{urlday}{19}
+      \field{urlmonth}{3}
+      \field{urlyear}{2025}
+      \field{volume}{95}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 41}
+      \range{pages}{41}
+      \verb{doi}
+      \verb 10.18637/jss.v095.i11
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/7EF52ET9/Croissant-2020.pdf
+      \endverb
+      \keyw{discrete choice models,econometrics,maximum likelihood estimation,R}
+    \endentry
+    \entry{Cuddy-2011}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=df9efa17f186c273d5dadd51d8271fa2}{%
+           family={Cuddy},
+           familyi={C\bibinitperiod},
+           given={Amy\bibnamedelimb J.\bibnamedelimi C.},
+           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0caceabd8cca2f5fffeb46b18c3a88e0}{%
+           family={Glick},
+           familyi={G\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=37bb25d5c7f464fb42c91717ca467c54}{%
+           family={Beninger},
+           familyi={B\bibinitperiod},
+           given={Anna},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{ecc3b55f5020173fab9adc22c023b183}
+      \strng{fullhash}{2a715c376da126c0ee0f96171c3eadfa}
+      \strng{fullhashraw}{2a715c376da126c0ee0f96171c3eadfa}
+      \strng{bibnamehash}{2a715c376da126c0ee0f96171c3eadfa}
+      \strng{authorbibnamehash}{2a715c376da126c0ee0f96171c3eadfa}
+      \strng{authornamehash}{ecc3b55f5020173fab9adc22c023b183}
+      \strng{authorfullhash}{2a715c376da126c0ee0f96171c3eadfa}
+      \strng{authorfullhashraw}{2a715c376da126c0ee0f96171c3eadfa}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Two traits -- warmth and competence -- govern social judgments of individuals and groups, and these judgments shape people's emotions and behaviors. The present chapter describes the causes and consequences of warmth and competence judgments; how, when and why they determine significant professional and organizational outcomes, such as hiring, employee evaluation, and allocation of tasks and resources. Warmth and competence represent the central dimensions of group stereotypes, the majority of which are ambivalent -- characterizing groups as warm but incompetent (e.g., older people, working mothers) or competent but cold (e.g., ``model minorities,'' female leaders), in turn eliciting ambivalent feelings (i.e., pity and envy, respectively) and actions toward members of those groups. However, through nonverbal behaviors that subtly communicate warmth and competence information, people can manage the impressions they make on colleagues, potential employers, and possible investors. Finally, we discuss important directions for future research, such as investigating the causes and consequences of how organizations and industries are evaluated on warmth and competence.}
+      \field{issn}{0191-3085}
+      \field{journaltitle}{Research in Organizational Behavior}
+      \field{month}{1}
+      \field{title}{The Dynamics of Warmth and Competence Judgments, and Their Outcomes in Organizations}
+      \field{urlday}{23}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{31}
+      \field{year}{2011}
+      \field{urldateera}{ce}
+      \field{pages}{73\bibrangedash 98}
+      \range{pages}{26}
+      \verb{doi}
+      \verb 10.1016/j.riob.2011.10.004
+      \endverb
+    \endentry
+    \entry{Davis-2025}{article}{}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=380924744f76d384293d4aa1bcb6e24f}{%
+           family={Davis},
+           familyi={D\bibinitperiod},
+           given={Zachary\bibnamedelima J.},
+           giveni={Z\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=41a6434687957f087fd3a1837510ab08}{%
+           family={Allen},
+           familyi={A\bibinitperiod},
+           given={Kelsey\bibnamedelima R.},
+           giveni={K\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4e7207db71a35b350cba30f89c24691d}{%
+           family={{Kleiman-Weiner}},
+           familyi={K\bibinitperiod},
+           given={Max},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4a3fcf471def93d28d7799c4fe0a7286}{%
+           family={{Jara-Ettinger}},
+           familyi={J\bibinitperiod},
+           given={Julian},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e7984042ee7d500f82c1c171b2054899}{%
+           family={Gerstenberg},
+           familyi={G\bibinitperiod},
+           given={Tobias},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d3a9815009f7c123cbf5f81c030b20f5}
+      \strng{fullhash}{8aaedc1ff6c5fa2b8bfc0f4d4d5c5c2d}
+      \strng{fullhashraw}{8aaedc1ff6c5fa2b8bfc0f4d4d5c5c2d}
+      \strng{bibnamehash}{8aaedc1ff6c5fa2b8bfc0f4d4d5c5c2d}
+      \strng{authorbibnamehash}{8aaedc1ff6c5fa2b8bfc0f4d4d5c5c2d}
+      \strng{authornamehash}{d3a9815009f7c123cbf5f81c030b20f5}
+      \strng{authorfullhash}{8aaedc1ff6c5fa2b8bfc0f4d4d5c5c2d}
+      \strng{authorfullhashraw}{8aaedc1ff6c5fa2b8bfc0f4d4d5c5c2d}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{People have a remarkable ability to infer the hidden causes of things. From physical evidence, such as muddy footprints on the floor, we can figure out what happened and who did it. Here, we investigate another source of evidence: social evaluations. Social evaluations, such as praise or blame, are commonplace in everyday conversations. While such evaluations do not fully reveal what happened, they provide valuable clues. Across three experiments, we present situations where a person was praised or blamed, and participants' task is to use that information to figure out what happened. In Experiment 1, we find that people draw systematic inferences from social evaluations about situational factors, a person's actions, capabilities, and social roles. In Experiments 2 and 3, we develop computational models that generate praise and blame judgments by considering what causal role a person's action played, and what action they should have taken. Inverting these generative models of praise and blame via Bayesian inference yields accurate predictions about what inferences participants draw based on social evaluations. (PsycInfo Database Record (c) 2025 APA, all rights reserved).}
+      \field{issn}{1939-1315}
+      \field{journaltitle}{Journal of Personality and Social Psychology}
+      \field{langid}{english}
+      \field{month}{4}
+      \field{title}{Inference from Social Evaluation}
+      \field{year}{2025}
+      \verb{doi}
+      \verb 10.1037/pspa0000445
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/GXUVDDJR/Davis-2025.pdf
+      \endverb
+    \endentry
+    \entry{Dubey-2020}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=c74d0640bb86828b83f915904f633589}{%
+           family={Dubey},
+           familyi={D\bibinitperiod},
+           given={Rachit},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=15f19cfb916ba0b8afb494f250ea80a2}{%
+           family={Griffiths},
+           familyi={G\bibinitperiod},
+           given={Thomas\bibnamedelima L.},
+           giveni={T\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{addb37fd3777c31c81055e3e84d31f31}
+      \strng{fullhash}{addb37fd3777c31c81055e3e84d31f31}
+      \strng{fullhashraw}{addb37fd3777c31c81055e3e84d31f31}
+      \strng{bibnamehash}{addb37fd3777c31c81055e3e84d31f31}
+      \strng{authorbibnamehash}{addb37fd3777c31c81055e3e84d31f31}
+      \strng{authornamehash}{addb37fd3777c31c81055e3e84d31f31}
+      \strng{authorfullhash}{addb37fd3777c31c81055e3e84d31f31}
+      \strng{authorfullhashraw}{addb37fd3777c31c81055e3e84d31f31}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1939-1471, 0033-295X}
+      \field{journaltitle}{Psychological Review}
+      \field{langid}{english}
+      \field{month}{4}
+      \field{number}{3}
+      \field{title}{Reconciling Novelty and Complexity through a Rational Analysis of Curiosity.}
+      \field{urlday}{14}
+      \field{urlmonth}{11}
+      \field{urlyear}{2022}
+      \field{volume}{127}
+      \field{year}{2020}
+      \field{urldateera}{ce}
+      \field{pages}{455\bibrangedash 476}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.1037/rev0000175
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/947J74DQ/Dubey-2020.pdf
+      \endverb
+    \endentry
+    \entry{Dubourg-2025}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=905737871e06c389c5770bda96fadd63}{%
+           family={Dubourg},
+           familyi={D\bibinitperiod},
+           given={Edgar},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=959d077afa1f31ff07c0f16cff1369cf}{%
+           family={Morin},
+           familyi={M\bibinitperiod},
+           given={Olivier},
+           giveni={O\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f70379da697a3b48dab3e96d2c59fddc}{%
+           family={Mercier},
+           familyi={M\bibinitperiod},
+           given={Hugo},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{0ee15415692d0ffc435f4811c7ffb24a}
+      \strng{fullhash}{87255a0ae424f64f3b90fe48b6a89b44}
+      \strng{fullhashraw}{87255a0ae424f64f3b90fe48b6a89b44}
+      \strng{bibnamehash}{87255a0ae424f64f3b90fe48b6a89b44}
+      \strng{authorbibnamehash}{87255a0ae424f64f3b90fe48b6a89b44}
+      \strng{authornamehash}{0ee15415692d0ffc435f4811c7ffb24a}
+      \strng{authorfullhash}{87255a0ae424f64f3b90fe48b6a89b44}
+      \strng{authorfullhashraw}{87255a0ae424f64f3b90fe48b6a89b44}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Psychological Science}
+      \field{number}{6}
+      \field{title}{Using the {{Nested Structure}} of {{Knowledge}} to {{Infer What Others Know}}}
+      \field{volume}{36}
+      \field{year}{2025}
+      \field{pages}{443\bibrangedash 450}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1177/09567976251339633
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/AJ7IV3B7/Dubourg-2025.pdf;/Users/mariusmercier/Zotero/storage/JSAGSGEY/sj-docx-1-pss-10.1177_09567976251339633.docx
+      \endverb
+    \endentry
+    \entry{Garfield-2025}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=afb0926f67e64911bccc8141938a3e14}{%
+           family={Garfield},
+           familyi={G\bibinitperiod},
+           given={Zachary\bibnamedelima H.},
+           giveni={Z\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=41c35120d925ef570567ca82aa69dc44}{%
+           family={{von Rueden}},
+           familyi={v\bibinitperiod},
+           given={Christopher\bibnamedelima R.},
+           giveni={C\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f5b4a4f2975e8c667cea290f8a11266d}{%
+           family={Hagen},
+           familyi={H\bibinitperiod},
+           given={Edward\bibnamedelima H.},
+           giveni={E\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{ebfae1c6684ad5493e031b7a1db49e36}
+      \strng{fullhash}{0529c23378c7be172b2a3915b64fa25d}
+      \strng{fullhashraw}{0529c23378c7be172b2a3915b64fa25d}
+      \strng{bibnamehash}{0529c23378c7be172b2a3915b64fa25d}
+      \strng{authorbibnamehash}{0529c23378c7be172b2a3915b64fa25d}
+      \strng{authornamehash}{ebfae1c6684ad5493e031b7a1db49e36}
+      \strng{authorfullhash}{0529c23378c7be172b2a3915b64fa25d}
+      \strng{authorfullhashraw}{0529c23378c7be172b2a3915b64fa25d}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Human leadership and followership take many forms, shaped by the social, economic, political, and cultural contexts of our groups and societies. Underlying this complexity, we argue, are key elements of human social psychology regarding social comparison and the resolution of coordination and collective action problems. The Multi-Capital Leadership (MCL) theory posits that leader emergence and effectiveness depend on perceptions of individuals' abilities to provide benefits or impose costs in solving challenges of group living, through the deployment of different forms of capital: material, social, somatic (e.g., physical formidability, height, immune functionality), and neural (e.g., knowledge, intelligence, personality, supernatural abilities). We integrate this framework with a review of leadership across human societies, including in non-state and non-industrial contexts, and with novel comparative analyses of ethnographic data. This synthesis highlights how context-specific demands for coordination and collective action, and the accuracy of social comparison, shape the structure and dynamics of leadership and followership across cultures.}
+      \field{issn}{1936-4776}
+      \field{journaltitle}{Human Nature}
+      \field{langid}{english}
+      \field{month}{10}
+      \field{title}{The {{Multi-Capital Leadership Theory}}}
+      \field{urlday}{7}
+      \field{urlmonth}{11}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1007/s12110-025-09503-y
+      \endverb
+      \keyw{Context,Cultural diversity,Embodied capital,Followership,Human capital,Leadership}
+    \endentry
+    \entry{Gigerenzer-2011}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=b48d2c7ac3f28cdcd52b92c3c2953a61}{%
+           family={Gigerenzer},
+           familyi={G\bibinitperiod},
+           given={Gerd},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=315ba9b27bf95aa1b3df4d7621f0e43e}{%
+           family={Gaissmaier},
+           familyi={G\bibinitperiod},
+           given={Wolfgang},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Annual Reviews}%
+      }
+      \strng{namehash}{9ecd14c61d73982a6fda66d70c726a1f}
+      \strng{fullhash}{9ecd14c61d73982a6fda66d70c726a1f}
+      \strng{fullhashraw}{9ecd14c61d73982a6fda66d70c726a1f}
+      \strng{bibnamehash}{9ecd14c61d73982a6fda66d70c726a1f}
+      \strng{authorbibnamehash}{9ecd14c61d73982a6fda66d70c726a1f}
+      \strng{authornamehash}{9ecd14c61d73982a6fda66d70c726a1f}
+      \strng{authorfullhash}{9ecd14c61d73982a6fda66d70c726a1f}
+      \strng{authorfullhashraw}{9ecd14c61d73982a6fda66d70c726a1f}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{As reflected in the amount of controversy, few areas in psychology have undergone such dramatic conceptual changes in the past decade as the emerging science of heuristics. Heuristics are efficient cognitive processes, conscious or unconscious, that ignore part of the information. Because using heuristics saves effort, the classical view has been that heuristic decisions imply greater errors than do ``rational'' decisions as defined by logic or statistical models. However, for many decisions, the assumptions of rational models are not met, and it is an empirical rather than an a priori issue how well cognitive heuristics function in an uncertain world. To answer both the descriptive question (``Which heuristics do people use in which situations?'') and the prescriptive question (``When should people rely on a given heuristic rather than a complex strategy to make better judgments?''), formal models are indispensable. We review research that tests formal models of heuristic inference, including in business organizations, health care, and legal institutions. This research indicates that (a) individuals and organizations often rely on simple heuristics in an adaptive way, and (b) ignoring part of the information can lead to more accurate judgments than weighting and adding all information, for instance for low predictability and small samples. The big future challenge is to develop a systematic theory of the building blocks of heuristics as well as the core capacities and environmental structures these exploit.}
+      \field{issn}{0066-4308, 1545-2085}
+      \field{journaltitle}{Annual Review of Psychology}
+      \field{langid}{french}
+      \field{month}{1}
+      \field{number}{Volume 62, 2011}
+      \field{title}{{Heuristic Decision Making}}
+      \field{urlday}{21}
+      \field{urlmonth}{10}
+      \field{urlyear}{2025}
+      \field{volume}{62}
+      \field{year}{2011}
+      \field{urldateera}{ce}
+      \field{pages}{451\bibrangedash 482}
+      \range{pages}{32}
+      \verb{doi}
+      \verb 10.1146/annurev-psych-120709-145346
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/Z4FGUPXZ/Gigerenzer-2011.pdf
+      \endverb
+    \endentry
+    \entry{Harris-2018}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=0fdfb74e9fbce0d8ce526fe64b379a97}{%
+           family={Harris},
+           familyi={H\bibinitperiod},
+           given={Paul\bibnamedelima L.},
+           giveni={P\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3b4b1e2b9bc6e05f2807c0118c87da34}{%
+           family={Koenig},
+           familyi={K\bibinitperiod},
+           given={Melissa\bibnamedelima A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=96b44dc8cd577cc884e35e734faa7497}{%
+           family={Corriveau},
+           familyi={C\bibinitperiod},
+           given={Kathleen\bibnamedelima H.},
+           giveni={K\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=afc50a6e90be091e1ef27d9a769e6d1c}{%
+           family={Jaswal},
+           familyi={J\bibinitperiod},
+           given={Vikram\bibnamedelima K.},
+           giveni={V\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{416ec202105701b6b3c3bdf496a19a71}
+      \strng{fullhash}{3681c2d8dc0a9685ff2a1726adb8b772}
+      \strng{fullhashraw}{3681c2d8dc0a9685ff2a1726adb8b772}
+      \strng{bibnamehash}{3681c2d8dc0a9685ff2a1726adb8b772}
+      \strng{authorbibnamehash}{3681c2d8dc0a9685ff2a1726adb8b772}
+      \strng{authornamehash}{416ec202105701b6b3c3bdf496a19a71}
+      \strng{authorfullhash}{3681c2d8dc0a9685ff2a1726adb8b772}
+      \strng{authorfullhashraw}{3681c2d8dc0a9685ff2a1726adb8b772}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Humans acquire much of their knowledge from the testimony of other people. An understanding of the way that information can be conveyed via gesture and vocalization is present in infancy. Thus, infants seek information from well-informed interlocutors, supply information to the ignorant, and make sense of communicative acts that they observe from a third-party perspective. This basic understanding is refined in the course of development. As they age, children's reasoning about testimony increasingly reflects an ability not just to detect imperfect or inaccurate claims but also to assess what inferences may or may not be drawn about informants given their particular situation. Children also attend to the broader characteristics of particular informants---their group membership, personality characteristics, and agreement or disagreement with other potential informants. When presented with unexpected or counterintuitive testimony, children are prone to set aside their own prior convictions, but they may sometimes defer to informants for inherently social reasons.}
+      \field{issn}{0066-4308, 1545-2085}
+      \field{journaltitle}{Annual Review of Psychology}
+      \field{langid}{english}
+      \field{month}{1}
+      \field{number}{1}
+      \field{title}{Cognitive {{Foundations}} of {{Learning}} from {{Testimony}}}
+      \field{urlday}{19}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{volume}{69}
+      \field{year}{2018}
+      \field{urldateera}{ce}
+      \field{pages}{251\bibrangedash 273}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.1146/annurev-psych-122216-011710
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/ZRF9WN3A/Harris-2018.pdf
+      \endverb
+    \endentry
+    \entry{Jansen-2021}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=6457f1040c476387ae1003e961481d0d}{%
+           family={Jansen},
+           familyi={J\bibinitperiod},
+           given={Rachel\bibnamedelima A.},
+           giveni={R\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0c82cd787eaab8af8494102f217028e1}{%
+           family={Rafferty},
+           familyi={R\bibinitperiod},
+           given={Anna\bibnamedelima N.},
+           giveni={A\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=15f19cfb916ba0b8afb494f250ea80a2}{%
+           family={Griffiths},
+           familyi={G\bibinitperiod},
+           given={Thomas\bibnamedelima L.},
+           giveni={T\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{5c073f404bf7a8b2ab1e421f55066427}
+      \strng{fullhash}{9c409656db82c47597051117766f3216}
+      \strng{fullhashraw}{9c409656db82c47597051117766f3216}
+      \strng{bibnamehash}{9c409656db82c47597051117766f3216}
+      \strng{authorbibnamehash}{9c409656db82c47597051117766f3216}
+      \strng{authornamehash}{5c073f404bf7a8b2ab1e421f55066427}
+      \strng{authorfullhash}{9c409656db82c47597051117766f3216}
+      \strng{authorfullhashraw}{9c409656db82c47597051117766f3216}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2397-3374}
+      \field{journaltitle}{Nature Human Behaviour}
+      \field{langid}{english}
+      \field{month}{2}
+      \field{number}{6}
+      \field{title}{A Rational Model of the {{Dunning}}--{{Kruger}} Effect Supports Insensitivity to Evidence in Low Performers}
+      \field{urlday}{5}
+      \field{urlmonth}{1}
+      \field{urlyear}{2026}
+      \field{volume}{5}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \field{pages}{756\bibrangedash 763}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1038/s41562-021-01057-0
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/7LTH3FH9/Jansen-2021.pdf
+      \endverb
+    \endentry
+    \entry{Jara-Ettinger-2017}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=4a3fcf471def93d28d7799c4fe0a7286}{%
+           family={{Jara-Ettinger}},
+           familyi={J\bibinitperiod},
+           given={Julian},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f47df9b39116c7d4bfbbb58fe9e03035}{%
+           family={Gweon},
+           familyi={G\bibinitperiod},
+           given={Hyowon},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{e9ed4dab447c93ca1d3158944b4f8e87}
+      \strng{fullhash}{e9ed4dab447c93ca1d3158944b4f8e87}
+      \strng{fullhashraw}{e9ed4dab447c93ca1d3158944b4f8e87}
+      \strng{bibnamehash}{e9ed4dab447c93ca1d3158944b4f8e87}
+      \strng{authorbibnamehash}{e9ed4dab447c93ca1d3158944b4f8e87}
+      \strng{authornamehash}{e9ed4dab447c93ca1d3158944b4f8e87}
+      \strng{authorfullhash}{e9ed4dab447c93ca1d3158944b4f8e87}
+      \strng{authorfullhashraw}{e9ed4dab447c93ca1d3158944b4f8e87}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{When we reason about others' behavior, there are often many equally-plausible explanations. If Bob climbs a tree to get an apple, we may be unsure if Bob found climbing difficult but really wanted an apple; if he found climbing easy and was not particularly excited about the apple; or if he found climbing intrinsically fun and just got the apple because it was convenient. Past research suggests that we solve this problem by obtaining repeated observations about the agent and about the world. Here we argue that, beyond allowing us to sharpen our inferences about agents and the world, covariation data also enables us to do one-shot inferences about novel agents. We show that given minimal covariation data, people can infer objective and subjective properties of a new agent from a single event. We show that a model that assumes that agents maximize utilities matches participant judgments with quantitative precision.}
+      \field{journaltitle}{Proceedings of the Annual Meeting of the Cognitive Science Society}
+      \field{langid}{english}
+      \field{number}{0}
+      \field{title}{Minimal Covariation Data Support Future One-Shot Inferences about Unobservable Properties of Novel Agents}
+      \field{volume}{39}
+      \field{year}{2017}
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/BS6JYPJX/Jara-Ettinger-2017.pdf
+      \endverb
+    \endentry
+    \entry{Jara-Ettinger-2015a}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=4a3fcf471def93d28d7799c4fe0a7286}{%
+           family={{Jara-Ettinger}},
+           familyi={J\bibinitperiod},
+           given={Julian},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f47df9b39116c7d4bfbbb58fe9e03035}{%
+           family={Gweon},
+           familyi={G\bibinitperiod},
+           given={Hyowon},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5c7ff02e1f8b4c4aa7bfddece14f23d2}{%
+           family={Tenenbaum},
+           familyi={T\bibinitperiod},
+           given={Joshua\bibnamedelima B.},
+           giveni={J\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5e1702e9c07eafe082c6a49d079b7cc1}{%
+           family={Schulz},
+           familyi={S\bibinitperiod},
+           given={Laura\bibnamedelima E.},
+           giveni={L\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{24c5b1cb4816645ec1587810b7a94821}
+      \strng{fullhash}{ba1294225213d83fcb5ce67ca66ea725}
+      \strng{fullhashraw}{ba1294225213d83fcb5ce67ca66ea725}
+      \strng{bibnamehash}{ba1294225213d83fcb5ce67ca66ea725}
+      \strng{authorbibnamehash}{ba1294225213d83fcb5ce67ca66ea725}
+      \strng{authornamehash}{24c5b1cb4816645ec1587810b7a94821}
+      \strng{authorfullhash}{ba1294225213d83fcb5ce67ca66ea725}
+      \strng{authorfullhashraw}{ba1294225213d83fcb5ce67ca66ea725}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Cognition}
+      \field{title}{Children's Understanding of the Costs and Rewards Underlying Rational Action}
+      \field{urlday}{7}
+      \field{urlmonth}{1}
+      \field{urlyear}{2026}
+      \field{volume}{140}
+      \field{year}{2015}
+      \field{urldateera}{ce}
+      \field{pages}{14\bibrangedash 23}
+      \range{pages}{10}
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/5TTFNEI3/Jara-Ettinger-2015a.pdf
+      \endverb
+    \endentry
+    \entry{Jones-1989}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f1076a65a8ea7bbae56a97b5a1800787}{%
+           family={Jones},
+           familyi={J\bibinitperiod},
+           given={Edward\bibnamedelima E.},
+           giveni={E\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {SAGE Publications Inc}%
+      }
+      \strng{namehash}{f1076a65a8ea7bbae56a97b5a1800787}
+      \strng{fullhash}{f1076a65a8ea7bbae56a97b5a1800787}
+      \strng{fullhashraw}{f1076a65a8ea7bbae56a97b5a1800787}
+      \strng{bibnamehash}{f1076a65a8ea7bbae56a97b5a1800787}
+      \strng{authorbibnamehash}{f1076a65a8ea7bbae56a97b5a1800787}
+      \strng{authornamehash}{f1076a65a8ea7bbae56a97b5a1800787}
+      \strng{authorfullhash}{f1076a65a8ea7bbae56a97b5a1800787}
+      \strng{authorfullhashraw}{f1076a65a8ea7bbae56a97b5a1800787}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The challenge of how to appear competent (to oneself and others) is closely tied to the attributional relationship between ability (can) and effort (try). Data are presented to support the layperson's understanding of the discounting principle that describes this relationship: Holding performance constant, the lower the apparent effort and the more difficult the task, the greater the attributed ability. It is proposed that people in our culture attach great value to the appearance of basic, or "natural," ability. Depending on available opportunities, people will withdraw effort, emphasize task difficulty, and even handicap themselves to protect their competence image. Experimental results also make clear that self-promoters must avoid claims that are refutable, excessive, or seen as out of context.}
+      \field{issn}{0146-1672}
+      \field{journaltitle}{Personality and Social Psychology Bulletin}
+      \field{langid}{english}
+      \field{month}{12}
+      \field{number}{4}
+      \field{title}{The {{Framing}} of {{Competence}}}
+      \field{urlday}{24}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{volume}{15}
+      \field{year}{1989}
+      \field{urldateera}{ce}
+      \field{pages}{477\bibrangedash 492}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1177/0146167289154001
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/WZTNBVT6/Jones-1989.pdf
+      \endverb
+    \endentry
+    \entry{Klayman-1987}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=f8f938f5e4d9253c72f5216d12f4626c}{%
+           family={Klayman},
+           familyi={K\bibinitperiod},
+           given={Joshua},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=31d8b02d35f84135f53630963d4cf270}{%
+           family={Ha},
+           familyi={H\bibinitperiod},
+           given={Young-won},
+           giveni={Y\bibinithyphendelim w\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {US}%
+      }
+      \list{publisher}{1}{%
+        {American Psychological Association}%
+      }
+      \strng{namehash}{c6577cb4288b569981547d1b4d2a1d3d}
+      \strng{fullhash}{c6577cb4288b569981547d1b4d2a1d3d}
+      \strng{fullhashraw}{c6577cb4288b569981547d1b4d2a1d3d}
+      \strng{bibnamehash}{c6577cb4288b569981547d1b4d2a1d3d}
+      \strng{authorbibnamehash}{c6577cb4288b569981547d1b4d2a1d3d}
+      \strng{authornamehash}{c6577cb4288b569981547d1b4d2a1d3d}
+      \strng{authorfullhash}{c6577cb4288b569981547d1b4d2a1d3d}
+      \strng{authorfullhashraw}{c6577cb4288b569981547d1b4d2a1d3d}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A number of philosophers and psychologists stress the importance of disconfirmation in reasoning and suggest that people are instead prone to a general deleterious "confirmation bias." In particular, it is suggested that people tend to test those cases that have the best chance of verifying current beliefs rather than those that have the best chance of falsifying them. We show, however, that many phenomena labeled "confirmation bias" are better understood in terms of a general positive test strategy. With this strategy, there is a tendency to test cases that are expected (or known) to have the property of interest rather than those expected (or known) to lack that property. We show that the positive test strategy can be a very good heuristic for determining the truth or falsity of a hypothesis under realistic conditions. It can, however, lead to systematic errors or inefficiencies. (PsycINFO Database Record (c) 2016 APA, all rights reserved)}
+      \field{issn}{1939-1471}
+      \field{journaltitle}{Psychological Review}
+      \field{number}{2}
+      \field{title}{Confirmation, Disconfirmation, and Information in Hypothesis Testing}
+      \field{volume}{94}
+      \field{year}{1987}
+      \field{pages}{211\bibrangedash 228}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1037/0033-295X.94.2.211
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/TC52QU5I/Klayman-1987.pdf
+      \endverb
+      \keyw{Experimentation,Experimenter Bias,Hypothesis Testing,Prediction,Strategies}
+    \endentry
+    \entry{Kuznetsova-2017}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=7cd3845a800c3291e727a82c1f2df45e}{%
+           family={Kuznetsova},
+           familyi={K\bibinitperiod},
+           given={Alexandra},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=17e06e730e273b9c94400089772b8b02}{%
+           family={Brockhoff},
+           familyi={B\bibinitperiod},
+           given={Per\bibnamedelima B.},
+           giveni={P\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=54ec03df91a5b51c9a62ed4f70da8712}{%
+           family={Christensen},
+           familyi={C\bibinitperiod},
+           given={Rune\bibnamedelimb H.\bibnamedelimi B.},
+           giveni={R\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim B\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{ee90b672a0dbf4106ee60268eb8768fd}
+      \strng{fullhash}{0734b43304bc167fad6d2532bc75460a}
+      \strng{fullhashraw}{0734b43304bc167fad6d2532bc75460a}
+      \strng{bibnamehash}{0734b43304bc167fad6d2532bc75460a}
+      \strng{authorbibnamehash}{0734b43304bc167fad6d2532bc75460a}
+      \strng{authornamehash}{ee90b672a0dbf4106ee60268eb8768fd}
+      \strng{authorfullhash}{0734b43304bc167fad6d2532bc75460a}
+      \strng{authorfullhashraw}{0734b43304bc167fad6d2532bc75460a}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{One of the frequent questions by users of the mixed model function lmer of the lme4 package has been: How can I get p values for the F and t tests for objects returned by lmer? The lmerTest package extends the 'lmerMod' class of the lme4 package, by overloading the anova and summary functions by providing p values for tests for fixed effects. We have implemented the Satterthwaite's method for approximating degrees of freedom for the t and F tests. We have also implemented the construction of Type I - III ANOVA tables. Furthermore, one may also obtain the summary as well as the anova table using the Kenward-Roger approximation for denominator degrees of freedom (based on the KRmodcomp function from the pbkrtest package). Some other convenient mixed model analysis tools such as a step method, that performs backward elimination of nonsignificant effects - both random and fixed, calculation of population means and multiple comparison tests together with plot facilities are provided by the package as well.}
+      \field{issn}{1548-7660}
+      \field{journaltitle}{Journal of Statistical Software}
+      \field{langid}{english}
+      \field{month}{12}
+      \field{shorttitle}{{{lmerTest Package}}}
+      \field{title}{{{lmerTest Package}}: {{Tests}} in {{Linear Mixed Effects Models}}}
+      \field{urlday}{21}
+      \field{urlmonth}{5}
+      \field{urlyear}{2022}
+      \field{volume}{82}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 26}
+      \range{pages}{26}
+      \verb{doi}
+      \verb 10.18637/jss.v082.i13
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/2Q2K63IL/Kuznetsova-2017.pdf
+      \endverb
+    \endentry
+    \entry{Liefgreen-2020}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=a30e0493f760044568785ad9c8369f8a}{%
+           family={Liefgreen},
+           familyi={L\bibinitperiod},
+           given={Alice},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=62e3ef4c9c8461501f32b1befb4090ca}{%
+           family={Pilditch},
+           familyi={P\bibinitperiod},
+           given={Toby},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=efbafa30e59d6829929a7bd553487abb}{%
+           family={Lagnado},
+           familyi={L\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Netherlands}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier Science}%
+      }
+      \strng{namehash}{42e935180af391919a2de175f891c96d}
+      \strng{fullhash}{bb00501ddcde1aa3e4c830cc8e754dfe}
+      \strng{fullhashraw}{bb00501ddcde1aa3e4c830cc8e754dfe}
+      \strng{bibnamehash}{bb00501ddcde1aa3e4c830cc8e754dfe}
+      \strng{authorbibnamehash}{bb00501ddcde1aa3e4c830cc8e754dfe}
+      \strng{authornamehash}{42e935180af391919a2de175f891c96d}
+      \strng{authorfullhash}{bb00501ddcde1aa3e4c830cc8e754dfe}
+      \strng{authorfullhashraw}{bb00501ddcde1aa3e4c830cc8e754dfe}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Within the domain of psychology, Optimal Experimental Design (OED) principles have been used to model how people seek and evaluate information. Despite proving valuable as computational-level methods to account for people's behaviour, their descriptive and explanatory powers remain largely unexplored. In a series of experiments, we used a naturalistic crime investigation scenario to examine how people evaluate queries, as well as outcomes, in probabilistic contexts. We aimed to uncover the psychological strategies that people use, not just to assess whether they deviated from OED principles. In addition, we explored the adaptiveness of the identified strategies across both one-shot and stepwise information search tasks. We found that people do not always evaluate queries strictly in OED terms and use distinct strategies, such as by identifying a leading contender at the outset. Moreover, we identified aspects of zero-sum thinking and risk aversion that interact with people's information search strategies. Our findings have implications for building a descriptive account of information seeking and evaluation, accounting for factors that currently lie outside the realm of information-theoretic OED measures, such as context and the learner's own preferences. (PsycInfo Database Record (c) 2021 APA, all rights reserved)}
+      \field{issn}{1095-5623}
+      \field{journaltitle}{Cognitive Psychology}
+      \field{title}{Strategies for Selecting and Evaluating Information}
+      \field{volume}{123}
+      \field{year}{2020}
+      \verb{doi}
+      \verb 10.1016/j.cogpsych.2020.101332
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/3Q4YH7SH/Liefgreen-2020a.pdf
+      \endverb
+      \keyw{Bayesian Analysis,Crime,Experimental Design,Experimentation,Information Seeking,Preferences,Probability,Reasoning,Statistical Probability}
+    \endentry
+    \entry{Mercier-2025c}{misc}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=50a0d8f646e56a9ea66a7985c27adbda}{%
+           family={Mercier},
+           familyi={M\bibinitperiod},
+           given={Marius},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=959d077afa1f31ff07c0f16cff1369cf}{%
+           family={Morin},
+           familyi={M\bibinitperiod},
+           given={Olivier},
+           giveni={O\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f70379da697a3b48dab3e96d2c59fddc}{%
+           family={Mercier},
+           familyi={M\bibinitperiod},
+           given={Hugo},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1e244c4c80e5f97c1788baf1d143d9ee}{%
+           family={Quillien},
+           familyi={Q\bibinitperiod},
+           given={Tadeg},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {PsyArXiv}%
+      }
+      \strng{namehash}{cf6a163979a15a06dcc1b66d4188ddb4}
+      \strng{fullhash}{ca7ad4cbf3b7910c5a2fc6a15f4750f2}
+      \strng{fullhashraw}{ca7ad4cbf3b7910c5a2fc6a15f4750f2}
+      \strng{bibnamehash}{ca7ad4cbf3b7910c5a2fc6a15f4750f2}
+      \strng{authorbibnamehash}{ca7ad4cbf3b7910c5a2fc6a15f4750f2}
+      \strng{authornamehash}{cf6a163979a15a06dcc1b66d4188ddb4}
+      \strng{authorfullhash}{ca7ad4cbf3b7910c5a2fc6a15f4750f2}
+      \strng{authorfullhashraw}{ca7ad4cbf3b7910c5a2fc6a15f4750f2}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{One of the main challenges of social cognition is inferring the competence of others, which often occurs in contexts of limited information. Recent researchs suggest that people can successfully infer the knowledgeability of others from past accuracy, but the computational principles underlying these judgments are unknown. We test whether people can both infer and search for information about others' competence in a near-optimal way, consistent with rational Bayesian reasoning. In Studies 1 and 2, participants were presented with an individual's performance on a trivia question and predicted the individual's ability to answer other trivia questions from the same theme. Replicating and extending past results, we observe that participants very accurately predict performance from limited information. Computational modelling shows that participants' inferences are better described by Bayesian processes than by plausible heuristics, suggesting that participants rationally integrate new information with their prior expectations about others' competence. Study 3 shows that participants can select which information would be most diagnostic for inferring an individual's competence, again in a manner consistent with Bayesian rationality. Overall, our results suggest that people approximate a rational Bayesian model both when searching for and when integrating information about others' competence.}
+      \field{month}{11}
+      \field{number}{rt8ux\_v1}
+      \field{shorttitle}{Who Knows What?}
+      \field{title}{Who Knows What? {{Bayesian Competence Inference}} Guides {{Knowledge Attribution}} and {{Information}} Search}
+      \field{urlday}{20}
+      \field{urlmonth}{11}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.31234/osf.io/rt8ux_v1
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/224U235P/Mercier-2025c.pdf
+      \endverb
+      \keyw{Competence,Computational Modeling,Information Search,Knowledge Attribution,Social Cognition}
+    \endentry
+    \entry{Nelson-2005}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d66829142a46b1d2b66baa6c4ca7e334}{%
+           family={Nelson},
+           familyi={N\bibinitperiod},
+           given={Jonathan\bibnamedelima D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {US}%
+      }
+      \list{publisher}{1}{%
+        {American Psychological Association}%
+      }
+      \strng{namehash}{d66829142a46b1d2b66baa6c4ca7e334}
+      \strng{fullhash}{d66829142a46b1d2b66baa6c4ca7e334}
+      \strng{fullhashraw}{d66829142a46b1d2b66baa6c4ca7e334}
+      \strng{bibnamehash}{d66829142a46b1d2b66baa6c4ca7e334}
+      \strng{authorbibnamehash}{d66829142a46b1d2b66baa6c4ca7e334}
+      \strng{authornamehash}{d66829142a46b1d2b66baa6c4ca7e334}
+      \strng{authorfullhash}{d66829142a46b1d2b66baa6c4ca7e334}
+      \strng{authorfullhashraw}{d66829142a46b1d2b66baa6c4ca7e334}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{[Correction Notice: An erratum for this article was reported in Vol 114(3) of Psychological Review (see record 2007-10421-013). In Table 13, the data should indicate that 7\% of females had short hair and 93\% of females had long hair. The calculations and discussion in the article were based on these correct percentages.] Several norms for how people should assess a question's usefulness have been proposed, notably Bayesian diagnosticity, information gain (mutual information), Kullback-Liebler distance, probability gain (error minimization), and impact (absolute change). Several probabilistic models of previous experiments on categorization, covariation assessment, medical diagnosis, and the selection task are shown to not discriminate among these norms as descriptive models of human intuitions and behavior. Computational optimization found situations in which information gain, probability gain, and impact strongly contradict Bayesian diagnosticity. In these situations, diagnosticity's claims are normatively inferior. Results of a new experiment strongly contradict the predictions of Bayesian diagnosticity. Normative theoretical concerns also argue against use of diagnosticity. It is concluded that Bayesian diagnosticity is normatively flawed and empirically unjustified. (PsycINFO Database Record (c) 2016 APA, all rights reserved)}
+      \field{issn}{1939-1471}
+      \field{journaltitle}{Psychological Review}
+      \field{number}{4}
+      \field{shorttitle}{Finding {{Useful Questions}}}
+      \field{title}{Finding {{Useful Questions}}: {{On Bayesian Diagnosticity}}, {{Probability}}, {{Impact}}, and {{Information Gain}}}
+      \field{volume}{112}
+      \field{year}{2005}
+      \field{pages}{979\bibrangedash 999}
+      \range{pages}{21}
+      \verb{doi}
+      \verb 10.1037/0033-295X.112.4.979
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/VK3NSAG2/Nelson-2005.pdf
+      \endverb
+      \keyw{Decision Theory,Diagnosis,Experimental Design,Information,Questioning,Statistical Probability}
+    \endentry
+    \entry{Oaksford-1994}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=aafa17fb35a5123e14e0c21659088821}{%
+           family={Oaksford},
+           familyi={O\bibinitperiod},
+           given={Mike},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=68f539b14c5ba5fb2395b9309d555ad7}{%
+           family={Chater},
+           familyi={C\bibinitperiod},
+           given={Nick},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {US}%
+      }
+      \list{publisher}{1}{%
+        {American Psychological Association}%
+      }
+      \strng{namehash}{c9892eeafdb412e5fabe2e764e2b69cc}
+      \strng{fullhash}{c9892eeafdb412e5fabe2e764e2b69cc}
+      \strng{fullhashraw}{c9892eeafdb412e5fabe2e764e2b69cc}
+      \strng{bibnamehash}{c9892eeafdb412e5fabe2e764e2b69cc}
+      \strng{authorbibnamehash}{c9892eeafdb412e5fabe2e764e2b69cc}
+      \strng{authornamehash}{c9892eeafdb412e5fabe2e764e2b69cc}
+      \strng{authorfullhash}{c9892eeafdb412e5fabe2e764e2b69cc}
+      \strng{authorfullhashraw}{c9892eeafdb412e5fabe2e764e2b69cc}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Human reasoning in hypothesis-testing tasks like P. C. Wason's (1968) selection task has been depicted as prone to systematic biases. However, performance on this task has been assessed against a now outmoded falsificationist philosophy of science. Therefore, the experimental data is reassessed in the light of a Bayesian model of optimal data selection in inductive hypothesis testing. The model provides a rational analysis (J. R. Anderson, 1990) of the selection task that fits well with people's performance on both abstract and thematic versions of the task. The model suggests that reasoning in these tasks may be rational rather than subject to systematic bias. (PsycINFO Database Record (c) 2016 APA, all rights reserved)}
+      \field{issn}{1939-1471}
+      \field{journaltitle}{Psychological Review}
+      \field{number}{4}
+      \field{title}{A Rational Analysis of the Selection Task as Optimal Data Selection}
+      \field{volume}{101}
+      \field{year}{1994}
+      \field{pages}{608\bibrangedash 631}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.1037/0033-295X.101.4.608
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/WRSPF5MB/Oaksford-1994.pdf
+      \endverb
+      \keyw{Hypothesis Testing,Reasoning,Statistical Probability}
+    \endentry
+    \entry{Quillien-2023a}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=1e244c4c80e5f97c1788baf1d143d9ee}{%
+           family={Quillien},
+           familyi={Q\bibinitperiod},
+           given={Tadeg},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{1e244c4c80e5f97c1788baf1d143d9ee}
+      \strng{fullhash}{1e244c4c80e5f97c1788baf1d143d9ee}
+      \strng{fullhashraw}{1e244c4c80e5f97c1788baf1d143d9ee}
+      \strng{bibnamehash}{1e244c4c80e5f97c1788baf1d143d9ee}
+      \strng{authorbibnamehash}{1e244c4c80e5f97c1788baf1d143d9ee}
+      \strng{authornamehash}{1e244c4c80e5f97c1788baf1d143d9ee}
+      \strng{authorfullhash}{1e244c4c80e5f97c1788baf1d143d9ee}
+      \strng{authorfullhashraw}{1e244c4c80e5f97c1788baf1d143d9ee}
+      \field{sortinit}{Q}
+      \field{sortinithash}{ce69a400a872ddd02ee7fdb3b38c6abd}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{00100277}
+      \field{journaltitle}{Cognition}
+      \field{langid}{english}
+      \field{month}{2}
+      \field{title}{Rational Information Search in Welfare-Tradeoff Cognition}
+      \field{urlday}{4}
+      \field{urlmonth}{3}
+      \field{urlyear}{2024}
+      \field{volume}{231}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \field{pages}{105317}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.cognition.2022.105317
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/CI7G68L4/Quillien-2023.pdf
+      \endverb
+    \endentry
+    \entry{Rasch-1960}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=72bec79f8a64b0a276f2e4b763e4dea0}{%
+           family={Rasch},
+           familyi={R\bibinitperiod},
+           given={Georg},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Oxford, England}%
+      }
+      \list{publisher}{1}{%
+        {Nielsen \& Lydiche}%
+      }
+      \strng{namehash}{72bec79f8a64b0a276f2e4b763e4dea0}
+      \strng{fullhash}{72bec79f8a64b0a276f2e4b763e4dea0}
+      \strng{fullhashraw}{72bec79f8a64b0a276f2e4b763e4dea0}
+      \strng{bibnamehash}{72bec79f8a64b0a276f2e4b763e4dea0}
+      \strng{authorbibnamehash}{72bec79f8a64b0a276f2e4b763e4dea0}
+      \strng{authornamehash}{72bec79f8a64b0a276f2e4b763e4dea0}
+      \strng{authorfullhash}{72bec79f8a64b0a276f2e4b763e4dea0}
+      \strng{authorfullhashraw}{72bec79f8a64b0a276f2e4b763e4dea0}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{This monograph attempts a new approach for testing construction in psychology. A probabilistic model is developed for 3 different types of tests. Each model implies 2 types of parameters: a "difficulty" for each test or item and an "ability" for each person, independent of which set of tests or items has been employed. Both parameters are estimated from the data. Chapters 1-7 present the basic theory with a minimum of mathematics. Chapters 8-10 present in detail the mathematics underlying the models. From Psyc Abstracts 36:05:5HB84R. (PsycINFO Database Record (c) 2016 APA, all rights reserved)}
+      \field{series}{Studies in Mathematical Psychology: {{I}}. {{Probabilistic}} Models for Some Intelligence and Attainment Tests}
+      \field{shorttitle}{Studies in Mathematical Psychology}
+      \field{title}{Studies in Mathematical Psychology: {{I}}. {{Probabilistic}} Models for Some Intelligence and Attainment Tests}
+      \field{year}{1960}
+      \field{pages}{xiii\bibrangessep 184}
+      \range{pages}{2}
+    \endentry
+    \entry{Tsividis-2014}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=fb78a99785ac2cd9e9882d40585bbef6}{%
+           family={Tsividis},
+           familyi={T\bibinitperiod},
+           given={Pedro},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2c9ceb68af3d8ec7899ab093a4e89ba4}{%
+           family={Gershman},
+           familyi={G\bibinitperiod},
+           given={Samuel},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=48de56ec34034a2f537d9cc56f0774d2}{%
+           family={Tenenbaum},
+           familyi={T\bibinitperiod},
+           given={Josh},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6bc603331efc2a046e153b6392ac3348}{%
+           family={Schulz},
+           familyi={S\bibinitperiod},
+           given={Laura},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{14c2899853843717927cbe0a7fada5a6}
+      \strng{fullhash}{db23cc072e6a73ef6e955a5dcf7b8b78}
+      \strng{fullhashraw}{db23cc072e6a73ef6e955a5dcf7b8b78}
+      \strng{bibnamehash}{db23cc072e6a73ef6e955a5dcf7b8b78}
+      \strng{authorbibnamehash}{db23cc072e6a73ef6e955a5dcf7b8b78}
+      \strng{authornamehash}{14c2899853843717927cbe0a7fada5a6}
+      \strng{authorfullhash}{db23cc072e6a73ef6e955a5dcf7b8b78}
+      \strng{authorfullhashraw}{db23cc072e6a73ef6e955a5dcf7b8b78}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the {{Annual Meeting}} of the {{Cognitive Science Society}}}
+      \field{title}{Information Selection in Noisy Environments with Large Action Spaces}
+      \field{urlday}{4}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{36}
+      \field{year}{2014}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/RGDIGF8T/Tsividis-2014.pdf
+      \endverb
+    \endentry
+    \entry{Wu-2017}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=82e6adb45133e0a6bdeb631f8b59d6a6}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Charley\bibnamedelima M.},
+           giveni={C\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a88fc7dfaaf1c8d0c9ec5a1b5b635f07}{%
+           family={Meder},
+           familyi={M\bibinitperiod},
+           given={Björn},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c6abcd91873bf034a7f5894e0064e245}{%
+           family={Filimon},
+           familyi={F\bibinitperiod},
+           given={Flavia},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d66829142a46b1d2b66baa6c4ca7e334}{%
+           family={Nelson},
+           familyi={N\bibinitperiod},
+           given={Jonathan\bibnamedelima D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {American Psychological Association}%
+      }
+      \strng{namehash}{d29508cf2b2ad6b869353e40f1c7ca94}
+      \strng{fullhash}{9904ae33b41016963cc6e18613f151fd}
+      \strng{fullhashraw}{9904ae33b41016963cc6e18613f151fd}
+      \strng{bibnamehash}{9904ae33b41016963cc6e18613f151fd}
+      \strng{authorbibnamehash}{9904ae33b41016963cc6e18613f151fd}
+      \strng{authornamehash}{d29508cf2b2ad6b869353e40f1c7ca94}
+      \strng{authorfullhash}{9904ae33b41016963cc6e18613f151fd}
+      \strng{authorfullhashraw}{9904ae33b41016963cc6e18613f151fd}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{journaltitle}{Journal of Experimental Psychology: Learning, Memory, and Cognition}
+      \field{number}{8}
+      \field{shorttitle}{Asking Better Questions}
+      \field{title}{Asking Better Questions: {{How}} Presentation Formats Influence Information Search.}
+      \field{urlday}{4}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{43}
+      \field{year}{2017}
+      \field{urldateera}{ce}
+      \field{pages}{1274\bibrangedash 1297}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.1037/xlm0000374
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/PWXHYADN/Wu-2017.pdf
+      \endverb
+    \endentry
+    \entry{Xiang-2026}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=baa983e0769e57b7f9a497fc98e9a245}{%
+           family={Xiang},
+           familyi={X\bibinitperiod},
+           given={Yang},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=947b5ff2e5969eafe5136b3e017c5c01}{%
+           family={Gershman},
+           familyi={G\bibinitperiod},
+           given={Samuel\bibnamedelima J.},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e7984042ee7d500f82c1c171b2054899}{%
+           family={Gerstenberg},
+           familyi={G\bibinitperiod},
+           given={Tobias},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{6df653078dd452db94971f805b3abbc4}
+      \strng{fullhash}{e3e54a47521aa34de0cf191507ddbee6}
+      \strng{fullhashraw}{e3e54a47521aa34de0cf191507ddbee6}
+      \strng{bibnamehash}{e3e54a47521aa34de0cf191507ddbee6}
+      \strng{authorbibnamehash}{e3e54a47521aa34de0cf191507ddbee6}
+      \strng{authornamehash}{6df653078dd452db94971f805b3abbc4}
+      \strng{authorfullhash}{e3e54a47521aa34de0cf191507ddbee6}
+      \strng{authorfullhashraw}{e3e54a47521aa34de0cf191507ddbee6}
+      \field{sortinit}{X}
+      \field{sortinithash}{1965c258adceecf23ce3d67b05113442}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Cognition}
+      \field{title}{A Signaling Theory of Self-Handicapping}
+      \field{urlday}{3}
+      \field{urlmonth}{10}
+      \field{urlyear}{2025}
+      \field{volume}{266}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \field{pages}{106288}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.cognition.2025.106288
+      \endverb
+      \verb{file}
+      \verb /Users/mariusmercier/Zotero/storage/9Z55259I/Xiang-2026.pdf
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
