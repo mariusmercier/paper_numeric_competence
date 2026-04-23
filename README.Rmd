@@ -15,7 +15,7 @@ yaml_metadata <- rmarkdown::yaml_front_matter(here::here("manuscript.Rmd"))
 title <- yaml_metadata$title
 abstract <- yaml_metadata$abstract
 authors <- "ANON"
-year <- "2025"
+year <- "2026"
 ```
 
 # `r title`
