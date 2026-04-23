@@ -753,7 +753,6 @@
       \field{abstract}{When we reason about others' behavior, there are often many equally-plausible explanations. If Bob climbs a tree to get an apple, we may be unsure if Bob found climbing difficult but really wanted an apple; if he found climbing easy and was not particularly excited about the apple; or if he found climbing intrinsically fun and just got the apple because it was convenient. Past research suggests that we solve this problem by obtaining repeated observations about the agent and about the world. Here we argue that, beyond allowing us to sharpen our inferences about agents and the world, covariation data also enables us to do one-shot inferences about novel agents. We show that given minimal covariation data, people can infer objective and subjective properties of a new agent from a single event. We show that a model that assumes that agents maximize utilities matches participant judgments with quantitative precision.}
       \field{journaltitle}{Proceedings of the Annual Meeting of the Cognitive Science Society}
       \field{langid}{english}
-      \field{number}{0}
       \field{title}{Minimal Covariation Data Support Future One-Shot Inferences about Unobservable Properties of Novel Agents}
       \field{volume}{39}
       \field{year}{2017}
@@ -916,7 +915,7 @@
       \verb /Users/mariusmercier/Zotero/storage/ABRVQ4GV/Leonard-2019.pdf
       \endverb
     \endentry
-    \entry{Mercier-2025c}{misc}{}{}
+    \entry{Mercier-2026}{article}{}{}
       \name{author}{4}{}{%
         {{un=0,uniquepart=base,hash=50a0d8f646e56a9ea66a7985c27adbda}{%
            family={Mercier},
@@ -943,9 +942,6 @@
            giveni={T\bibinitperiod},
            givenun=0}}%
       }
-      \list{publisher}{1}{%
-        {PsyArXiv}%
-      }
       \strng{namehash}{cf6a163979a15a06dcc1b66d4188ddb4}
       \strng{fullhash}{ca7ad4cbf3b7910c5a2fc6a15f4750f2}
       \strng{fullhashraw}{ca7ad4cbf3b7910c5a2fc6a15f4750f2}
@@ -961,23 +957,26 @@
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
-      \field{abstract}{One of the main challenges of social cognition is inferring the competence of others, which often occurs in contexts of limited information. Recent researchs suggest that people can successfully infer the knowledgeability of others from past accuracy, but the computational principles underlying these judgments are unknown. We test whether people can both infer and search for information about others' competence in a near-optimal way, consistent with rational Bayesian reasoning. In Studies 1 and 2, participants were presented with an individual's performance on a trivia question and predicted the individual's ability to answer other trivia questions from the same theme. Replicating and extending past results, we observe that participants very accurately predict performance from limited information. Computational modelling shows that participants' inferences are better described by Bayesian processes than by plausible heuristics, suggesting that participants rationally integrate new information with their prior expectations about others' competence. Study 3 shows that participants can select which information would be most diagnostic for inferring an individual's competence, again in a manner consistent with Bayesian rationality. Overall, our results suggest that people approximate a rational Bayesian model both when searching for and when integrating information about others' competence.}
-      \field{month}{11}
-      \field{number}{rt8ux\_v1}
+      \field{abstract}{One of the main challenges of social cognition is inferring the competence of others, which often occurs in contexts of limited information. Recent research suggests that people can successfully infer the competence of others through Bayesian inference, but prior studies have relied largely on artificial stimuli and competence benchmarks, leaving it unclear whether these rational principles generalize to naturalistic settings with rich prior knowledge. Using trivia questionnaires, we test whether people can infer others' competence and search for informative evidence in a near-optimal way, consistent with rational Bayesian principles. In Studies 1 and 2, participants were presented with an individual's performance on a trivia question and predicted the individual's ability to answer other trivia questions from the same theme. Replicating and extending past results, we observe that participants accurately predict performance from limited information. Computational modeling shows that participants' inferences are better described by Bayesian processes than by plausible heuristics, suggesting that participants rationally integrate new information with their prior expectations about others' competence. Study 3 shows that participants can select which information would be most diagnostic for inferring an individual's competence, again in a manner consistent with Bayesian rationality. Overall, our results suggest that people approximate a rational Bayesian model both when searching for and when integrating information about others' competence.}
+      \field{issn}{00100277}
+      \field{journaltitle}{Cognition}
+      \field{langid}{english}
+      \field{month}{8}
+      \field{number}{106533}
       \field{shorttitle}{Who Knows What?}
-      \field{title}{Who Knows What? {{Bayesian Competence Inference}} Guides {{Knowledge Attribution}} and {{Information}} Search}
-      \field{urlday}{20}
-      \field{urlmonth}{11}
-      \field{urlyear}{2025}
-      \field{year}{2025}
+      \field{title}{Who Knows What? {{Bayesian}} Competence Inference Guides Knowledge Attribution and Information Search}
+      \field{urlday}{26}
+      \field{urlmonth}{3}
+      \field{urlyear}{2026}
+      \field{volume}{273}
+      \field{year}{2026}
       \field{urldateera}{ce}
       \verb{doi}
-      \verb 10.31234/osf.io/rt8ux_v1
+      \verb 10.1016/j.cognition.2026.106533
       \endverb
       \verb{file}
-      \verb /Users/mariusmercier/Zotero/storage/224U235P/Mercier-2025c.pdf
+      \verb /Users/mariusmercier/Zotero/storage/N6CW3AAE/Mercier-2026.pdf
       \endverb
-      \keyw{Competence,Computational Modeling,Information Search,Knowledge Attribution,Social Cognition}
     \endentry
     \entry{Rasch-1960}{book}{}{}
       \name{author}{1}{}{%
@@ -2025,7 +2024,6 @@
       \field{abstract}{When we reason about others' behavior, there are often many equally-plausible explanations. If Bob climbs a tree to get an apple, we may be unsure if Bob found climbing difficult but really wanted an apple; if he found climbing easy and was not particularly excited about the apple; or if he found climbing intrinsically fun and just got the apple because it was convenient. Past research suggests that we solve this problem by obtaining repeated observations about the agent and about the world. Here we argue that, beyond allowing us to sharpen our inferences about agents and the world, covariation data also enables us to do one-shot inferences about novel agents. We show that given minimal covariation data, people can infer objective and subjective properties of a new agent from a single event. We show that a model that assumes that agents maximize utilities matches participant judgments with quantitative precision.}
       \field{journaltitle}{Proceedings of the Annual Meeting of the Cognitive Science Society}
       \field{langid}{english}
-      \field{number}{0}
       \field{title}{Minimal Covariation Data Support Future One-Shot Inferences about Unobservable Properties of Novel Agents}
       \field{volume}{39}
       \field{year}{2017}
@@ -2188,7 +2186,7 @@
       \verb /Users/mariusmercier/Zotero/storage/ABRVQ4GV/Leonard-2019.pdf
       \endverb
     \endentry
-    \entry{Mercier-2025c}{misc}{}{}
+    \entry{Mercier-2026}{article}{}{}
       \name{author}{4}{}{%
         {{un=0,uniquepart=base,hash=50a0d8f646e56a9ea66a7985c27adbda}{%
            family={Mercier},
@@ -2215,9 +2213,6 @@
            giveni={T\bibinitperiod},
            givenun=0}}%
       }
-      \list{publisher}{1}{%
-        {PsyArXiv}%
-      }
       \strng{namehash}{cf6a163979a15a06dcc1b66d4188ddb4}
       \strng{fullhash}{ca7ad4cbf3b7910c5a2fc6a15f4750f2}
       \strng{fullhashraw}{ca7ad4cbf3b7910c5a2fc6a15f4750f2}
@@ -2233,23 +2228,26 @@
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
-      \field{abstract}{One of the main challenges of social cognition is inferring the competence of others, which often occurs in contexts of limited information. Recent researchs suggest that people can successfully infer the knowledgeability of others from past accuracy, but the computational principles underlying these judgments are unknown. We test whether people can both infer and search for information about others' competence in a near-optimal way, consistent with rational Bayesian reasoning. In Studies 1 and 2, participants were presented with an individual's performance on a trivia question and predicted the individual's ability to answer other trivia questions from the same theme. Replicating and extending past results, we observe that participants very accurately predict performance from limited information. Computational modelling shows that participants' inferences are better described by Bayesian processes than by plausible heuristics, suggesting that participants rationally integrate new information with their prior expectations about others' competence. Study 3 shows that participants can select which information would be most diagnostic for inferring an individual's competence, again in a manner consistent with Bayesian rationality. Overall, our results suggest that people approximate a rational Bayesian model both when searching for and when integrating information about others' competence.}
-      \field{month}{11}
-      \field{number}{rt8ux\_v1}
+      \field{abstract}{One of the main challenges of social cognition is inferring the competence of others, which often occurs in contexts of limited information. Recent research suggests that people can successfully infer the competence of others through Bayesian inference, but prior studies have relied largely on artificial stimuli and competence benchmarks, leaving it unclear whether these rational principles generalize to naturalistic settings with rich prior knowledge. Using trivia questionnaires, we test whether people can infer others' competence and search for informative evidence in a near-optimal way, consistent with rational Bayesian principles. In Studies 1 and 2, participants were presented with an individual's performance on a trivia question and predicted the individual's ability to answer other trivia questions from the same theme. Replicating and extending past results, we observe that participants accurately predict performance from limited information. Computational modeling shows that participants' inferences are better described by Bayesian processes than by plausible heuristics, suggesting that participants rationally integrate new information with their prior expectations about others' competence. Study 3 shows that participants can select which information would be most diagnostic for inferring an individual's competence, again in a manner consistent with Bayesian rationality. Overall, our results suggest that people approximate a rational Bayesian model both when searching for and when integrating information about others' competence.}
+      \field{issn}{00100277}
+      \field{journaltitle}{Cognition}
+      \field{langid}{english}
+      \field{month}{8}
+      \field{number}{106533}
       \field{shorttitle}{Who Knows What?}
-      \field{title}{Who Knows What? {{Bayesian Competence Inference}} Guides {{Knowledge Attribution}} and {{Information}} Search}
-      \field{urlday}{20}
-      \field{urlmonth}{11}
-      \field{urlyear}{2025}
-      \field{year}{2025}
+      \field{title}{Who Knows What? {{Bayesian}} Competence Inference Guides Knowledge Attribution and Information Search}
+      \field{urlday}{26}
+      \field{urlmonth}{3}
+      \field{urlyear}{2026}
+      \field{volume}{273}
+      \field{year}{2026}
       \field{urldateera}{ce}
       \verb{doi}
-      \verb 10.31234/osf.io/rt8ux_v1
+      \verb 10.1016/j.cognition.2026.106533
       \endverb
       \verb{file}
-      \verb /Users/mariusmercier/Zotero/storage/224U235P/Mercier-2025c.pdf
+      \verb /Users/mariusmercier/Zotero/storage/N6CW3AAE/Mercier-2026.pdf
       \endverb
-      \keyw{Competence,Computational Modeling,Information Search,Knowledge Attribution,Social Cognition}
     \endentry
     \entry{Rasch-1960}{book}{}{}
       \name{author}{1}{}{%

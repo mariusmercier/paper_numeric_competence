@@ -168,7 +168,7 @@
 
 \title{Result reports of `Inferring Competence on a Numerical Task'}
 \author{\textsuperscript{}}
-\date{2026-02-01}
+\date{2026-04-22}
 
 
 \shorttitle{SHORT TITLE}
@@ -191,9 +191,12 @@ The arithmetic questions were manipulated to be nested by varying their difficul
 As a pre-requisite for the participants making use of the nested nature of the questions to infer which questions the virtual agent got right, they must be able to judge the difficulty of the questions. More specifically, they must be able to accurately assess the rarity of reaching an accurate answer within the time-limit for different questions. This was our first hypothesis (\textbf{H1}). We fit a linear mixed effects model predicting true question difficulty (the inverse of the true percentage of people who could answer correctly on the arithmetic test) with participants' perception of the question difficulty (the inverse of the percentage of people they predict could answer correctly) as the fixed effect, and random effects for participants. Confirming \textbf{H1}, the fixed effect estimate for perceived difficulty was significantly positive (\(\beta\) = 0.45, t(911.69) = 22.18, p = \textless{} .001). The high correlation between perceived difficulty and true difficultyis visible in Figure \ref{fig:S1-fig-behav}A.
 
 \begin{figure}
-\centering
-\pandocbounded{\includegraphics[keepaspectratio]{figures/S1-fig-behav-1.pdf}}
-\caption{\label{fig:S1-fig-behav}(\textbf{A}) Each question's estimated difficulty as a function of its true difficulty. Numbers refer to the question ID (see SM, section 1). The red dashed line represents a perfectly accurate estimation. (\textbf{B}) Participants' estimated probability of answering a new question correctly, conditioned on the performance on the observed question, as a function of true conditional probabilities. (\textbf{C}) Our Bayesian model's estimated conditional probabilities as a function of true conditional probabilities. For (\textbf{B}) and (\textbf{C}), each data point corresponds to the average values for a pair of two questions: one for which the individual's performance is observed, and one for which the individual's performance has to be guessed. The red line represents a perfectly accurate prediction, while the dark line represents the fit of the linear model.}
+
+{\centering \includegraphics[width=1\linewidth]{figures/S1-fig-behav-1} 
+
+}
+
+\caption{(\textbf{A}) Each question's estimated difficulty as a function of its true difficulty. Numbers refer to the question ID (see SM, section 1). The red dashed line represents a perfectly accurate estimation. (\textbf{B}) Participants' estimated probability of answering a new question correctly, conditioned on the performance on the observed question, as a function of true conditional probabilities. (\textbf{C}) Our Bayesian model's estimated conditional probabilities as a function of true conditional probabilities. For (\textbf{B}) and (\textbf{C}), each data point corresponds to the average values for a pair of two questions: one for which the individual's performance is observed, and one for which the individual's performance has to be guessed. The red line represents a perfectly accurate prediction, while the dark line represents the fit of the linear model.}\label{fig:S1-fig-behav}
 \end{figure}
 
 Participants were able to use their accurate judgments of question difficulty to then infer the arithmetic competence of another based on the observation of their success or failure on just one specific question. We aggregated their judgments of which questions would be answered correctly, conditional on success or failure on the observed question. These are the estimated conditional probability values. Then, from the participants' answers to the arithmetic questions, we computed the True Conditional Probability of answering a new question given another question was successfully answered. Our second hypothesis (\textbf{H2}) was that, on average, participants' estimations of the probabilities of success for different questions, given the observation of success/failure on a particular question, would be significantly correlated with true conditional probabilities. A linear model with the average estimated conditional probability as an dependent variable and the true conditional probability as the independent variable and confirmed participants were able to predict the true conditional probability with a great precision (\(\beta\) = 0.86, t(418) = 34.72, p \textless{} .001, Adjusted \(R^2\) = 0.74). The strong correlation between average estimated conditional probability and true conditional probability is visualized in Figure \ref{fig:S1-fig-behav}B.
@@ -217,9 +220,12 @@ In the Main model, we varied the prior mean (\(\mu\)) between 0 and 1, the stand
 Investigating \textbf{H3}, we fit three linear models to compare the Main Model's and the two heuristic models' fit with participants' answers, as well as how much variance in participant behaviour they explained. We found that our Main Model was very strongly correlated with participant behaviour (\(\beta\) = 0.94, t(418) = 58.29, p \textless{} .001, Adjusted \(R^2\) = 0.89). The Threshold model showed lower correlation with the data (\(\beta\) = 0.63, t(418) = 16.40, p \textless{} .001, Adjusted \(R^2\) = 0.39). The Anchor model was the weakest fit to the data (\(\beta\) = 0.77, t(418) = 24.39, p \textless{} .001, Adjusted \(R^2\) = 0.59). Figure \ref{fig:S1-fig-model-comparison} shows participants' average prediction for each possible pair of arithmetic questions (observed and judged) compared to the three models' predictions.
 
 \begin{figure}
-\centering
-\pandocbounded{\includegraphics[keepaspectratio]{figures/S1-fig-model-comparison-1.pdf}}
-\caption{\label{fig:S1-fig-model-comparison}Model comparison. Each data point is a pair of two questions.}
+
+{\centering \includegraphics[width=1\linewidth]{figures/S1-fig-model-comparison-1} 
+
+}
+
+\caption{Model comparison. Each data point is a pair of two questions.}\label{fig:S1-fig-model-comparison}
 \end{figure}
 
 To test \textbf{H4} and \textbf{H5}, we computed the Bayesian information criterion (BIC) using the maximum log-likelihood for each fitted model, which applies a penalty for model complexity. The Main Model, when fitted to the complete dataset, outperformed both alternative models (\(BIC_{Bayes}\) = 16,063.72; \(BIC_{Threshold}\) = 19,411.92; \(BIC_{Anchor}\) = 18,259.96), confirming \textbf{H4} and \textbf{H5} respectively. The difference between the BIC of the Main Model and that of the next best heuristic model (Anchor Model) was 2,196.24, which indicates very strong evidence in favor of our Main Model according to the standard interpretation criteria (Raftery, 1995).
@@ -256,9 +262,12 @@ As further exploratory analysis, we investigated several research questions. The
 In another robustness test of our analyses for H2, we analyzed participants' binary answers at the trial level. We ran a logistic mixed-effects model with participants' predictions as the dependent variable and the true conditional probability as the independent variable. We included random intercepts for the observed question, the evaluated question, for the outcome observed (success/failure) and we also included random slope and intercept for participants. We found that, at each trial, participants' binary predictions of success were correlated with with the true probabilities of success (b= 1.65, z = 21.11, p \textless{} .001).
 
 \begin{figure}
-\centering
-\pandocbounded{\includegraphics[keepaspectratio]{figures/S1-fig-behav-2-1.pdf}}
-\caption{\label{fig:S1-fig-behav-2}Estimated Conditional Probability versus True Conditional Probability. Each data point is a pair of two questions.The red line represents the optimal prediction while the dark line represents the fit of the linear models.}
+
+{\centering \includegraphics[width=1\linewidth]{figures/S1-fig-behav-2-1} 
+
+}
+
+\caption{Estimated Conditional Probability versus True Conditional Probability. Each data point is a pair of two questions.The red line represents the optimal prediction while the dark line represents the fit of the linear models.}\label{fig:S1-fig-behav-2}
 \end{figure}
 
 We finally investigated how the models compared when we allowed to the parameters to differ for each individual rather than fixing them across all individuals. We did this because individuals may have different prior distributions of competence in the population. They may also have different priors about the role of luck in answering the questions. We therefore tested whether the main model fit individual level data better than heuristic model 1 (\textbf{RQ2}) and heuristic model 2 (\textbf{RQ3}). We used a maximum likelihood optimization to estimate the best free parameters for each participant. On average, our main model explained the behaviour of participants significantly better than Heuristic 1 (\(BIC_{Bayes}\) = 70.66 ± 20.38; \(BIC_{Threshold}\) = 87.97 ± 17.81; t(216) = -16.93, p \textless{} .001, paired t-test) and Heuristic 2 (\(BIC_{Anchor}\) = 80.86 ± 19.80; t(216) = -10.84, p \textless{} .001, paired t-test). The Bayesian model was the best model for 72\% of participants whereas the Heuristic 1 accounted for 6\% and the Heuristic 2 accounted for 21\%.
@@ -288,15 +297,12 @@ We further tested if our results for H1 and H3 were robust when testing predicti
 Moreover, participants' predictions of the conditional probabilities of success were still correlated with the true probability when analyzed at the trial level (H3i: b = 1.95, z = 46.19, p \textless{} .001).
 
 \begin{figure}
-\centering
-\pandocbounded{\includegraphics[keepaspectratio]{figures/S2-fig-behav-1.pdf}}
-\caption{\label{fig:S2-fig-behav}Estimated Conditional Probability versus True Conditional Probability in Study 2. Each data point is a pair of two questions. The red line represents the optimal prediction while the dark line represents the fit of the linear models.}
-\end{figure}
 
-\begin{figure}
-\centering
-\pandocbounded{\includegraphics[keepaspectratio]{figures/S2-fig-behav-2-1.pdf}}
-\caption{\label{fig:S2-fig-behav-2}Estimated Conditional Probability versus True Conditional Probability. Each data point is a pair of two questions.The red line represents the optimal prediction while the dark line represents the fit of the linear models.}
+{\centering \includegraphics[width=1\linewidth]{figures/S2-fig-behav-1} 
+
+}
+
+\caption{Estimated Conditional Probability versus True Conditional Probability in Study 2. Each data point is a pair of two questions. The red line represents the optimal prediction while the dark line represents the fit of the linear models.}\label{fig:S2-fig-behav}
 \end{figure}
 
 

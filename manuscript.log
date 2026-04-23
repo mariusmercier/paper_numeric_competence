@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.1.27)  1 FEB 2026 14:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.24)  22 APR 2026 18:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -299,7 +299,7 @@ Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
 )
 \pandoc@box=\box57
 (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2026/01/26 v26.2 The multilingual framework for LuaLaTeX, pdfLaTeX and XeLaTeX
+Package: babel 2026/02/14 v26.3 The multilingual framework for LuaLaTeX, pdfLaTeX and XeLaTeX
 \babel@savecnt=\count309
 LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input line 2078.
 LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input line 2080.
@@ -417,7 +417,7 @@ Package: placeins 2005/04/18  v 2.2
 ) (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
 (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
+Package: hyperref 2026-01-29 v7.01p Hypertext links for LaTeX
 (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 ) (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty
@@ -433,7 +433,7 @@ Package pdftexcmds Info: \pdfdraftmode found.
 )) (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 ) (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
-Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
+Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
 (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 )
@@ -445,7 +445,7 @@ Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 \Hy@linkcounter=\count326
 \Hy@pagecounter=\count327
 (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2026-01-29 v7.01p Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 ) (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
@@ -453,24 +453,24 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count328
 (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2026-01-29 v7.01p Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Option `unicode' set `true' on input line 4066.
-Package hyperref Info: Hyper figures OFF on input line 4195.
-Package hyperref Info: Link nesting OFF on input line 4200.
-Package hyperref Info: Hyper index ON on input line 4203.
-Package hyperref Info: Plain pages OFF on input line 4210.
-Package hyperref Info: Backreferencing OFF on input line 4215.
+Package hyperref Info: Option `unicode' set `true' on input line 4072.
+Package hyperref Info: Hyper figures OFF on input line 4201.
+Package hyperref Info: Link nesting OFF on input line 4206.
+Package hyperref Info: Hyper index ON on input line 4209.
+Package hyperref Info: Plain pages OFF on input line 4216.
+Package hyperref Info: Backreferencing OFF on input line 4221.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4462.
+Package hyperref Info: Bookmarks ON on input line 4468.
 \c@Hy@tempcnt=\count329
 (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4801.
+LaTeX Info: Redefining \url on input line 4807.
 \XeTeXLinkMargin=\dimen256
 (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -480,20 +480,20 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 \Fld@menulength=\count330
 \Field@Width=\dimen257
 \Fld@charsize=\dimen258
-Package hyperref Info: Hyper figures OFF on input line 6078.
-Package hyperref Info: Link nesting OFF on input line 6083.
-Package hyperref Info: Hyper index ON on input line 6086.
-Package hyperref Info: backreferencing OFF on input line 6093.
-Package hyperref Info: Link coloring OFF on input line 6098.
-Package hyperref Info: Link coloring with OCG OFF on input line 6103.
-Package hyperref Info: PDF/A mode OFF on input line 6108.
+Package hyperref Info: Hyper figures OFF on input line 6084.
+Package hyperref Info: Link nesting OFF on input line 6089.
+Package hyperref Info: Hyper index ON on input line 6092.
+Package hyperref Info: backreferencing OFF on input line 6099.
+Package hyperref Info: Link coloring OFF on input line 6104.
+Package hyperref Info: Link coloring with OCG OFF on input line 6109.
+Package hyperref Info: PDF/A mode OFF on input line 6114.
 \Hy@abspage=\count331
 \c@Item=\count332
 \c@Hfootnote=\count333
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2025-07-12 v7.01o Hyperref driver for pdfTeX
+File: hpdftex.def 2026-01-29 v7.01p Hyperref driver for pdfTeX
 \Fld@listcount=\count334
 \c@bookmark@seq@number=\count335
 (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
@@ -620,67 +620,59 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/Users/mariusmercier/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}]
-<figures/S1-fig-behav-1.pdf, id=16, 505.89pt x 312.16624pt>
+<figures/S1-fig-behav-1.pdf, id=16, 505.89pt x 289.08pt>
 File: figures/S1-fig-behav-1.pdf Graphic file (type pdf)
 <use figures/S1-fig-behav-1.pdf>
 Package pdftex.def Info: figures/S1-fig-behav-1.pdf  used on input line 195.
-(pdftex.def)             Requested size: 505.88875pt x 312.16548pt.
+(pdftex.def)             Requested size: 433.62pt x 247.7879pt.
 [2 <./figures/S1-fig-behav-1.pdf>] [3{/Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}]
-<figures/S1-fig-model-comparison-1.pdf, id=47, 505.89pt x 312.16624pt>
+<figures/S1-fig-model-comparison-1.pdf, id=49, 505.89pt x 379.4175pt>
 File: figures/S1-fig-model-comparison-1.pdf Graphic file (type pdf)
 <use figures/S1-fig-model-comparison-1.pdf>
-Package pdftex.def Info: figures/S1-fig-model-comparison-1.pdf  used on input line 221.
-(pdftex.def)             Requested size: 505.88875pt x 312.16548pt.
+Package pdftex.def Info: figures/S1-fig-model-comparison-1.pdf  used on input line 224.
+(pdftex.def)             Requested size: 433.62pt x 325.22163pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 [4 <./figures/S1-fig-model-comparison-1.pdf>]
-<figures/S1-fig-behav-2-1.pdf, id=65, 505.89pt x 312.16624pt>
+<figures/S1-fig-behav-2-1.pdf, id=66, 505.89pt x 379.4175pt>
 File: figures/S1-fig-behav-2-1.pdf Graphic file (type pdf)
 <use figures/S1-fig-behav-2-1.pdf>
-Package pdftex.def Info: figures/S1-fig-behav-2-1.pdf  used on input line 260.
-(pdftex.def)             Requested size: 505.88875pt x 312.16548pt.
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 264.
+Package pdftex.def Info: figures/S1-fig-behav-2-1.pdf  used on input line 266.
+(pdftex.def)             Requested size: 433.62pt x 325.22163pt.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 273.
 (/Users/mariusmercier/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [5{/Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [6 <./figures/S1-fig-behav-2-1.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 282--283
+Underfull \hbox (badness 10000) in paragraph at lines 291--292
 
  []
 
 [7]
-<figures/S2-fig-behav-1.pdf, id=94, 505.89pt x 312.16624pt>
+<figures/S2-fig-behav-1.pdf, id=95, 505.89pt x 289.08pt>
 File: figures/S2-fig-behav-1.pdf Graphic file (type pdf)
 <use figures/S2-fig-behav-1.pdf>
-Package pdftex.def Info: figures/S2-fig-behav-1.pdf  used on input line 292.
-(pdftex.def)             Requested size: 505.88875pt x 312.16548pt.
-<figures/S2-fig-behav-2-1.pdf, id=95, 505.89pt x 312.16624pt>
-File: figures/S2-fig-behav-2-1.pdf Graphic file (type pdf)
-<use figures/S2-fig-behav-2-1.pdf>
-Package pdftex.def Info: figures/S2-fig-behav-2-1.pdf  used on input line 298.
-(pdftex.def)             Requested size: 505.88875pt x 312.16548pt.
-[8] [9 <./figures/S2-fig-behav-1.pdf>] [10 <./figures/S2-fig-behav-2-1.pdf>] (./manuscript.aux)
+Package pdftex.def Info: figures/S2-fig-behav-1.pdf  used on input line 301.
+(pdftex.def)             Requested size: 433.62pt x 247.7879pt.
+[8] [9 <./figures/S2-fig-behav-1.pdf>] (./manuscript.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2020/03/25>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 15860 strings out of 469453
- 259174 string characters out of 5466278
- 697677 words of memory out of 5000000
+ 15858 strings out of 469453
+ 259112 string characters out of 5466278
+ 697428 words of memory out of 5000000
  44239 multiletter control sequences out of 15000+600000
  671536 words of font info for 76 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  83i,12n,93p,3193b,517s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/mariusmercier/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb>
-Output written on manuscript.pdf (10 pages, 431075 bytes).
+Output written on manuscript.pdf (9 pages, 411519 bytes).
 PDF statistics:
- 207 PDF objects out of 1000 (max. 8388607)
- 157 compressed objects within 2 object streams
- 23 named destinations out of 1000 (max. 500000)
- 74 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 193 PDF objects out of 1000 (max. 8388607)
+ 147 compressed objects within 2 object streams
+ 21 named destinations out of 1000 (max. 500000)
+ 69 words of extra memory for PDF output out of 10000 (max. 10000000)
 

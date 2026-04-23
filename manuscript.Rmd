@@ -42,9 +42,9 @@ conditional_align <- ifelse(is_docx, "default", "center") # Word doesn't support
 knitr::opts_chunk$set(
   echo = FALSE, warning = FALSE, message = FALSE,
   # tidy.opts = list(width.cutoff = 120),  # Code width
-  # fig.retina = 3, dpi = conditional_dpi,
-  fig.width = 7, fig.asp = 0.618,
-  # fig.align = conditional_align, out.width = "100%",
+  fig.retina = 3, dpi = conditional_dpi,
+  fig.width = 7, fig.height = 5.25,
+  fig.align = conditional_align, out.width = "100%",
   fig.path = "figures/"
   # cache.path = "output/_cache/",
   # fig.process = function(x) {  # Remove "-1" from figure names
@@ -80,6 +80,7 @@ library(patchwork) # For combining multiple ggplots
 library(here) # For project-relative file paths
 library(ggh4x) # For extended ggplot2 functionality
 library(car) # For Anova function
+library(ggrepel) # For non-overlapping point labels
 ```
 
 ```{r functions}
@@ -558,8 +559,26 @@ A <- S1_difficulty %>%
   ggplot(aes(x = objective_difficulty, y = perceived_difficulty)) +
   geom_point(color = "#E4A70A") +
   geom_abline(slope = 1, intercept = 0, color = "red", linetype = "dashed") +
-  geom_text(aes(label = question), hjust = 0.5, vjust = -0.7, size = 3) +
-  geom_smooth(method = "lm", se = FALSE, color = "#E4A70A", ) +
+  geom_label_repel(
+    aes(label = question),
+    color = "#E4A70A",
+    size = 2.5,
+    show.legend = FALSE,
+    seed = 42,
+    max.overlaps = Inf,
+    box.padding = 0.4,
+    point.padding = 0.15,
+    label.padding = grid::unit(0.12, "lines"),
+    label.size = 0.3,
+    label.r = grid::unit(0.15, "lines"),
+    fill = scales::alpha("white", 0.7),
+    force = 3,
+    force_pull = 0.2,
+    max.iter = 50000,
+    min.segment.length = 0,
+    segment.color = "grey60",
+    segment.size = 0.3
+  ) +
   xlim(0, 1) +
   ylim(0, 1) +
   labs(
@@ -1224,85 +1243,6 @@ S2_fig_behav <- p1_s2 + p2_s2 + p3_s2 +
   )
 
 S2_fig_behav
-```
-
-
-```{r S2-fig-behav-2, fig.cap="Estimated Conditional Probability versus True Conditional Probability. Each data point is a pair of two questions.The red line represents the optimal prediction while the dark line represents the fit of the linear models."}
-# Get difficulty data for observed questions (Quiz 2) - raw perceived_difficulty
-S2_difficulty_obs <- S2_difficulty %>%
-  select(question, perceived_difficulty) %>%
-  rename(observed_q_perceived_difficulty = perceived_difficulty)
-
-# Mapping from S2 Quiz 1 questions to S1 question numbers (based on answer keys)
-# S2 "1_1" = 821 → S1 q2, "1_2" = 4906 → S1 q6, "1_3" = 930 → S1 q8,
-# "1_4" = 2370000 → S1 q13, "1_5" = 92575 → S1 q15
-s2_to_s1_mapping <- tibble(
-  question_evaluated = c("1_1", "1_2", "1_3", "1_4", "1_5"),
-  s1_question = c(2, 6, 8, 13, 15)
-)
-
-# Get difficulty data for evaluated questions (Quiz 1 mapped to S1)
-S1_difficulty_eval <- S1_difficulty %>%
-  select(question, perceived_difficulty) %>%
-  inner_join(s2_to_s1_mapping, by = c("question" = "s1_question")) %>%
-  select(question_evaluated, perceived_difficulty) %>%
-  rename(new_q_perceived_difficulty = perceived_difficulty)
-
-# Create enhanced summarized data with raw difficulty columns
-S2_summarized_enhanced_raw <- S2_long_data %>%
-  group_by(question_observed, success_observed, time_observed, question_evaluated) %>%
-  summarise(
-    judg_conditional_prob = mean(human_evaluation, na.rm = TRUE),
-    true_conditional_prob = mean(true_conditional_prob, na.rm = TRUE),
-    .groups = "drop"
-  ) %>%
-  left_join(S2_difficulty_obs, by = c("question_observed" = "question")) %>%
-  left_join(S1_difficulty_eval, by = "question_evaluated")
-
-# Create subsets by success/failure
-S2_summarized_all_raw <- S2_summarized_enhanced_raw
-S2_summarized_success_raw <- S2_summarized_enhanced_raw %>% filter(success_observed == 1)
-S2_summarized_failure_raw <- S2_summarized_enhanced_raw %>% filter(success_observed == 0)
-
-# Function to create scaled data with difficulty difference (raw)
-df_s2_noscale <- function(df) {
-  df %>%
-    filter(question_observed != question_evaluated) %>%
-    mutate(
-      x_s = as.numeric(scale(true_conditional_prob)),
-      y_s = as.numeric(scale(judg_conditional_prob)),
-      diff_col = new_q_perceived_difficulty - observed_q_perceived_difficulty
-    )
-}
-
-d1 <- df_s2_noscale(S2_summarized_all_raw)
-d2 <- df_s2_noscale(S2_summarized_success_raw)
-d3 <- df_s2_noscale(S2_summarized_failure_raw)
-
-p_base <- function(dat, title_txt) {
-  ggplot(dat, aes(x = x_s, y = y_s, color = diff_col)) +
-    geom_point() +
-    scale_color_gradient2(low = "blue", mid = "grey", high = "red") +
-    geom_abline(intercept = 0, slope = 1, color = "red") +
-    geom_smooth(method = "lm", se = TRUE, color = "black") +
-    labs(
-      title = title_txt,
-      x = "True Conditional Probability",
-      y = "Human Judgement",
-      color = "Difficulty \nDifference \n(New - Obs)"
-    ) +
-    custom_theme
-}
-
-p1 <- p_base(d1, "A. All trials")
-p2 <- p_base(d2, "B. Success observed")
-p3 <- p_base(d3, "C. Failure observed")
-
-S2_fig_behav_2 <- p1 + p2 + p3 +
-  plot_layout(guides = "collect", axis = "collect") &
-  theme(legend.position = "bottom")
-
-S2_fig_behav_2
 ```
 
 

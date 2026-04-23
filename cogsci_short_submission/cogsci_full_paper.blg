@@ -1,19 +1,19 @@
 [0] Config.pm:328> INFO - This is Biber 2.21
 [0] Config.pm:331> INFO - Logfile is 'cogsci_full_paper.blg'
-[24] biber-darwin:342> INFO - === Sun Feb  1, 2026, 13:30:48
-[31] Biber.pm:421> INFO - Reading 'cogsci_full_paper.bcf'
-[67] Biber.pm:1002> INFO - Found 22 citekeys in bib section 0
-[74] Biber.pm:4487> INFO - Processing section 0
-[78] Biber.pm:4678> INFO - Looking for bibtex file '../references.bib' for section 0
-[108] bibtex.pm:1713> INFO - LaTeX decoding ...
-[916] bibtex.pm:1519> INFO - Found BibTeX data source '../references.bib'
-[1053] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[1053] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[1053] Biber.pm:4307> INFO - Sorting list 'apa/apasortcite//global/global/global' of type 'entry' with template 'apa' and locale 'en-US'
-[1053] Biber.pm:4313> INFO - No sort tailoring available for locale 'en-US'
-[1076] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[1076] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[1076] Biber.pm:4307> INFO - Sorting list 'apa/global//global/global/global' of type 'entry' with template 'apa' and locale 'en-US'
-[1076] Biber.pm:4313> INFO - No sort tailoring available for locale 'en-US'
-[1087] bbl.pm:676> INFO - Writing 'cogsci_full_paper.bbl' with encoding 'UTF-8'
-[1098] bbl.pm:779> INFO - Output to cogsci_full_paper.bbl
+[23] biber-darwin:342> INFO - === Thu Apr 23, 2026, 11:19:09
+[29] Biber.pm:421> INFO - Reading 'cogsci_full_paper.bcf'
+[63] Biber.pm:1002> INFO - Found 22 citekeys in bib section 0
+[70] Biber.pm:4487> INFO - Processing section 0
+[73] Biber.pm:4678> INFO - Looking for bibtex file '../references.bib' for section 0
+[105] bibtex.pm:1713> INFO - LaTeX decoding ...
+[923] bibtex.pm:1519> INFO - Found BibTeX data source '../references.bib'
+[1060] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1060] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1060] Biber.pm:4307> INFO - Sorting list 'apa/apasortcite//global/global/global' of type 'entry' with template 'apa' and locale 'en-US'
+[1060] Biber.pm:4313> INFO - No sort tailoring available for locale 'en-US'
+[1084] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1084] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1084] Biber.pm:4307> INFO - Sorting list 'apa/global//global/global/global' of type 'entry' with template 'apa' and locale 'en-US'
+[1084] Biber.pm:4313> INFO - No sort tailoring available for locale 'en-US'
+[1094] bbl.pm:676> INFO - Writing 'cogsci_full_paper.bbl' with encoding 'UTF-8'
+[1106] bbl.pm:779> INFO - Output to cogsci_full_paper.bbl
