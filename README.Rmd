@@ -14,8 +14,8 @@ knitr::opts_chunk$set(
 yaml_metadata <- rmarkdown::yaml_front_matter(here::here("manuscript.Rmd"))
 title <- yaml_metadata$title
 abstract <- yaml_metadata$abstract
-authors <- "ANON"
-year <- "2026"
+authors <- "Mercier, M., de Lanerolle, R., Morin, O., Quillien, T., Mercier, H."
+year <- "(2026)"
 ```
 
 # `r title`
@@ -46,7 +46,7 @@ This repository contains the code and data for our paper.
 
 ## Replicate {#replicate}
 
-This github repository aims to be computationaly reproducible (in one click). The manuscript was written using in RMarkdown: all results are therefore programmatically included when rendering (knitting) the document which allows us to link reported results with the code and data.
+This github repository aims to be computationaly reproducible (in one click). All inline reported results are accessible in the knitted Rmd document.
 
 To reproduce the findings and re-run the analysis, do the following:
 

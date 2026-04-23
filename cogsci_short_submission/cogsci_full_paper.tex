@@ -38,6 +38,7 @@
 \setlength{\bibhang}{.125in}
 
 \usepackage{float} %%% Roger Levy added this and changed figure/table placement to [H] for conformity to Word template, though floating tables and figures to top is still generally recommended!
+\usepackage{placeins} %%% Provides \FloatBarrier to keep Study 1 figures inside the Study 1 section
 
 %%% Additional packages from original manuscript
 \usepackage{amsmath}
@@ -111,7 +112,7 @@ The likelihood $p(S \mid \beta, \theta)$ links competence and difficulty through
 
 \section{Study 1}\label{study-1}
 
-In this study, we use a paradigm similar to \citet{Mercier-2026} to investigate the inferences people make about individuals who provide either a correct or incorrect answer to a math question. We predicted that participants' behavior would be best captured by the optimal Bayesian Model (henceforth ``the Main Model''). More precisely, we put forward the following hypotheses\footnote{The procedures, data collection, analysis plan and the models were pre-registered for Study 1 and 2: \url{https://osf.io/aecyr/?view_only=2b8fc0d1c99e450f8b8534e2aab83a92}. Data and code are openly available: \url{https://osf.io/aecyr/files/github?view_only=2b8fc0d1c99e450f8b8534e2aab83a92 }}:
+In this study, we use a paradigm similar to \citet{Mercier-2026} to investigate the inferences people make about individuals who provide either a correct or incorrect answer to a math question. We predicted that participants' behavior would be best captured by the optimal Bayesian Model (henceforth ``the Main Model''). More precisely, we put forward the following hypotheses\footnote{The procedures, data collection, analysis plan and the models were pre-registered for Study 1 and 2: \url{https://osf.io/n9erf/files/osfstorage?view_only=12991dcd2fba4fe2b9a1a77339d6cb2f}. Data and code are openly available: \url{https://github.com/mariusmercier/paper_numeric_competence/tree/cogsci-2026}}:
 
 \textbf{H1. Difficulty judgments.} For different questions, participants can accurately assess the probability of reaching a correct answer within the time limit.
 
@@ -158,18 +159,6 @@ The Threshold heuristic assumes a deterministic rule: after a success, competenc
 
 \subsection{Results}
 
-\paragraph{Difficulty judgments (H1).}
-Participants’ perceived difficulty for each item closely tracked objective difficulty (i.e. the percentage of participants not being able to solve an item within the time limit in the questionnaire phase). A linear mixed-effects model predicting perceived difficulty from objective difficulty at the trial-level yielded a strong positive association ($\beta = 0.45$, $t(911.69)=22.18$, $p<.001$; see Figure~\ref{fig:S1-fig-behav}A).
-
-\paragraph{Competence inferences from a single outcome (H2).}
-Participants used the observed success/failure to make predictions about performance on other items. We compare these predictions to the true conditional probabilities from the participants' Quiz performance: for each observed-new question pair, the proportion of participants who solved the new question given a success/failure on the observed question (matching the structure of the prediction task). Averaged conditional predictions for each observed-new question pair were strongly correlated with the true conditional probabilities ($\beta = 0.86$, $t(418)=34.72$, $p<.001$, $R^2_{\text{adj}}=0.74$; Figure~\ref{fig:S1-fig-behav}B).
-
-\paragraph{Model accuracy and comparison (H3--H4).}
-The Bayesian model reproduced participants’ average conditional predictions across item pairs (Main Model: $\beta = 0.94$, $t(418)=58.29$, $p<.001$, $R^2_{\text{adj}}=0.89$), outperforming both heuristic models (Threshold: $R^2_{\text{adj}}=0.39$; Anchor: $R^2_{\text{adj}}=0.59$; see Figure~\ref{fig:S1-fig-model-comparison}). Model selection using BIC favored the Bayesian model over Threshold and Anchor ($BIC_{\text{Bayes}}=16063.72$, $BIC_{\text{Threshold}}=19411.92$, $BIC_{\text{Anchor}}=18259.96$), providing strong evidence for the Bayesian account. 
-
-\paragraph{Robustness analyses.}
-To test whether accurate competence inference requires high arithmetic ability, we replicated H1--H2 in the bottom 30\% of performers on the arithmetic test. Even in this subsample, perceived difficulty tracked objective difficulty ($\beta = 0.93$, $t(303)=44.51$, $p<.001$), and average conditional predictions remained strongly correlated with true conditional probabilities ($\beta = 0.85$, $t(448)=34.03$, $p<.001$, $R^2_{\text{adj}}=0.72$).
-
 \begin{figure}
 
 {\centering \includegraphics[width=1\linewidth]{../figures/S1-fig-behav-1}
@@ -187,6 +176,18 @@ To test whether accurate competence inference requires high arithmetic ability, 
 
 \caption{Model comparison for Study 1. Each data point corresponds to the average prediction for an observed-new question pair. The left column shows participants' average predictions, while the remaining columns show predictions from the Bayesian model, Threshold model, and Anchor model respectively. The top row shows trials where success was observed, and the bottom row shows trials where failure was observed. Lines connect predictions for the same observed question across different evaluated questions, colored by the observed question's perceived difficulty.}\label{fig:S1-fig-model-comparison}
 \end{figure}
+
+\paragraph{Difficulty judgments (H1).}
+Participants’ perceived difficulty for each item closely tracked objective difficulty (i.e. the percentage of participants not being able to solve an item within the time limit in the questionnaire phase). A linear mixed-effects model predicting perceived difficulty from objective difficulty at the trial-level yielded a strong positive association ($\beta = 0.45$, $t(911.69)=22.18$, $p<.001$; see Figure~\ref{fig:S1-fig-behav}A).
+
+\paragraph{Competence inferences from a single outcome (H2).}
+Participants used the observed success/failure to make predictions about performance on other items. We compare these predictions to the true conditional probabilities from the participants' Quiz performance: for each observed-new question pair, the proportion of participants who solved the new question given a success/failure on the observed question (matching the structure of the prediction task). Averaged conditional predictions for each observed-new question pair were strongly correlated with the true conditional probabilities ($\beta = 0.86$, $t(418)=34.72$, $p<.001$, $R^2_{\text{adj}}=0.74$; Figure~\ref{fig:S1-fig-behav}B).
+
+\paragraph{Model accuracy and comparison (H3--H4).}
+The Bayesian model reproduced participants’ average conditional predictions across item pairs (Main Model: $\beta = 0.94$, $t(418)=58.29$, $p<.001$, $R^2_{\text{adj}}=0.89$), outperforming both heuristic models (Threshold: $R^2_{\text{adj}}=0.39$; Anchor: $R^2_{\text{adj}}=0.59$; see Figure~\ref{fig:S1-fig-model-comparison}). Model selection using BIC favored the Bayesian model over Threshold and Anchor ($BIC_{\text{Bayes}}=16063.72$, $BIC_{\text{Threshold}}=19411.92$, $BIC_{\text{Anchor}}=18259.96$), providing strong evidence for the Bayesian account. 
+
+\paragraph{Robustness analyses.}
+To test whether accurate competence inference requires high arithmetic ability, we replicated H1--H2 in the bottom 30\% of performers on the arithmetic test. Even in this subsample, perceived difficulty tracked objective difficulty ($\beta = 0.93$, $t(303)=44.51$, $p<.001$), and average conditional predictions remained strongly correlated with true conditional probabilities ($\beta = 0.85$, $t(448)=34.03$, $p<.001$, $R^2_{\text{adj}}=0.72$).
 
 \section{Study 2}\label{study-2}
 
@@ -233,6 +234,11 @@ Quiz~1 comprised five items selected from Study~1 based on empirical accuracy ra
 
 \subsection{Results}\label{results-2}
 
+\begin{figure}
+{\centering \includegraphics[width=1\linewidth]{../figures/S2-fig-behav-1}}
+\caption{Estimated Conditional Probability versus True Conditional Probability in Study 2. Each data point is a pair of two questions. The red line represents the optimal prediction while the dark line represents the fit of the linear models. (\textbf{A}) shows all trials combined, (\textbf{B}) shows trials in the Fast condition (20-second time limit), and (\textbf{C}) shows trials in the Slow condition (40-second time limit). Points are colored by the difficulty difference between the evaluated and observed questions.}\label{fig:S2-fig-behav}
+\end{figure}
+
 
 \paragraph{Difficulty judgments (H1).}
 We first tested whether participants could assess the difficulty of correctly answering the observed questions. Difficulty judgments were collected for Quiz~2 items only (judgments on Quiz~1 items were already collected in Study~1). Because participants encountered both time limits equally often across the Quiz and Judgment phases, we did not subdivide this analysis by time condition. A linear mixed-effects model with random intercepts and slopes for participants showed that perceived difficulty tracked objective difficulty (\(\beta = 0.39\), \(t(313.06)=16.85\), \(p<.001\)). Note that difficulty judgments were collected after the Quiz Phase in Study~2 but before it in Study~1. The replication of H1 across studies therefore argues against the possibility that prior exposure to the items drives difficulty calibration.
@@ -245,16 +251,11 @@ Consistent with H2a, among participants who solved the Quiz~2 item, solving unde
 \paragraph{Competence inferences from a single outcome (H3).}
 We then tested whether participants’ judgments about the target’s performance on Quiz~1 items tracked true conditional probabilities when conditioning on both the observed outcome (success/failure) and the time limit. Replicating Study~1’s analysis, averaged predictions were strongly correlated with true conditional probabilities computed from quiz performance (H3: $\beta=0.89$, $t(98)=19.47$, $p<.001$, $R^2_{\text{adj}}=0.79$; Figure~\ref{fig:S2-fig-behav}). This relationship held across both time-limit conditions (Figure~\ref{fig:S2-fig-behav}B--C).
 
-\begin{figure}
-{\centering \includegraphics[width=1\linewidth]{../figures/S2-fig-behav-1}}
-\caption{Estimated Conditional Probability versus True Conditional Probability in Study 2. Each data point is a pair of two questions. The red line represents the optimal prediction while the dark line represents the fit of the linear models. (\textbf{A}) shows all trials combined, (\textbf{B}) shows trials in the Fast condition (20-second time limit), and (\textbf{C}) shows trials in the Slow condition (40-second time limit). Points are colored by the difficulty difference between the evaluated and observed questions.}\label{fig:S2-fig-behav}
-\end{figure}
-
 \paragraph{Do participants use the time-limit cue? (H4a--H4b).}
 Finally, we tested whether participants incorporated the time-limit information when making predictions. We estimated models parallel to those used for H2a--H2b, but with participants’ binary predictions (rather than true Quiz~1 performance) as the dependent variable, again controlling for item-pair and restricting analyses to observed success (H4a) or observed failure (H4b). Participants’ predictions did not reliably differ between the Fast and Slow conditions, either after observing a correct answer (H4a: $b=0.17$, $z=1.53$, $p=0.125$) or after observing an incorrect answer (H4b: $b=0.15$, $z=1.62$, $p=0.104$). Thus, although the time-limit manipulation carried some diagnostic information in the performance data (H2a--H2b), participants did not appear to use it in their judgments.
 
 \paragraph{Robustness analyses.}
-We further tested whether H1 and H3 held for participants with minimal arithmetic ability (bottom 30\% of scores in the Quiz Phase). These participants still accurately tracked objective difficulty ($\beta=0.32$, $t(88.04)=8.16$, $p<.001$) and their average predictions remained strongly correlated with true conditional probabilities ($\beta=0.88$, $t(98)=18.73$, $p<.001$, $R^2_{\text{adj}}=0.78$). We further replicated H3 with a trial level analysis and found that participants’ predictions also covaried with true conditional probabilities ($b=1.95$, $z=46.19$, $p<.001$).
+We further tested whether H1 and H3 held for participants with minimal arithmetic ability (bottom 30\% of scores in the Quiz Phase). These participants still accurately tracked objective difficulty ($\beta=0.32$, $t(88.04)=8.16$, $p<.001$) and their average predictions remained strongly correlated with true conditional probabilities ($\beta=0.88$, $t(98)=18.73$, $p<.001$, $R^2_{\text{adj}}=0.78$). We further replicated H3 with a trial level analysis and found that participants’ predictions also covaried with true conditional probabilities ($b=2.32$, $z=31.58$, $p<.001$).
 
 \section{General discussion and conclusion}\label{general-discussion-and-conclusion}
 

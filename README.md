@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Result reports of ‘Inferring Competence on a Numerical Task’
+# Inferring Arithmetic Skill from Speed and Accuracy.
 
 ------------------------------------------------------------------------
 
@@ -21,20 +21,33 @@ materials](images/materials_large_color.png)  
 
 ## Abstract
 
+People routinely infer others’ competence under uncertainty, often
+relying on cues such as task difficulty and past accuracy. An emerging
+body of research suggests that people approximate Bayesian inference
+when doing so. We extend these results by testing whether people can
+infer others’ numerical ability in a way that is consistent with a
+rational Bayesian model. In Study 1, we find that participants
+accurately predict the arithmetic performance of another individual from
+information about their past performance. Computational modeling shows
+that participants’ inferences are better described by Bayesian processes
+than by plausible heuristics. Study 2 introduces a modified paradigm, in
+which participants are told about both past performance and time taken
+to solve problems. We find that, although participants are quite
+accurate in their predictions, they do not seem to take into account
+information about speed.
+
 ------------------------------------------------------------------------
 
 This repository contains the code and data for our paper.
 
-> ANON. 2025. “Result reports of ‘Inferring Competence on a Numerical
-> Task’”
+> Mercier, M., de Lanerolle, R., Morin, O., Quillien, T., Mercier, H..
+> (2026). “Inferring Arithmetic Skill from Speed and Accuracy.”
 
 ## Replicate
 
 This github repository aims to be computationaly reproducible (in one
-click). The manuscript was written using in RMarkdown: all results are
-therefore programmatically included when rendering (knitting) the
-document which allows us to link reported results with the code and
-data.
+click). All inline reported results are accessible in the knitted Rmd
+document.
 
 To reproduce the findings and re-run the analysis, do the following:
 
@@ -62,17 +75,16 @@ Please find the [session info below](#session-info).
 
 ## Session info
 
-    #> R version 4.4.2 (2024-10-31 ucrt)
-    #> Platform: x86_64-w64-mingw32/x64
-    #> Running under: Windows 11 x64 (build 26200)
+    #> R version 4.5.2 (2025-10-31)
+    #> Platform: aarch64-apple-darwin25.0.0
+    #> Running under: macOS Tahoe 26.3.1
     #> 
     #> Matrix products: default
-    #> 
+    #> BLAS:   /opt/homebrew/Cellar/openblas/0.3.30/lib/libopenblasp-r0.3.30.dylib 
+    #> LAPACK: /opt/homebrew/Cellar/r/4.5.2_1/lib/R/lib/libRlapack.dylib;  LAPACK version 3.12.1
     #> 
     #> locale:
-    #> [1] LC_COLLATE=French_France.utf8  LC_CTYPE=French_France.utf8   
-    #> [3] LC_MONETARY=French_France.utf8 LC_NUMERIC=C                  
-    #> [5] LC_TIME=French_France.utf8    
+    #> [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
     #> 
     #> time zone: Europe/Paris
     #> tzcode source: internal
@@ -81,7 +93,7 @@ Please find the [session info below](#session-info).
     #> [1] stats     graphics  grDevices utils     datasets  methods   base     
     #> 
     #> loaded via a namespace (and not attached):
-    #>  [1] compiler_4.4.2    here_1.0.1        fastmap_1.2.0     rprojroot_2.0.4  
-    #>  [5] cli_3.6.3         tools_4.4.2       htmltools_0.5.8.1 rstudioapi_0.17.1
-    #>  [9] yaml_2.3.10       rmarkdown_2.29    knitr_1.49        xfun_0.51        
-    #> [13] digest_0.6.37     rlang_1.1.4       evaluate_1.0.3
+    #>  [1] compiler_4.5.2    here_1.0.2        fastmap_1.2.0     rprojroot_2.1.1  
+    #>  [5] cli_3.6.5         tools_4.5.2       htmltools_0.5.9   rstudioapi_0.17.1
+    #>  [9] yaml_2.3.11       rmarkdown_2.30    knitr_1.50        xfun_0.54        
+    #> [13] digest_0.6.39     rlang_1.1.6       evaluate_1.0.5

@@ -159,12 +159,12 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={Analysis code for CogSci 2026: `Inferring Arithmetic Skill from Speed and Accuracy'},
+  pdftitle={Inferring Arithmetic Skill from Speed and Accuracy.},
   pdflang={en-EN},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
-\title{Analysis code for CogSci 2026: `Inferring Arithmetic Skill from Speed and Accuracy'}
+\title{Inferring Arithmetic Skill from Speed and Accuracy.}
 \author{\phantom{0}}
 \date{}
 
@@ -172,6 +172,12 @@
 \shorttitle{SHORT TITLE}
 
 \affiliation{\phantom{0}}
+
+\abstract{%
+People routinely infer others' competence under uncertainty, often relying on cues such as task difficulty and past accuracy. An emerging body of research suggests that people approximate Bayesian inference when doing so. We extend these results by testing whether people can infer others' numerical ability in a way that is consistent wih th a rational Bayesian model. In Study 1, we find that participants accurately predict the arithmetic performance of another individual from information about their past performance. Computational modeling shows that participants' inferences are better described by Bayesian processes than by plausible heuristics. Study 2 introduces a modified paradigm, in which participants are told about both past performance and time taken to solve problems. We find that, although participants are quite accurate in their predictions, they do not seem to take into account information about speed.
+}
+
+
 
 \begin{document}
 \maketitle
@@ -206,6 +212,24 @@
   Conditional predictions: \(\beta\) = 0.85, t(448) = 34.03, p \textless{} .001, Adjusted \(R^2\) = 0.72.
 \end{itemize}
 
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{figures/S1-fig-behav-1} 
+
+}
+
+\caption{(\textbf{A}) Each question's estimated difficulty as a function of its true difficulty. Numbers refer to the question ID (see Materials). The red dashed line represents a perfectly accurate estimation. (\textbf{B}) Participants' estimated probability of answering a new question correctly, conditioned on the performance on the observed question, as a function of true conditional probabilities. (\textbf{C}) The Bayesian model's estimated conditional probabilities as a function of true conditional probabilities. For (\textbf{B}) and (\textbf{C}), each data point corresponds to the average prediction for an observed-new question pair. The red line represents a perfectly accurate prediction, while the dark line represents the fit of the linear model.}\label{fig:S1-fig-behav}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{figures/S1-fig-model-comparison-1} 
+
+}
+
+\caption{Model comparison for Study 1. Each data point corresponds to the average prediction for an observed-new question pair. The left column shows participants' average predictions, while the remaining columns show predictions from the Bayesian model, Threshold model, and Anchor model respectively. The top row shows trials where success was observed, and the bottom row shows trials where failure was observed. Lines connect predictions for the same observed question across different evaluated questions, colored by the observed question's perceived difficulty.}\label{fig:S1-fig-model-comparison}
+\end{figure}
+
 \section{Study 2}\label{study-2}
 
 \textbf{H1 (Difficulty judgments):} \(\beta\) = 0.39, t(313.06) = 16.85, p \textless{} .001.
@@ -229,8 +253,17 @@
 \item
   Conditional predictions: \(\beta\) = 0.88, t(98) = 18.73, p \textless{} .001, Adjusted \(R^2\) = 0.78.
 \item
-  Trial-level analysis: b = 1.95, z = 46.19, p \textless{} .001.
+  Trial-level analysis: b = 2.32, z = 31.58, p \textless{} .001.
 \end{itemize}
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{figures/S2-fig-behav-1} 
+
+}
+
+\caption{Estimated Conditional Probability versus True Conditional Probability in Study 2. Each data point is a pair of two questions. The red line represents the optimal prediction while the dark line represents the fit of the linear models. (\textbf{A}) shows all trials combined, (\textbf{B}) shows trials in the Fast condition (20-second time limit), and (\textbf{C}) shows trials in the Slow condition (40-second time limit). Points are colored by the difficulty difference between the evaluated and observed questions.}\label{fig:S2-fig-behav}
+\end{figure}
 
 
 \end{document}

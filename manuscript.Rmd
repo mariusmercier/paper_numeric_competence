@@ -1,5 +1,8 @@
 ---
-title: "Analysis code for CogSci 2026: 'Inferring Arithmetic Skill from Speed and Accuracy'"
+title: "Inferring Arithmetic Skill from Speed and Accuracy."
+abstract: |
+  People routinely infer others' competence under uncertainty, often relying on cues such as task difficulty and past accuracy. An emerging body of research suggests that people approximate Bayesian inference when doing so. We extend these results by testing whether people can infer others' numerical ability in a way that is consistent wih th a rational Bayesian model. In Study 1, we find that participants accurately predict the arithmetic performance of another individual from information about their past performance. Computational modeling shows that participants' inferences are better described by Bayesian processes than by plausible heuristics. Study 2 introduces a modified paradigm, in which participants are told about both past performance and time taken to solve problems. We find that, although participants are quite accurate in their predictions, they do not seem to take into account information about speed.
+
 output:
   papaja::apa6_pdf:
     keep_tex: true
@@ -8,53 +11,80 @@ always_allow_html: true
 ---
 
 ```{r setup, include=FALSE}
+# Figure out output format
+is_docx <- knitr::pandoc_to("docx") | knitr::pandoc_to("odt")
+is_latex <- knitr::pandoc_to("latex")
+is_html <- knitr::pandoc_to("html")
+
+# Word-specific things
+table_format <- ifelse(is_docx, "huxtable", "kableExtra") # Huxtable tables
+conditional_dpi <- ifelse(is_docx, 300, 300) # Higher DPI
+conditional_align <- ifelse(is_docx, "default", "center") # Word doesn't support align
+
+# Knitr options
 knitr::opts_chunk$set(
   echo = FALSE, warning = FALSE, message = FALSE,
-  fig.retina = 3, dpi = 300
+  # tidy.opts = list(width.cutoff = 120),  # Code width
+  fig.retina = 3, dpi = conditional_dpi,
+  fig.width = 7, fig.height = 5.25,
+  fig.align = conditional_align, out.width = "100%",
+  fig.path = "figures/"
+  # cache.path = "output/_cache/",
+  # fig.process = function(x) {  # Remove "-1" from figure names
+  #   x2 = sub('-\\d+([.][a-z]+)$', '\\1', x)
+  #   if (file.rename(x, x2)) x2 else x
+  # },
+  # options(scipen = 99999999)  # Prevent scientific notation
 )
+
+# R options
 options(
-  width = 90,
-  dplyr.summarise.inform = FALSE
+  width = 90, # Output width
+  dplyr.summarise.inform = FALSE, # Turn off dplyr's summarize() auto messages
+  knitr.kable.NA = "", # Make NAs blank in kables
+  kableExtra.latex.load_packages = FALSE, # Don't add LaTeX preamble stuff
+  modelsummary_factory_default = table_format, # Set modelsummary backend
+  modelsummary_format_numeric_latex = "plain" # Don't use siunitx
 )
 ```
 
 ```{r libraries, include=FALSE}
 library(tidyverse)
-library(papaja)
-library(lmerTest)
-library(broom)
-library(broom.mixed)
-library(here)
-library(lme4)
-library(patchwork)
-library(ggrepel)
-library(wesanderson)
-```
-
-```{r theme}
-custom_theme <- theme_minimal() +
-  theme(
-    text = element_text(family = "serif"),
-    strip.text = element_text(colour = "black"),
-    strip.background   = element_rect(fill = "white", colour = "black", linewidth = .8),
-    strip.background.x = element_rect(fill = "white", colour = "black", linewidth = .8),
-    strip.background.y = element_rect(fill = "white", colour = "black", linewidth = .8)
-  )
+library(mlogit) # For multinomial logistic regression analysis
+library(flextable) # For creating formatted tables (Word output)
+library(kableExtra) # For creating formatted tables (PDF output)
+library(officer) # For knitting formatted tables to word
+library(papaja) # For APA-style formatting
+library(lmerTest) # For linear mixed-effects models with p-values
+library(broom) # For tidying model outputs
+library(broom.mixed) # For tidying mixed effects model outputs
+library(wesanderson) # For color palettes inspired by Wes Anderson films
+library(patchwork) # For combining multiple ggplots
+library(here) # For project-relative file paths
+library(ggh4x) # For extended ggplot2 functionality
+library(car) # For Anova function
+library(ggrepel) # For non-overlapping point labels
 ```
 
 ```{r functions}
+# round numbers from models
 rounded_numbers <- function(x) mutate_if(x, is.numeric, round, 2)
 
+# get model outputs ready for inline text reporting
 clean_lm <- function(model_output) {
   result <- tidy(model_output, conf.int = TRUE) %>%
+    # filter(effect == "fixed") %>%
+    # report p.value according to apa standards
     mutate(p.value = case_when(
       p.value < 0.001 ~ "< .001",
       TRUE ~ paste0("= ", sprintf("%.3f", p.value))
     )) %>%
+    # all other terms
     rounded_numbers() %>%
     mutate(
       term = ifelse(term == "(Intercept)", "intercept", term),
       ci = glue::glue("[{conf.low}, {conf.high}]"),
+      # if there is an interaction (recognized by ":"), name it just interaction
       term = str_replace(term, ".*:.*", "interaction"),
       clean_term = term %>%
         str_replace_all("factor\\(.*?\\)", "") %>%
@@ -76,20 +106,24 @@ clean_lm <- function(model_output) {
     })
 
   result$model_fit <- model_fit
+
   return(result)
 }
 
 clean_lmer <- function(model_output) {
-  broom.mixed::tidy(model_output, conf.int = TRUE) %>%
+  result <- broom.mixed::tidy(model_output, conf.int = TRUE) %>%
     filter(effect == "fixed") %>%
+    # report p.value according to apa standards
     mutate(p.value = case_when(
       p.value < 0.001 ~ "< .001",
       TRUE ~ paste0("= ", sprintf("%.3f", p.value))
     )) %>%
+    # all other terms
     rounded_numbers() %>%
     mutate(
       term = ifelse(term == "(Intercept)", "intercept", term),
       ci = glue::glue("[{conf.low}, {conf.high}]"),
+      # if there is an interaction (recognized by ":"), name it just interaction
       term = str_replace(term, ".*:.*", "interaction"),
       clean_term = term %>%
         str_replace_all("factor\\(.*?\\)", "") %>%
@@ -97,7 +131,126 @@ clean_lmer <- function(model_output) {
     ) %>%
     select(clean_term, term, estimate, std.error, ci, any_of("df"), statistic, p.value) %>%
     split(.$clean_term)
+
+  return(result)
 }
+
+# clean data frame results for paired t-test
+clean_t_test <- function(t.test) {
+  t.test %>%
+    tidy() %>%
+    select(-c(method, alternative)) %>%
+    # report p.value according to apa standards
+    mutate(p.value = case_when(
+      p.value < 0.001 ~ "< .001",
+      TRUE ~ sprintf("p = %.3f", p.value)
+    )) %>%
+    # all other terms
+    rounded_numbers() %>%
+    mutate_all(~ {
+      attributes(.) <- NULL
+      .
+    })
+}
+
+clean_mlogit <- function(model_output) {
+  # Get the summary of the mlogit model, which includes a coefficient table
+  summ <- summary(model_output)
+
+  # Convert the coefficient matrix to a data frame with row names as a column
+  coef_table <- as.data.frame(summ$CoefTable)
+  coef_table <- tibble::rownames_to_column(coef_table, var = "term")
+
+  # Rename columns to common names (make sure these match your summary output)
+  names(coef_table) <- c("term", "estimate", "std.error", "z.value", "p.value")
+
+  # Process the coefficient table
+  coef_table <- coef_table %>%
+    mutate(
+      # Format p-values per APA guidelines
+      p.value = case_when(
+        p.value < 0.001 ~ "< .001",
+        TRUE ~ paste0("= ", sprintf("%.3f", p.value))
+      ),
+      # Calculate confidence intervals (normal approximation)
+      conf.low = estimate - 1.96 * std.error,
+      conf.high = estimate + 1.96 * std.error,
+      ci = glue::glue("[{round(conf.low, 2)}, {round(conf.high, 2)}]"),
+      # Rename intercept and collapse any interaction terms
+      term = ifelse(term == "(Intercept)", "intercept", term),
+      term = ifelse(str_detect(term, ":"), "interaction", term)
+    ) %>%
+    select(term, estimate, std.error, ci, z.value, p.value) %>%
+    rounded_numbers()
+
+  # Split the table by term so each coefficient gets its own list element
+  result <- split(coef_table, coef_table$term)
+
+  # Create a model fit summary.
+  # Here we include logLik, AIC, BIC, and the number of iterations (if available)
+  model_fit <- data.frame(
+    logLik = as.numeric(model_output$logLik),
+    AIC = AIC(model_output),
+    BIC = -2 * as.numeric(model_output$logLik) + attr(logLik(model_output), "df") * log(length(model_output$fitted.values)),
+    nb.iter = model_output$est.stat$nb.iter
+  )
+  model_fit <- rounded_numbers(model_fit) %>%
+    mutate_all(~ {
+      attributes(.) <- NULL
+      .
+    })
+
+  result$model_fit <- model_fit
+
+  return(result)
+}
+
+custom_theme <- theme_minimal() +
+  theme(
+    text = element_text(family = "serif"),
+    ## ---- facet-label styling ----
+    strip.text = element_text(colour = "black"), # text colour
+    strip.background = element_rect(
+      fill = "white", # inside of the strip
+      colour = "black", # border line
+      linewidth = .8
+    ),
+
+    ## ggplot2 ≥ 3.4 splits strips into x- and y-orientations;
+    ## setting these keeps the look identical for both directions
+    strip.background.x = element_rect(fill = "white", colour = "black", linewidth = .8),
+    strip.background.y = element_rect(fill = "white", colour = "black", linewidth = .8)
+  )
+# panel.background = element_rect(fill = "white", colour = NA),
+# panel.border     = element_rect(fill = NA, colour = "black", linewidth = .4))
+
+# Function to clean p-values for inline reporting
+clean_p <- function(p_value) {
+  if (p_value < 0.001) {
+    return("< .001")
+  } else {
+    return(sprintf("%.3f", p_value))
+  }
+}
+
+
+# Theme for plots in slides:
+custom_theme_dark <- theme_minimal() +
+  theme(
+    text = element_text(family = "serif", color = "white", size = 14),
+    plot.background = element_rect(fill = "black", color = NA),
+    panel.background = element_rect(fill = "black", color = NA),
+    panel.grid.major = element_line(color = "grey30"),
+    panel.grid.minor = element_line(color = "grey20"),
+    axis.text = element_text(color = "white", size = 12),
+    axis.title = element_text(color = "white", size = 14),
+    plot.title = element_text(color = "white", size = 18, face = "bold"),
+    legend.background = element_rect(fill = "black", color = NA),
+    legend.key = element_rect(fill = "black", color = NA),
+    legend.text = element_text(color = "white", size = 12),
+    legend.title = element_text(color = "white", size = 14),
+    strip.text = element_text(color = "white", size = 14)
+  )
 ```
 
 ```{r S1-load-data}
@@ -441,7 +594,7 @@ S2_long_data <- left_join(
 )
 S2_h3i <- glmer(
   human_evaluation ~ scale(true_conditional_prob) +
-    (1 | prolific_pid) + (1 | time_observed) + (1 | question_observed) + (1 | time_observed),
+    (1 | prolific_pid) + (1 | time_observed) + (1 | question_observed) + (1 | question_evaluated),
   family = binomial, S2_long_data
 )
 
