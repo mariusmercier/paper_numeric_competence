@@ -5,7 +5,6 @@ abstract: |
 
 output:
   papaja::apa6_pdf:
-    keep_tex: true
   papaja::apa6_docx:
 always_allow_html: true
 ---

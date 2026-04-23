@@ -5,3 +5,23 @@
 
 .99_archive.DS_Store
 .DS_Store
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fff
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+
+# knitr / rmarkdown intermediates
+*_files/
+*_cache/
