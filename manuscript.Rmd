@@ -1,5 +1,5 @@
 ---
-title: "Inline stats for CogSci 2026: 'Inferring Arithmetic Skill from Speed and Accuracy'"
+title: "Analysis code for CogSci 2026: 'Inferring Arithmetic Skill from Speed and Accuracy'"
 output:
   papaja::apa6_pdf:
     keep_tex: true
@@ -26,6 +26,20 @@ library(broom)
 library(broom.mixed)
 library(here)
 library(lme4)
+library(patchwork)
+library(ggrepel)
+library(wesanderson)
+```
+
+```{r theme}
+custom_theme <- theme_minimal() +
+  theme(
+    text = element_text(family = "serif"),
+    strip.text = element_text(colour = "black"),
+    strip.background   = element_rect(fill = "white", colour = "black", linewidth = .8),
+    strip.background.x = element_rect(fill = "white", colour = "black", linewidth = .8),
+    strip.background.y = element_rect(fill = "white", colour = "black", linewidth = .8)
+  )
 ```
 
 ```{r functions}
@@ -87,8 +101,9 @@ clean_lmer <- function(model_output) {
 ```
 
 ```{r S1-load-data}
-S1_long_data <- read_csv(here::here("study_1", "data", "clean", "S1_long_data.csv"))
-S1_prob_df   <- read_csv(here::here("study_1", "data", "clean", "S1_prob_df.csv"))
+S1_long_data   <- read_csv(here::here("study_1", "data", "clean", "S1_long_data.csv"))
+S1_prob_df     <- read_csv(here::here("study_1", "data", "clean", "S1_prob_df.csv"))
+S1_difficulty  <- read_csv(here::here("study_1", "data", "clean", "S1_difficulty.csv"))
 
 source(here::here("pre-registered code", "pre-reg_model_implementation.R"))
 
@@ -231,10 +246,114 @@ S1_results <- list(
 - Perceived vs. objective difficulty: $\beta$ = `r S1_results$clean_model_h1m[["observed_q_objective_difficulty"]]$estimate`, t(`r S1_results$clean_model_h1m[["observed_q_objective_difficulty"]]$df`) = `r S1_results$clean_model_h1m[["observed_q_objective_difficulty"]]$statistic`, p `r S1_results$clean_model_h1m[["observed_q_objective_difficulty"]]$p.value`.
 - Conditional predictions: $\beta$ = `r S1_results$clean_model_h2m$true_prob$estimate`, t(`r S1_results$clean_model_h2m$model_fit$df.residual`) = `r S1_results$clean_model_h2m$true_prob$statistic`, p `r S1_results$clean_model_h2m$true_prob$p.value`, Adjusted $R^2$ = `r S1_results$clean_model_h2m$model_fit$adj.r.squared`.
 
+```{r S1-fig-behav, fig.cap = "(\\textbf{A}) Each question's estimated difficulty as a function of its true difficulty. Numbers refer to the question ID (see Materials). The red dashed line represents a perfectly accurate estimation. (\\textbf{B}) Participants' estimated probability of answering a new question correctly, conditioned on the performance on the observed question, as a function of true conditional probabilities. (\\textbf{C}) The Bayesian model's estimated conditional probabilities as a function of true conditional probabilities. For (\\textbf{B}) and (\\textbf{C}), each data point corresponds to the average prediction for an observed-new question pair. The red line represents a perfectly accurate prediction, while the dark line represents the fit of the linear model.", fig.width = 7, fig.height = 4}
+A <- S1_difficulty %>%
+  ggplot(aes(x = objective_difficulty, y = perceived_difficulty)) +
+  geom_point(color = "#E4A70A") +
+  geom_abline(slope = 1, intercept = 0, color = "red", linetype = "dashed") +
+  geom_label_repel(
+    aes(label = question),
+    color = "#E4A70A",
+    size = 2.5, show.legend = FALSE, seed = 42,
+    max.overlaps = Inf, box.padding = 0.4, point.padding = 0.15,
+    label.padding = grid::unit(0.12, "lines"),
+    label.size = 0.3, label.r = grid::unit(0.15, "lines"),
+    fill = scales::alpha("white", 0.7),
+    force = 3, force_pull = 0.2, max.iter = 50000,
+    min.segment.length = 0, segment.color = "grey60", segment.size = 0.3
+  ) +
+  xlim(0, 1) + ylim(0, 1) +
+  labs(x = "True difficulty", y = "Estimated difficulty", title = "Participants'\nestimations") +
+  custom_theme
+
+B <- S1_summarized_data %>%
+  ggplot(aes(
+    x = true_prob, y = judged_prob,
+    color = new_q_perceived_difficulty_unbounded - observed_q_perceived_difficulty_unbounded
+  )) +
+  geom_point() +
+  scale_color_gradient2(low = "blue", mid = "grey", high = "red") +
+  geom_abline(intercept = 0, slope = 1, color = "red", linetype = "dashed") +
+  geom_smooth(method = "lm", se = TRUE, color = "black") +
+  labs(
+    x = expression("True " * italic(P) * "(" * italic(S)[new] == 1 ~ "|" ~ italic(S)[obs] * ", " * italic(beta)[obs] * ", " * italic(beta)[new] * ")"),
+    y = expression("Estimated " * italic(P) * "(" * italic(S)[new] == 1 ~ "|" ~ italic(S)[obs] * ", " * italic(beta)[obs] * ", " * italic(beta)[new] * ")"),
+    title = "Participants'\nestimations",
+    color = expression(atop(atop("Difficulty", "difference"), "(" * italic(beta)[new] ~ "-" ~ italic(beta)[obs] * ")"))
+  ) +
+  xlim(0, 1) + ylim(0, 1) +
+  custom_theme
+
+C <- S1_summarized_data %>%
+  ggplot(aes(
+    x = true_prob, y = prob_bayes,
+    color = new_q_perceived_difficulty_unbounded - observed_q_perceived_difficulty_unbounded
+  )) +
+  geom_point() +
+  scale_color_gradient2(low = "blue", mid = "grey", high = "red") +
+  geom_abline(intercept = 0, slope = 1, color = "red", linetype = "dashed") +
+  geom_smooth(method = "lm", se = TRUE, color = "black") +
+  labs(
+    x = expression("True " * italic(P) * "(" * italic(S)[new] == 1 ~ "|" ~ italic(S)[obs] * ", " * italic(beta)[obs] * ", " * italic(beta)[new] * ")"),
+    y = expression("Estimated " * italic(P) * "(" * italic(S)[new] == 1 ~ "|" ~ italic(S)[obs] * ", " * italic(beta)[obs] * ", " * italic(beta)[new] * ")"),
+    title = "Bayesian model's\nestimations",
+    color = expression(atop(atop("Difficulty", "difference"), "(" * italic(beta)[new] ~ "-" ~ italic(beta)[obs] * ")"))
+  ) +
+  xlim(0, 1) + ylim(0, 1) +
+  custom_theme
+
+S1_fig_behav <- (A + B + C) +
+  plot_layout(guides = "collect", axis = "collect") &
+  plot_annotation(tag_levels = "A") &
+  theme(legend.position = "bottom", axis.title = element_text(size = 9))
+
+S1_fig_behav
+```
+
+```{r S1-fig-model-comparison, fig.cap="Model comparison for Study 1. Each data point corresponds to the average prediction for an observed-new question pair. The left column shows participants' average predictions, while the remaining columns show predictions from the Bayesian model, Threshold model, and Anchor model respectively. The top row shows trials where success was observed, and the bottom row shows trials where failure was observed. Lines connect predictions for the same observed question across different evaluated questions, colored by the observed question's perceived difficulty."}
+plot_df <- S1_summarized_data %>%
+  pivot_longer(
+    cols = c(judged_prob, prob_bayes, prob_null, prob_null_2),
+    names_to = "model", values_to = "judgment"
+  ) %>%
+  mutate(
+    model = factor(model,
+      levels = c("judged_prob", "prob_bayes", "prob_null", "prob_null_2"),
+      labels = c("Participant", "Bayesian model", "Threshold model", "Anchor model")
+    ),
+    success_observed = factor(success_observed,
+      levels = c(1, 0),
+      labels = c("Success observed", "Failure observed")
+    )
+  )
+
+S1_fig_model_comparison <- ggplot(
+  plot_df,
+  aes(
+    new_q_perceived_difficulty_unbounded, judgment,
+    colour = observed_q_perceived_difficulty_unbounded,
+    group  = observed_q_perceived_difficulty_unbounded
+  )
+) +
+  geom_line(alpha = .35, linewidth = .6) +
+  geom_point(size = .8) +
+  facet_grid(success_observed ~ model) +
+  scale_colour_gradientn(
+    name    = "Observed Question\nPerceived Difficulty",
+    colours = wes_palette("Zissou1", type = "continuous")
+  ) +
+  labs(x = "New question difficulty", y = "Estimated Probability of Success") +
+  custom_theme +
+  theme(legend.position = "bottom")
+
+S1_fig_model_comparison
+```
+
 ```{r S2-load-data}
 S2_long_data    <- read_csv(here("study_2", "data", "clean", "S2_long_data.csv"))
 S2_prob_df      <- read_csv(here("study_2", "data", "clean", "S2_prob_df.csv"))
 S2_long_answers <- read_csv(here("study_2", "data", "clean", "S2_long_answers.csv"))
+S2_difficulty   <- read_csv(here("study_2", "data", "clean", "S2_difficulty.csv"))
 ```
 
 ```{r S2-analyses}
@@ -358,3 +477,73 @@ S2_results <- list(
 - Perceived vs. objective difficulty: $\beta$ = `r S2_results$h1m[["observed_q_objective_difficulty"]]$estimate`, t(`r S2_results$h1m[["observed_q_objective_difficulty"]]$df`) = `r S2_results$h1m[["observed_q_objective_difficulty"]]$statistic`, p `r S2_results$h1m[["observed_q_objective_difficulty"]]$p.value`.
 - Conditional predictions: $\beta$ = `r S2_results$h3m[["true_conditional_prob"]]$estimate`, t(`r S2_results$h3m$model_fit$df.residual`) = `r S2_results$h3m[["true_conditional_prob"]]$statistic`, p `r S2_results$h3m[["true_conditional_prob"]]$p.value`, Adjusted $R^2$ = `r S2_results$h3m$model_fit$adj.r.squared`.
 - Trial-level analysis: b = `r S2_results$h3i[["true_conditional_prob"]]$estimate`, z = `r S2_results$h3i[["true_conditional_prob"]]$statistic`, p `r S2_results$h3i[["true_conditional_prob"]]$p.value`.
+
+```{r S2-fig-behav, fig.cap="Estimated Conditional Probability versus True Conditional Probability in Study 2. Each data point is a pair of two questions. The red line represents the optimal prediction while the dark line represents the fit of the linear models. (\\textbf{A}) shows all trials combined, (\\textbf{B}) shows trials in the Fast condition (20-second time limit), and (\\textbf{C}) shows trials in the Slow condition (40-second time limit). Points are colored by the difficulty difference between the evaluated and observed questions.", fig.width = 7, fig.height = 4}
+S2_difficulty_obs_fig1 <- S2_difficulty %>%
+  select(question, perceived_difficulty) %>%
+  rename(observed_q_perceived_difficulty = perceived_difficulty)
+
+# Mapping from S2 Quiz 1 questions to S1 question numbers (based on answer keys)
+s2_to_s1_mapping_fig1 <- tibble(
+  question_evaluated = c("1_1", "1_2", "1_3", "1_4", "1_5"),
+  s1_question = c(2, 6, 8, 13, 15)
+)
+
+S1_difficulty_eval_fig1 <- S1_difficulty %>%
+  select(question, perceived_difficulty) %>%
+  inner_join(s2_to_s1_mapping_fig1, by = c("question" = "s1_question")) %>%
+  select(question_evaluated, perceived_difficulty) %>%
+  rename(new_q_perceived_difficulty = perceived_difficulty)
+
+S2_summarized_enhanced <- S2_long_data %>%
+  group_by(question_observed, success_observed, time_observed, question_evaluated) %>%
+  summarise(
+    judg_conditional_prob = mean(human_evaluation, na.rm = TRUE),
+    true_conditional_prob = mean(true_conditional_prob, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  left_join(S2_difficulty_obs_fig1, by = c("question_observed" = "question")) %>%
+  left_join(S1_difficulty_eval_fig1, by = "question_evaluated")
+
+S2_summarized_all  <- S2_summarized_enhanced
+S2_summarized_fast <- S2_summarized_enhanced %>% filter(time_observed == 1)
+S2_summarized_slow <- S2_summarized_enhanced %>% filter(time_observed == 0)
+
+df_s2_scale <- function(df) {
+  df %>%
+    mutate(
+      x_s = as.numeric(scale(true_conditional_prob)),
+      y_s = as.numeric(scale(judg_conditional_prob)),
+      diff_col = new_q_perceived_difficulty - observed_q_perceived_difficulty
+    )
+}
+
+d1_s2 <- df_s2_scale(S2_summarized_all)
+d2_s2 <- df_s2_scale(S2_summarized_fast)
+d3_s2 <- df_s2_scale(S2_summarized_slow)
+
+p_base_s2 <- function(dat, title_txt) {
+  ggplot(dat, aes(x = x_s, y = y_s, color = diff_col)) +
+    geom_point() +
+    scale_color_gradient2(low = "blue", mid = "grey", high = "red") +
+    geom_abline(intercept = 0, slope = 1, color = "red", linetype = "dashed") +
+    geom_smooth(method = "lm", se = TRUE, color = "black") +
+    labs(
+      title = title_txt,
+      x = expression("True " * italic(P) * "(" * italic(S)[new] == 1 ~ "|" ~ italic(S)[obs] * ", " * italic(beta)[obs] * ", " * italic(beta)[new] * ")"),
+      y = expression("Estimated " * italic(P) * "(" * italic(S)[new] == 1 ~ "|" ~ italic(S)[obs] * ", " * italic(beta)[obs] * ", " * italic(beta)[new] * ")"),
+      color = expression(atop(atop("Difficulty", "difference"), "(" * italic(beta)[new] ~ "-" ~ italic(beta)[obs] * ")"))
+    ) +
+    custom_theme
+}
+
+p1_s2 <- p_base_s2(d1_s2, "A. All trials")
+p2_s2 <- p_base_s2(d2_s2, "B. Fast condition (20s)")
+p3_s2 <- p_base_s2(d3_s2, "C. Slow condition (40s)")
+
+S2_fig_behav <- p1_s2 + p2_s2 + p3_s2 +
+  plot_layout(guides = "collect", axis = "collect") &
+  theme(legend.position = "bottom", axis.title = element_text(size = 12))
+
+S2_fig_behav
+```
