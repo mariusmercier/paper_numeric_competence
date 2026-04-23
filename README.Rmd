@@ -57,7 +57,7 @@ Please find the [session info below](#session-info).
 
 ## Files glossary {#glossary}
 
-- The `manuscript.Rmd` and the `preprint.Rmd` generate the paper. Manuscript is anonymized for submission.
+- The `manuscript.Rmd` generates the inline statistical reports.
 - The `study_[1-X]/` folders contain the data sets and pre-processing scripts for each studies.
 - `study_[1-X]/data/raw/` include the raw data.
 - `study_[1-X]/data/clean/` include preprocessed data from the `S[1-3]_preprocess.R` script. 
